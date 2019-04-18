@@ -1,0 +1,209 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/IMAssets;component/Styles/BaseAssets.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!--页面（窗口）标题样式-->
+    <Style x:Key="MainTitleStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource CommonFontSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkForeground}"/>
+        <Setter Property="Margin" Value="10,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <!--内格中 标题样式-->
+    <Style x:Key="TitleStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource UpperFontSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkForeground}"/>
+        <Setter Property="Margin" Value="10,0"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!--内格中 标题样式-->
+    <Style x:Key="ContentStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource UpperFontSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkForeground}"/>
+        <Setter Property="Margin" Value="10,0"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!--内格中 标题样式-->
+    <Style x:Key="CellTitleStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource CommonFontSize}"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkForeground}"/>
+        <Setter Property="Margin" Value="10,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+  
+
+    <!--内格中 标题(水印)样式-->
+    <Style x:Key="CellTitleWatermarkStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource CellTitleStyle}">
+        <Setter Property="Foreground" Value="{StaticResource LightForeground}"/>
+    </Style>
+
+
+    <!-- 附加标签样式-如在消息数量显示的时候用 -->
+    <Style x:Key="AppendLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Margin" Value="-10,3,-10,3"/>
+        <Setter Property="RenderTransform" >
+            <Setter.Value>
+                <TranslateTransform X="-5" Y="-10"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Red"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="100">
+                        <ContentPresenter x:Name="cp" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Content" Value="{x:Null}">
+                            <Setter TargetName="Bd" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="99+">
+                            <Setter Property="FontSize" Value="8"/>
+                            <Setter TargetName="cp" Property="VerticalAlignment" Value="Center"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="">
+                            <Setter TargetName="Bd" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger  Property="Content" Value="0">
+                            <Setter TargetName="Bd" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <Trigger Property="IsTabStop" Value="true">
+                            <Setter Property="Content" Value=""/>
+                            <Setter Property="Foreground" Value="Transparent"/>
+                            <Setter Property="Width" Value="8"/>
+                            <Setter Property="Height" Value="8"/>
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="-8" Y="-8"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ChatListLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Margin" Value="-10,0,-10,0"/>
+        <Setter Property="RenderTransform" >
+            <Setter.Value>
+                <TranslateTransform X="-5" Y="-10"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Red"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="100">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Content" Value="{x:Null}">
+                            <Setter TargetName="Bd" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="99+">
+                            <Setter Property="FontSize" Value="8"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="">
+                            <Setter TargetName="Bd" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger  Property="Content" Value="0">
+                            <Setter TargetName="Bd" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <Trigger Property="IsTabStop" Value="true">
+                            <Setter Property="Content" Value=""/>
+                            <Setter Property="Foreground" Value="Transparent"/>
+                            <Setter Property="Width" Value="8"/>
+                            <Setter Property="Height" Value="8"/>
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="-8" Y="-8"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="TipLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Background" Value="#CC333333"/>
+        <Setter Property="Opacity" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border x:Name="Bd"  RenderTransformOrigin="0.5,0.5" CornerRadius="0" BorderThickness="1" 
+                                        BorderBrush="{StaticResource HightLightBackground}" Background="{TemplateBinding Background}">
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="scale" ScaleX="0" ScaleY="0"/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <TextBlock x:Name="tb" Text="{TemplateBinding Content}"   TextWrapping="Wrap"  
+                                   Margin="{TemplateBinding Padding}"  
+                                        Style="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{StaticResource UpperFontSize}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Visibility" Value="Collapsed">
+                            <Trigger.EnterActions>
+                                <StopStoryboard BeginStoryboardName="BeginVisibleStoryboard"/>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                        <Trigger Property="Visibility" Value="Visible"> 
+                            <Setter Property="Opacity" Value="1"/>
+                            <Trigger.EnterActions >
+                                <BeginStoryboard x:Name="BeginVisibleStoryboard">
+                                    <Storyboard AutoReverse="True">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.2"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1.2"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

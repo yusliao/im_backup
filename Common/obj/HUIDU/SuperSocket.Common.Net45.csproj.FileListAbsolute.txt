@@ -1,0 +1,7 @@
+D:\work\src\output\huidu\SuperSocket.Common.dll
+D:\work\src\output\huidu\SuperSocket.Common.pdb
+D:\work\src\output\huidu\SuperSocket.Common.XML
+D:\work\src\trunk\Common\obj\HUIDU\SuperSocket.Common.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Common\obj\HUIDU\SuperSocket.Common.dll
+D:\work\src\trunk\Common\obj\HUIDU\SuperSocket.Common.pdb
+D:\work\src\trunk\Common\obj\HUIDU\SuperSocket.Common.Net45.csprojAssemblyReference.cache

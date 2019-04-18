@@ -1,0 +1,11 @@
+D:\work\src\trunk\Facility\bin\Test\SuperSocket.Facility.dll
+D:\work\src\trunk\Facility\bin\Test\SuperSocket.Common.dll
+D:\work\src\trunk\Facility\bin\Test\SuperSocket.SocketBase.dll
+D:\work\src\trunk\Facility\bin\Test\log4net.dll
+D:\work\src\trunk\Facility\bin\Test\SuperSocket.SocketBase.pdb
+D:\work\src\trunk\Facility\bin\Test\SuperSocket.SocketBase.xml
+D:\work\src\output\test\SuperSocket.Facility.dll
+D:\work\src\trunk\Facility\obj\Test\SuperSocket.Facility.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Facility\obj\Test\SuperSocket.Facility.Net45.csproj.CopyComplete
+D:\work\src\trunk\Facility\obj\Test\SuperSocket.Facility.dll
+D:\work\src\trunk\Facility\obj\Test\SuperSocket.Facility.Net45.csprojAssemblyReference.cache

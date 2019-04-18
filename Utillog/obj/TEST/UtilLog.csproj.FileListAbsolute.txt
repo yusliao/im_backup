@@ -1,0 +1,8 @@
+D:\work\src\output\test\Utillog.dll.config
+D:\work\src\output\test\Utillog.dll
+D:\work\src\trunk\Utillog\obj\TEST\UtilLog.csprojAssemblyReference.cache
+D:\work\src\trunk\Utillog\obj\TEST\Utillog.Properties.LogResource.resources
+D:\work\src\trunk\Utillog\obj\TEST\UtilLog.csproj.GenerateResource.cache
+D:\work\src\trunk\Utillog\obj\TEST\UtilLog.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Utillog\obj\TEST\UtilLog.csproj.CopyComplete
+D:\work\src\trunk\Utillog\obj\TEST\Utillog.dll

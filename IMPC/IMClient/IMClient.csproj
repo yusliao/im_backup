@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD58F582-A740-4A07-AE7E-DB37E7EC6537}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>IMClient</RootNamespace>
+    <AssemblyName>IMUI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\output\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\output\release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>IMClient.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>..\..\..\output\test\</OutputPath>
+    <DefineConstants>TRACE;CHECK</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'HUIDU|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\output\huidu\</OutputPath>
+    <DefineConstants>TRACE;HUIDU</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DirectShowLib, Version=2.1.0.1599, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DirectShowLib.1.0.0\lib\DirectShowLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Expression.Drawing.3.0.0\lib\net45\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>DLL\Microsoft.mshtml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NLog">
+      <HintPath>..\..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Obisoft.HSharp, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Obisoft.HSharp.1.1.4\lib\net40\Obisoft.HSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\sqlite-net-pcl.1.4.118\lib\netstandard1.1\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\net45\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.bundle_green.1.1.5\lib\net45\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.5\lib\net45\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.provider.e_sqlite3.net45.1.1.5\lib\net45\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\packages\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="XAMLConverter, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\XAMLConverter.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Converter\NullToVisibilityConverter.cs" />
+    <Compile Include="Converter\PercentToAngleConverter.cs" />
+    <Compile Include="Converter\PhoneNumberToView.cs" />
+    <Compile Include="Converter\HeadImgConvter.cs" />
+    <Compile Include="Converter\DataTimeToStringConverter.cs" />
+    <Compile Include="Converter\BoolConvertVisibility.cs" />
+    <Compile Include="Converter\FileInfoToViewConverter.cs" />
+    <Compile Include="Converter\MessageToViewConverter.cs" />
+    <Compile Include="Converter\IntToVisibilityConverter.cs" />
+    <Compile Include="Converter\ModifyGroupNameConverter.cs" />
+    <Compile Include="Converter\UnReadMessageCountConverter.cs" />
+    <Compile Include="Helper\ActionCenter.cs" />
+    <Compile Include="Helper\AsyncHandler.cs" />
+    <Compile Include="Helper\BindingProxy.cs" />
+    <Compile Include="Helper\CommonHelper.cs" />
+    <Compile Include="Helper\ConstString.cs" />
+    <Compile Include="Helper\DictionaryMultipleKeys.cs" />
+    <Compile Include="Helper\Enums.cs" />
+    <Compile Include="Helper\FFmpegHelper.cs" />
+    <Compile Include="Helper\FileHelper.cs" />
+    <Compile Include="Helper\FlashWindowHelper.cs" />
+    <Compile Include="Helper\FlowDocumentEx.cs" />
+    <Compile Include="Helper\FullScreenManager.cs" />
+    <Compile Include="Helper\HotKeyHelper.cs" />
+    <Compile Include="Helper\ClipboardHelper.cs" />
+    <Compile Include="Helper\ImageDecoder.cs" />
+    <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\ImagePathHelper.cs" />
+    <Compile Include="Helper\ImageQueue.cs" />
+    <Compile Include="Helper\MaxByteAttachedProperty.cs" />
+    <Compile Include="Helper\MessageHelper.cs" />
+    <Compile Include="Helper\TextBoxHelper.cs" />
+    <Compile Include="Helper\TrayHelper.cs" />
+    <Compile Include="Helper\WebHelper.cs" />
+    <Compile Include="LoginQR.xaml.cs">
+      <DependentUpon>LoginQR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleInstanceApplicationWrpper.cs" />
+    <Compile Include="ViewModels\AppData.cs" />
+    <Compile Include="ViewModels\AttentionVIewModel.cs" />
+    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\AttentionListViewModel.cs" />
+    <Compile Include="ViewModels\Base\ListViewModel.cs" />
+    <Compile Include="ViewModels\BlacklistViewModel.cs" />
+    <Compile Include="ViewModels\ChatHistoryViewModel.cs" />
+    <Compile Include="ViewModels\ChatListViewModel.cs" />
+    <Compile Include="ViewModels\ChatViewModel.cs" />
+    <Compile Include="ViewModels\CommonSettingViewModel.cs" />
+    <Compile Include="ViewModels\FeedBackViewModel.cs" />
+    <Compile Include="ViewModels\FowardViewModel.cs" />
+    <Compile Include="ViewModels\FriendApplyListViewModel.cs" />
+    <Compile Include="ViewModels\HelpCenterViewModel.cs" />
+    <Compile Include="ViewModels\LoginQRViewModel.cs" />
+    <Compile Include="ViewModels\PrivacyViewModel.cs" />
+    <Compile Include="ViewModels\SendPersonCardViewModel.cs" />
+    <Compile Include="ViewModels\SettingListViewModel.cs" />
+    <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="ViewModels\SetVerificationViewModel.cs" />
+    <Compile Include="ViewModels\UserSearchListViewModel.cs" />
+    <Compile Include="ViewModels\FileMessageViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\FriendViewModel.cs" />
+    <Compile Include="ViewModels\GroupListViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\FriendListViewModel.cs" />
+    <Compile Include="ViewModels\VMCommand.cs" />
+    <Compile Include="Views\ChildWindows\AppendWindow.xaml.cs">
+      <DependentUpon>AppendWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\BlacklistWindow.xaml.cs">
+      <DependentUpon>BlacklistWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\ClearCacheWindow.xaml.cs">
+      <DependentUpon>ClearCacheWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\DetectNewVersionWindow.xaml.cs">
+      <DependentUpon>DetectNewVersionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\EditStringValueWindow.xaml.cs">
+      <DependentUpon>EditStringValueWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\ForceOfflineWindow.xaml.cs">
+      <DependentUpon>ForceOfflineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\FowardWindow.xaml.cs">
+      <DependentUpon>FowardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\GroupMemberDealWindow.xaml.cs">
+      <DependentUpon>GroupMemberDealWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\GroupInviteWindow.xaml.cs">
+      <DependentUpon>GroupInviteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\GroupNoticeTipWindow.xaml.cs">
+      <DependentUpon>GroupNoticeTipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\GroupNoticeWindow.xaml.cs">
+      <DependentUpon>GroupNoticeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\MessageBoxEx.xaml.cs">
+      <DependentUpon>MessageBoxEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\MessageTip.xaml.cs">
+      <DependentUpon>MessageTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\MobileNumberVerificationWin.xaml.cs">
+      <DependentUpon>MobileNumberVerificationWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\SendPersonCardWindow.xaml.cs">
+      <DependentUpon>SendPersonCardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\SetFriendNotesWindow.xaml.cs">
+      <DependentUpon>SetFriendNotesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\SetKeFangIDWindow.xaml.cs">
+      <DependentUpon>SetKeFangIDWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\TrayWindow.xaml.cs">
+      <DependentUpon>TrayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\VerificationWindow.xaml.cs">
+      <DependentUpon>VerificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AnimationLoading.xaml.cs">
+      <DependentUpon>AnimationLoading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AtPackage.xaml.cs">
+      <DependentUpon>AtPackage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\EmojeBox.xaml.cs">
+      <DependentUpon>EmojeBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\GroupCard.xaml.cs">
+      <DependentUpon>GroupCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\GroupNoticeCard.xaml.cs">
+      <DependentUpon>GroupNoticeCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\HeadImage.xaml.cs">
+      <DependentUpon>HeadImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PersonalCard.xaml.cs">
+      <DependentUpon>PersonalCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SmallVideo.xaml.cs">
+      <DependentUpon>SmallVideo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\UserCard.xaml.cs">
+      <DependentUpon>UserCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ClipRect.xaml.cs">
+      <DependentUpon>ClipRect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ClipWindow.xaml.cs">
+      <DependentUpon>ClipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\ImageDeal.cs" />
+    <Compile Include="Helper\PrimaryScreen.cs" />
+    <Compile Include="Views\Controls\ChatBox.xaml.cs">
+      <DependentUpon>ChatBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ChatImage.xaml.cs">
+      <DependentUpon>ChatImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\FileChatItem.xaml.cs">
+      <DependentUpon>FileChatItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\FilePackage.xaml.cs">
+      <DependentUpon>FilePackage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildWindows\ImageScanWindow.xaml.cs">
+      <DependentUpon>ImageScanWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MessageEditor.xaml.cs">
+      <DependentUpon>MessageEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\AttentionListView.xaml.cs">
+      <DependentUpon>AttentionListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\AttentionView.xaml.cs">
+      <DependentUpon>AttentionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\ChatHistoryView.xaml.cs">
+      <DependentUpon>ChatHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\CommonSettingView.xaml.cs">
+      <DependentUpon>CommonSettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\FeedBackView.xaml.cs">
+      <DependentUpon>FeedBackView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\FowardView.xaml.cs">
+      <DependentUpon>FowardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\FriendNewApplyView.xaml.cs">
+      <DependentUpon>FriendNewApplyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\GroupApplyListView.xaml.cs">
+      <DependentUpon>GroupApplyListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\GroupNoticeView.xaml.cs">
+      <DependentUpon>GroupNoticeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\HelpCenterView.xaml.cs">
+      <DependentUpon>HelpCenterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\HyperlinkMessageCard.xaml.cs">
+      <DependentUpon>HyperlinkMessageCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\PersonCardView.xaml.cs">
+      <DependentUpon>PersonCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\PrivacyView.xaml.cs">
+      <DependentUpon>PrivacyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\SearchResultView.xaml.cs">
+      <DependentUpon>SearchResultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\SettingListView.xaml.cs">
+      <DependentUpon>SettingListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\StrangerMessageView.xaml.cs">
+      <DependentUpon>StrangerMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\UserSearchView.xaml.cs">
+      <DependentUpon>UserSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\GroupView.xaml.cs">
+      <DependentUpon>GroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\FriendView.xaml.cs">
+      <DependentUpon>FriendView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\ChatView.xaml.cs">
+      <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\GroupListView.xaml.cs">
+      <DependentUpon>GroupListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\FriendListView.xaml.cs">
+      <DependentUpon>FriendListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\ChatListView.xaml.cs">
+      <DependentUpon>ChatListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PassowrdBox.xaml.cs">
+      <DependentUpon>PassowrdBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\SetupGroupView.xaml.cs">
+      <DependentUpon>SetupGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Panels\SetupFriendView.xaml.cs">
+      <DependentUpon>SetupFriendView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LoginQR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\ChildWindows\AppendWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\BlacklistWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\ClearCacheWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\DetectNewVersionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\EditStringValueWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\ForceOfflineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\FowardWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChildWindows\GroupMemberDealWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChildWindows\GroupInviteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\GroupNoticeTipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\GroupNoticeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\MessageBoxEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\MessageTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChildWindows\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\MobileNumberVerificationWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\SendPersonCardWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChildWindows\SetFriendNotesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\SetKeFangIDWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChildWindows\TrayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\VerificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AnimationLoading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AtPackage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\EmojeBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\GroupCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\GroupNoticeCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\HeadImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\PersonalCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\SmallVideo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\UserCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ClipRect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ClipWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ChatBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ChatImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\FileChatItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\FilePackage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChildWindows\ImageScanWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\MessageEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\AttentionListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\AttentionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\ChatHistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\CommonSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\FeedBackView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\FowardView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\FriendNewApplyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\GroupApplyListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\GroupNoticeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\HelpCenterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\HyperlinkMessageCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\PersonCardView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\PrivacyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\SearchResultView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\SettingListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\StrangerMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\UserSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\GroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\FriendView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\ChatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\GroupListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\FriendListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\ChatListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\PassowrdBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Panels\SetupGroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Panels\SetupFriendView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\IM.Emoje\IM.Emoje.csproj">
+      <Project>{9f2ef0dd-aff2-4733-a920-71a82935fb23}</Project>
+      <Name>IM.Emoje</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SDKClient\SDKClient.csproj">
+      <Project>{0942ae47-53a5-45d0-840e-8b8a31981afa}</Project>
+      <Name>SDKClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ToolGood.Words-master\ToolGood.Words\ToolGood.Words.csproj">
+      <Project>{4A5BA2B0-8C34-4891-89BC-F1536AE424D1}</Project>
+      <Name>ToolGood.Words</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Util\Util.csproj">
+      <Project>{f92b3886-a0bc-4a73-8449-73c602b66056}</Project>
+      <Name>Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMAssets\IMAssets.csproj">
+      <Project>{2c56b218-d689-4795-b666-ba5ff3134387}</Project>
+      <Name>IMAssets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMCustomControls\IMCustomControls.csproj">
+      <Project>{2c55f559-9171-4583-b79b-fc0e6dd8a176}</Project>
+      <Name>IMCustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IMModels\IMModels.csproj">
+      <Project>{68e97fe2-10f9-49ae-974e-3e4721ff1889}</Project>
+      <Name>IMModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\Microsoft.mshtml.dll" />
+    <Content Include="Icons\logo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Tools\Dataconfig.xml" />
+    <Resource Include="logo.ico" />
+    <Content Include="Tools\ffmpeg.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\empty.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\cliparrow.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.WinFX.targets" />
+  <Import Project="..\..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets" Condition="Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets'))" />
+    <Error Condition="!Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets'))" />
+    <Error Condition="!Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets" Condition="Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" />
+  <Import Project="..\..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets" Condition="Exists('..\..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.5\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets')" />
+</Project>

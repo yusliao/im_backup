@@ -1,0 +1,357 @@
+﻿<UserControl
+    x:Class="CSClient.Views.Panels.ChatListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cv="clr-namespace:CSClient.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="200"
+    d:DesignWidth="240"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <cv:DataTimeToStringConverter x:Key="dts" />
+        <cv:UnReadMessageCountConverter x:Key="unreadMsg" />
+        <cv:ModifyGroupNameConverter x:Key="ModifyGroupNameConverter" />
+        <cv:HeadImgConvter x:Key="htc" />
+
+        <!--<DataTemplate x:Key="ChatDataTemplate">
+            <Border x:Name="bd" Background="Transparent" Margin="0,1">
+                <Grid x:Name="grid" Height="50" Margin="5" MaxWidth="220" Background="Transparent">
+                    <Grid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="miIsTopMost" Header="置顶" Command="{Binding TopMostCommand}"/>
+                            <MenuItem x:Name="miIsNotDisturb" Header="消息免打扰" Command="{Binding NoDisturbCommand}"/>
+                            <MenuItem x:Name="miModifyGroupName" Header="修改群名称" Command="{Binding ModifyGroupNameCommand}"
+                                            Visibility="{Binding Model, Converter={StaticResource ModifyGroupNameConverter}}"/>
+                            <MenuItem Header="删除聊天" Command="{Binding DeleteChatCommand}"/>
+                        </ContextMenu>
+                    </Grid.ContextMenu>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition  />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Ellipse Grid.RowSpan="2" Margin="5" >
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Model.Chat.HeadImg,Mode=OneWay}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock Text="{Binding Model.Chat.DisplayName,Mode=OneWay}" Grid.Column="1" MaxWidth="130" TextTrimming="CharacterEllipsis"
+                           ToolTip="{Binding Model.Chat.DisplayName,Mode=OneWay}"
+                                                 HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="{StaticResource DarkForeground}" FontSize="{StaticResource CommonFontSize}"/>
+                    <TextBlock Text="{Binding Model.LastMsg.SendTime,Converter={StaticResource dts},Mode=OneWay}"
+                                            Grid.Column="2" VerticalAlignment="Center" Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}" />
+                    <TextBlock  Grid.Column="1"  Grid.Row="1" HorizontalAlignment="Left"
+                                   TextTrimming="CharacterEllipsis" VerticalAlignment="Center"
+                                   Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}">
+                    <Run x:Name="runSender0"/><Run x:Name="runSender1"/>
+                    <Run Text="{Binding Model.LastMsg.Content,Mode=OneWay}"/>
+                    </TextBlock>
+
+                    <Image x:Name="imgNodisturb" Visibility="Collapsed" Grid.RowSpan="2" Grid.ColumnSpan="3"
+                               Source="/IMAssets;component/Images/icon-nodisturb.png"
+                               Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+
+                    <Label Style="{StaticResource AppendLabelStyle}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                               BorderBrush="Transparent" Margin="0,10,-5,0" Grid.RowSpan="2"
+                               Content="{Binding UnReadCount, Converter={StaticResource unreadMsg},Mode=OneWay}" />
+                </Grid>
+            </Border>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsGroup,Mode=OneWay}" Value="true">
+                    <Setter TargetName="runSender0" Property="Text" Value="{Binding Model.LastMsg.Sender.DisplayName,Mode=OneWay}"/>
+                    <Setter TargetName="runSender1" Property="Text" Value=":"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Model.LastMsg.Sender,Mode=OneWay}" Value="{x:Null}">
+                    <Setter TargetName="runSender1" Property="Text" Value=""/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Model.Chat.IsNotDisturb,Mode=OneWay}" Value="true">
+                    <Setter TargetName="imgNodisturb" Property="Visibility" Value="Visible"/>
+                    <Setter TargetName="miIsNotDisturb" Property="Header" Value="开启新消息提醒"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Model.Chat.IsTopMost,Mode=OneWay}" Value="true">
+                    <Setter TargetName="miIsTopMost" Property="Header" Value="取消置顶"/>
+                    <Setter TargetName="bd" Property="Background" Value="{StaticResource AppendBackground}"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>-->
+
+
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border
+                            x:Name="bd"
+                            Margin="0,0.5"
+                            Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path
+                                    x:Name="pathTopMost"
+                                    Margin="5"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Data="M 0,0 L0,10 10,0 Z"
+                                    Fill="#688FFF"
+                                    Visibility="Collapsed" />
+                                <Grid
+                                    x:Name="grid"
+                                    Height="50"
+                                    MaxWidth="220"
+                                    Margin="5,10"
+                                    Background="Transparent"
+                                    Unloaded="Item_Unloaded">
+                                    <Grid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem
+                                                x:Name="miIsTopMost"
+                                                Command="{Binding TopMostCommand}"
+                                                Header="置顶"
+                                                Visibility="Collapsed" />
+                                            <MenuItem
+                                                x:Name="miIsNotDisturb"
+                                                Command="{Binding NoDisturbCommand}"
+                                                Header="消息免打扰"
+                                                Visibility="Collapsed" />
+                                            <!--<MenuItem x:Name="miModifyGroupName" Header="修改群名称" Command="{Binding ModifyGroupNameCommand}"
+                                            Visibility="{Binding Model, Converter={StaticResource ModifyGroupNameConverter}}"/>-->
+                                            <MenuItem Command="{Binding DeleteChatCommand}" Header="删除聊天" />
+                                        </ContextMenu>
+                                    </Grid.ContextMenu>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Ellipse Grid.RowSpan="2" Margin="6">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding Model.Chat.HeadImg, Mode=TwoWay, Converter={StaticResource htc}}" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock
+                                        x:Name="tbDisplayName"
+                                        Grid.Column="1"
+                                        MaxWidth="130"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="{StaticResource CommonFontSize}"
+                                        Foreground="#333333"
+                                        Text="{Binding Model.Chat.DisplayName, Mode=OneWay}"
+                                        TextTrimming="CharacterEllipsis"
+                                        ToolTip="{Binding Text, RelativeSource={RelativeSource Self}, Mode=OneWay}" />
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        VerticalAlignment="Center"
+                                        FontSize="{StaticResource LowerFontSize}"
+                                        Foreground="#999999"
+                                        Text="{Binding Model.LastMsg.SendTime, Converter={StaticResource dts}, Mode=OneWay}" />
+
+                                    <DockPanel
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="2"
+                                        VerticalAlignment="Center"
+                                        LastChildFill="True">
+                                        <Image
+                                            x:Name="imgNodisturb"
+                                            Width="12"
+                                            Height="12"
+                                            Margin="10,0,0,0"
+                                            DockPanel.Dock="Right"
+                                            Source="/IMAssets;component/Images/icon-nodisturb.png"
+                                            Visibility="Collapsed" />
+                                        <TextBlock
+                                            Margin="0,0,10,0"
+                                            DockPanel.Dock="Right"
+                                            FontSize="12"
+                                            Foreground="#999999"
+                                            Text="会话已结束"
+                                            Visibility="{Binding IsSessionEnd, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                                        <TextBlock
+                                            x:Name="tbAt"
+                                            DockPanel.Dock="Left"
+                                            FontSize="{StaticResource LowerFontSize}"
+                                            Foreground="{StaticResource LightForeground}" />
+                                        <TextBlock
+                                            x:Name="tbStartSession"
+                                            DockPanel.Dock="Left"
+                                            FontSize="{StaticResource LowerFontSize}"
+                                            Foreground="{StaticResource LightForeground}" />
+                                        <TextBlock
+                                            x:Name="tbUnReadCount"
+                                            DockPanel.Dock="Left"
+                                            FontSize="{StaticResource LowerFontSize}"
+                                            Foreground="{StaticResource LightForeground}">
+                                            <Run x:Name="runSenderLeft" Text="[" />
+                                            <Run x:Name="runSenderMiddle" Text="{Binding UnReadCount, Converter={StaticResource unreadMsg}, Mode=OneWay}" />
+                                            <Run x:Name="runSenderRight" Text="条]" />
+                                        </TextBlock>
+                                        <TextBlock
+                                            FontSize="{StaticResource LowerFontSize}"
+                                            Foreground="#999999"
+                                            TextTrimming="CharacterEllipsis">
+                                            <Run x:Name="runSender0" />
+                                            <Run x:Name="runSender1" />
+                                            <Run Text="{Binding Model.LastMsg.Content, Mode=OneWay}" />
+                                        </TextBlock>
+                                    </DockPanel>
+
+                                    <Label
+                                        x:Name="lblUnReadCount"
+                                        Grid.RowSpan="2"
+                                        Margin="0,10,-5,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        BorderBrush="Transparent"
+                                        Content="{Binding UnReadCount, Converter={StaticResource unreadMsg}, Mode=OneWay}"
+                                        IsTabStop="{Binding Model.Chat.IsNotDisturb}"
+                                        Style="{StaticResource AppendLabelStyle}" />
+                                </Grid>
+
+                                <!--<TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="会话已结束" Margin="0,0,20,10"
+                                           Foreground="Red" FontSize="14" Visibility="{Binding IsSessionEnd,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock.RenderTransform>
+                                        <RotateTransform Angle="-30"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>-->
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSessionEnd}" Value="true">
+                                <Setter TargetName="tbDisplayName" Property="Foreground" Value="#999999" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsGroup, Mode=OneWay}" Value="true">
+                                <Setter TargetName="runSender0" Property="Text" Value="{Binding Model.LastMsg.Sender.DisplayName, Mode=OneWay}" />
+                                <Setter TargetName="runSender1" Property="Text" Value=":" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Model.LastMsg.Sender, Mode=OneWay}" Value="{x:Null}">
+                                <Setter TargetName="runSender0" Property="Text" Value="" />
+                                <Setter TargetName="runSender1" Property="Text" Value="" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Model.Chat.IsNotDisturb, Mode=OneWay}" Value="true">
+                                <Setter TargetName="imgNodisturb" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="miIsNotDisturb" Property="Header" Value="开启新消息提醒" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding HasAtMsg}" Value="true">
+                                <Setter TargetName="tbAt" Property="Text" Value="[@我]" />
+                                <Setter TargetName="tbAt" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="tbAt" Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsDisplayStartSession}" Value="true">
+                                <Setter TargetName="tbStartSession" Property="Text" Value="[接入聊天]" />
+                                <Setter TargetName="tbStartSession" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="tbStartSession" Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Model.LastMsg.MsgType, Mode=OneTime}" Value="notification">
+                                <Setter TargetName="runSender0" Property="Text" Value="" />
+                                <Setter TargetName="runSender1" Property="Text" Value="" />
+                            </DataTrigger>
+                            <!--<MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding HasAtMsg}" Value="true"/>
+                                    <Condition Binding="{Binding IsActivedChat}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="tbAt" Property="Visibility" Value="Collapsed"/>
+                            -->
+                            <!--<Setter TargetName="tbAt" Property="Text" Value="{Binding AtUserModel.DisplayName,StringFormat='@{0} '}"/>
+                                <Setter TargetName="tbAt" Property="Foreground" Value="{StaticResource LightForeground}"/>-->
+                            <!--
+                            </MultiDataTrigger>-->
+
+                            <DataTrigger Binding="{Binding Model.Chat.IsNotDisturb, Mode=OneWay}" Value="false">
+                                <Setter TargetName="tbUnReadCount" Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Model.Chat.IsNotDisturb, Mode=OneWay}" Value="true" />
+                                    <Condition Binding="{Binding UnReadCount}" Value="{x:Null}" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="tbUnReadCount" Property="Visibility" Value="Collapsed" />
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Model.Chat.IsNotDisturb, Mode=OneWay}" Value="true" />
+                                    <Condition Binding="{Binding UnReadCount}" Value="99+" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="runSenderLeft" Property="Text" Value="[" />
+                                <Setter TargetName="runSenderMiddle" Property="Text" Value="99" />
+                                <Setter TargetName="runSenderRight" Property="Text" Value="条]" />
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Model.Chat.IsNotDisturb, Mode=OneWay}" Value="true" />
+                                    <Condition Binding="{Binding UnReadCount}" Value="" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="tbUnReadCount" Property="Visibility" Value="Collapsed" />
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Model.Chat.IsNotDisturb, Mode=OneWay}" Value="true" />
+                                    <Condition Binding="{Binding UnReadCount}" Value="0" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="tbUnReadCount" Property="Visibility" Value="Collapsed" />
+                            </MultiDataTrigger>
+
+                            <DataTrigger Binding="{Binding Model.Chat.IsTopMost, Mode=OneWay}" Value="true">
+                                <Setter TargetName="miIsTopMost" Property="Header" Value="取消置顶" />
+                                <!--<Setter TargetName="tbDisplayName" Property="Foreground" Value="{StaticResource HightLightBackground}"/>-->
+                                <Setter TargetName="pathTopMost" Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="{StaticResource MouseOverBackground}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="{StaticResource SelectedBackground}" />
+                            </Trigger>
+
+
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsGroup, Mode=OneWay}" Value="true" />
+                                    <Condition Binding="{Binding Model.Chat.DisplayName}" Value="" />
+                                </MultiDataTrigger.Conditions>
+                                <!--<Setter TargetName="tbDisplayName" Property="Text" Value="已退出的群" />-->
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="tbDisplayName" Property="Foreground" Value="{StaticResource LightForeground}" />
+                            </MultiDataTrigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <ListBox
+            x:Name="list"
+            ItemsSource="{Binding Items, Mode=OneWay}"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+            VirtualizingPanel.ScrollUnit="Pixel" />
+        <ListBox
+            x:Name="searchResults"
+            Background="{StaticResource IntervalBackground}"
+            ItemsSource="{Binding SearchResults, Mode=OneWay}"
+            SelectedItem="{Binding SelectedSearchItem, Mode=TwoWay}"
+            Visibility="{Binding SearchVisibility, Mode=OneWay}" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="IMClient.Views.Panels.GroupApplyListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IMClient.Views.Panels"
+             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             d:DesignHeight="300" d:DesignWidth="250">
+    <Grid x:Name="gridLayout" Background="{StaticResource AppendBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="申请人列表"  Style="{StaticResource TitleStyle}" VerticalAlignment="Top"/>
+        <ScrollViewer Grid.Row="1"  Margin="10" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ItemsControl   ItemsSource="{Binding ApplyUsers,Mode=OneWay}"   >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate  >
+                        <Border  x:Name="bd" Height="50" Cursor="Arrow" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Margin="5" Cursor="Hand" >
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding User.HeadImg}"/>
+                                    </Ellipse.Fill>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                                            <i:InvokeCommandAction Command ="{Binding DataContext.ShowBusinessCard,Mode=OneWay,ElementName=gridLayout}"
+                                                                   CommandParameter="{Binding User, Mode=OneWay}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Ellipse>
+
+                                <TextBlock Grid.Column="1" TextTrimming="CharacterEllipsis"  HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                    <Run  Text="{Binding User.DisplayName,Mode=OneWay}" Foreground="{StaticResource DarkForeground}" FontSize="{StaticResource CommonFontSize}"/>
+                                    <LineBreak /> 
+                                    <Run  Text="{Binding ApplyTime,Mode=OneWay,StringFormat=[MM/dd HH:mm:ss]}"
+                                          Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}"/>
+                                </TextBlock>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
+                                    <Button x:Name="btnDelete" Style="{StaticResource ForkButtonStyle}" CommandParameter="{Binding Mode=OneWay}"
+                                            Command="{Binding DataContext.ApplyRejectCommand,ElementName=gridLayout,Mode=OneWay}" ToolTip="忽略"/>
+                                    <Button x:Name="btnAccept" Style="{StaticResource HookButtonStyle}" CommandParameter="{Binding  Mode=OneWay}"
+                                            Command="{Binding DataContext.ApplyAcceptCommand,ElementName=gridLayout,Mode=OneWay}" ToolTip="同意" />
+                                </StackPanel>
+                            </Grid> 
+                        </Border>
+                        <DataTemplate.Triggers> 
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource MouseOverBackground}"/>
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource MouseOverBackground}"/> 
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

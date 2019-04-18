@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+
+    <ResourceDictionary.MergedDictionaries>
+        
+        <ResourceDictionary Source="/IMAssets;component/Styles/BaseAssets.xaml" /> 
+        <ResourceDictionary Source="/IMAssets;component/Styles/TextElementStyles.xaml" />
+        <ResourceDictionary Source="/IMAssets;component/Styles/WindowStyle.xaml" />
+        <ResourceDictionary Source="/IMAssets;component/Styles/ButtonStyles.xaml" />
+        <ResourceDictionary Source="/IMAssets;component/Styles/PathGeometrys.xaml" />
+ 
+        <ResourceDictionary Source="/IMAssets;component/Styles/HeaderContentStyles.xaml" /> 
+        <ResourceDictionary Source="/IMAssets;component/Styles/ListBoxStyle.xaml" />
+        <ResourceDictionary Source="/IMAssets;component/Styles/ScrollViewerStyle.xaml" />
+        <ResourceDictionary Source="/IMAssets;component/Styles/MenuStyles.xaml" />
+        <ResourceDictionary Source="/IMAssets;component/Styles/CommonStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+
+   
+
+
+    <Style TargetType="{x:Type Popup}">
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="StaysOpen" Value="False"/>
+        <Setter Property="Effect" Value="{StaticResource CommonEffect}"/> 
+    </Style>
+</ResourceDictionary>

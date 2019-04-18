@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="IMClient.Views.Controls.GroupCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IMClient.Views.Controls"
+             mc:Ignorable="d"  >
+    <Border FlowDirection="LeftToRight"  Cursor="Hand" Width="220" Height="80" CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource CommonBorderBrush}"
+         Background="White">
+        <Border.ContextMenu>
+            <ContextMenu x:Name="menu" MenuItem.Click="ContextMenu_Click" Opened="menu_Opened" >
+                <!--<MenuItem Header="转发" Uid="Forward" Name="Forward" Visibility="Collapsed"/>-->
+                <MenuItem Header="删除" Uid="DELETE"/>
+                <!--<MenuItem Header="撤回" Uid="Retract" Name="Retract" Visibility="Collapsed"/>-->
+            </ContextMenu>
+        </Border.ContextMenu>
+        <Grid x:Name="gridLayout"  DataContext="{Binding Target,Mode=OneTime}"  >
+           
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="bdFail" Visibility="Collapsed" Grid.RowSpan="2" Margin="-22,0,0,0" HorizontalAlignment="Left" Width="18" Height="18" Padding="4" 
+                    BorderThickness="1" BorderBrush="Red" CornerRadius="8" Background="Transparent" > 
+                <Path Data="{StaticResource GeoFork}" Stroke="Red" Stretch="Fill"/>
+            </Border>
+            <Ellipse Grid.RowSpan="2" Width="45" Height="45">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding HeadImg,Mode=OneWay}"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock TextTrimming="CharacterEllipsis" ToolTip="{Binding DisplayName,Mode=OneWay}" Background="Transparent"
+                   Grid.Column="1" TextDecorations="Underline" VerticalAlignment="Bottom" Margin="10,0" 
+                   FontSize="{StaticResource UpperFontSize}" Foreground="{StaticResource DarkForeground}"> 
+           <Run  Text="{Binding DisplayName,Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock x:Name="tbInfo" Text="邀请你加入群聊"  Grid.Row="1" VerticalAlignment="Center"  Grid.Column="1" Style="{StaticResource CellTitleWatermarkStyle}"  />
+           
+        </Grid>
+    </Border>
+</UserControl>

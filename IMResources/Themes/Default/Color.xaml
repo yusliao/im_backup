@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="Common" Color="#FF7700"/>
+    <SolidColorBrush x:Key="CommonTextColor" Color="#150800"/>
+    <SolidColorBrush x:Key="CommonBackground" Color="#FFFBF8"/>
+
+    <!--背景用色-->
+    <SolidColorBrush x:Key="Background1" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="Background3" Color="#FCEDE2"/>
+
+    <!--分割线用色-->
+    <SolidColorBrush x:Key="Separate1" Color="#F1EAE5"/>
+    <SolidColorBrush x:Key="Separate2" Color="#D8CDC6"/>
+
+    <!--文字用色-->
+    <SolidColorBrush x:Key="Text1" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="Text2" Color="#FFF2EA"/>
+    <SolidColorBrush x:Key="Text3" Color="#FF7700"/>
+    <SolidColorBrush x:Key="Text4" Color="#0E91E3"/>
+    <SolidColorBrush x:Key="Text5" Color="#857971"/>
+
+    <SolidColorBrush x:Key="SearchBox_BorderBrush" Color="#2BADFF"/>
+    <SolidColorBrush x:Key="MainPage_SearchBox_Backgound" Color="#E55C00"/>
+    
+</ResourceDictionary>

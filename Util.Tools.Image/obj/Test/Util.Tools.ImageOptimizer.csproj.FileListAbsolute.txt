@@ -1,0 +1,17 @@
+D:\work\src\trunk\Util.Tools.Image\bin\Test\Resources\Tools\cjpeg.exe
+D:\work\src\trunk\Util.Tools.Image\bin\Test\Resources\Tools\gifsicle.exe
+D:\work\src\trunk\Util.Tools.Image\bin\Test\Resources\Tools\guetzli_windows_x86-64.exe
+D:\work\src\trunk\Util.Tools.Image\bin\Test\Resources\Tools\jpegtran.exe
+D:\work\src\trunk\Util.Tools.Image\bin\Test\Resources\Tools\libjpeg-62.dll
+D:\work\src\trunk\Util.Tools.Image\bin\Test\Resources\Tools\pingo.exe
+D:\work\src\trunk\Util.Tools.Image\bin\Test\Util.Tools.Image.dll
+D:\work\src\output\test\Resources\Tools\cjpeg.exe
+D:\work\src\output\test\Resources\Tools\gifsicle.exe
+D:\work\src\output\test\Resources\Tools\guetzli_windows_x86-64.exe
+D:\work\src\output\test\Resources\Tools\jpegtran.exe
+D:\work\src\output\test\Resources\Tools\libjpeg-62.dll
+D:\work\src\output\test\Resources\Tools\pingo.exe
+D:\work\src\output\test\Util.Tools.Image.dll
+D:\work\src\trunk\Util.Tools.Image\obj\Test\Util.Tools.ImageOptimizer.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Util.Tools.Image\obj\Test\Util.Tools.Image.dll
+D:\work\src\trunk\Util.Tools.Image\obj\Test\Util.Tools.ImageOptimizer.csprojAssemblyReference.cache

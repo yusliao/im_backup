@@ -1,0 +1,14 @@
+D:\work\src\output\huidu\mjb.CustomControls.dll
+D:\work\src\output\huidu\mjb.CustomControls.pdb
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls.csprojAssemblyReference.cache
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\GeneratedInternalTypeHelper.g.cs
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls_MarkupCompile.cache
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls_MarkupCompile.lref
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\Themes\IconStateButton.baml
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\Themes\Generic.baml
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls.g.resources
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls.Properties.Resources.resources
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls.csproj.GenerateResource.cache
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls.dll
+D:\work\src\trunk\mjb.CustomControls\obj\HUIDU\mjb.CustomControls.pdb

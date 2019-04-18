@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="IMClient.Views.Controls.SmallVideo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+             xmlns:local="clr-namespace:IMClient.Views.Controls"
+             xmlns:cv="clr-namespace:IMClient.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="220" d:DesignWidth="142">
+
+    <UserControl.Resources>
+        <cv:BoolConvertVisibility x:Key="btv"/>
+        <cv:PercentToAngleConverter x:Key="PercentToAngleConverter"/>
+        <cv:ThicknessToDoubleConverter x:Key="ThicknessToDoubleConverter"/>
+        
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RectPathButtonStyle}"/>
+        
+        <Style TargetType="{x:Type ProgressBar}">
+            <Setter Property="Background" Value="#99000000"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Width" Value="34"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Maximum" Value="1"/>
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Viewbox Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid Margin="{TemplateBinding Margin}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" >
+                                <!--背景环-->
+                                <ed:Arc Margin="{TemplateBinding Margin}" ArcThickness="17" Fill="{TemplateBinding Background}" Stretch="None" x:Name="arcOuter"
+                                    StartAngle="0" EndAngle="360"/>
+                                <!--值-环-->
+                                <ed:Arc Margin="{TemplateBinding Margin}" x:Name="arcValue" ArcThickness="{Binding Path=BorderThickness,RelativeSource={RelativeSource TemplatedParent},Mode=OneWay,Converter={StaticResource ThicknessToDoubleConverter}}" Fill="{TemplateBinding BorderBrush}" Stretch="None" Panel.ZIndex="2"
+                                    StartAngle="0" EndAngle="{TemplateBinding Value, Converter={StaticResource PercentToAngleConverter}}" >
+                                </ed:Arc>
+                            </Grid>
+                        </Viewbox>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" x:Name="bdLayout">
+            <Grid.ContextMenu>
+                <ContextMenu x:Name="menu" MenuItem.Click="ContextMenu_Click" Opened="menu_Opened">
+                    <MenuItem Header="打开视频" Uid="OPENvideo" x:Name="Open"/>
+                    <MenuItem Header="下载视频" Uid="DownloadVideo" x:Name="Download"/>
+                    <!--<MenuItem Header="复制视频" Uid="COPYvideo"/>-->
+                    <MenuItem Header="转发视频" Uid="FowardVideo" x:Name="Foward" Visibility="Collapsed"/>
+                    <MenuItem Header="视频另存为" Uid="SAVEas"/>
+                    <MenuItem Header="删除视频" Uid="DELETEvideo"/>
+                </ContextMenu>
+            </Grid.ContextMenu>
+            <Border x:Name="imgBorder" Background="Gray" CornerRadius="6"/>
+            <Image x:Name="imgFirstFrame" Stretch="Fill">
+                <Image.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=imgBorder, Mode=OneTime}" />
+                </Image.OpacityMask>                
+            </Image>
+            <TextBlock x:Name="tbDuration" Text="00:00" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,5,5" 
+                   FontSize="{StaticResource LowerFontSize}" Foreground="#FEFEFF" FontFamily="微软雅黑"/>
+            
+            <Border x:Name="borderPlay" Visibility="Collapsed" Width="34" Height="34" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"
+                BorderBrush="White" BorderThickness="2" CornerRadius="17" Background="Transparent" Effect="{StaticResource CommonEffect}">
+                <Path x:Name="pathPlay" Data="M12,9 21,17 12,23 z" Fill="White"/>
+            </Border>
+
+            <Image x:Name="imgDownload" Cursor="Hand" Source="pack://application:,,,/IMAssets;component/Images/smallvideo_download.png" Width="34" Height="34"/>
+            <Image x:Name="imgReset" Cursor="Hand" Visibility="Collapsed" Source="pack://application:,,,/IMAssets;component/Images/smallvideo_reset.png" Width="34" Height="34"/>
+            
+            <Grid x:Name="gridProgress" Width="34" Height="34" Visibility="Collapsed" Effect="{StaticResource CommonEffect}">
+                <ProgressBar x:Name="pro2" Value="{Binding ResourceModel.Progress,Mode=OneWay}" BorderThickness="2"/>
+                <TextBlock x:Name="tbProgress" FontSize="12" Foreground="#FFFFFF" FontFamily="微软雅黑" Text="{Binding Value,Mode=OneWay,ElementName=pro2,StringFormat={}{0:p0}}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Path x:Name="pathResend" Cursor="Hand" ToolTip="重新发送" Stretch="Fill" Stroke="Red"  Fill="Transparent"  Visibility="Collapsed"
+               Data="{StaticResource GeoExclam}" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="18" Height="18" Margin="-25,0,0,0"/>
+
+    </Grid>
+</UserControl>

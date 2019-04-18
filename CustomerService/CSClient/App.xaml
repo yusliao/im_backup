@@ -1,0 +1,17 @@
+﻿<Application x:Class="CSClient.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CSClient"
+             ShutdownMode="OnExplicitShutdown" Exit="ApplicationExit">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/IMAssets;component/Assets.xaml" /> 
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type ItemsControl}">
+                
+            </Style>
+        </ResourceDictionary> 
+    </Application.Resources>
+</Application>

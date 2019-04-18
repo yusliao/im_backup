@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="IMClient.Views.Panels.FriendNewApplyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:cv="clr-namespace:IMClient.Converter"
+                  mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+        <cv:IntToVisibilityConverterEx x:Key="IntToV"/>
+        <cv:BoolToVisibilityConvert x:Key="BToV"/>
+
+    </UserControl.Resources>
+    <Grid x:Name="gridLayout"   Margin="0,60,0,0" Background="Transparent">
+
+        <ScrollViewer Grid.Row="1"  Visibility="{Binding Items.Count,Converter={StaticResource IntToV},Mode=OneWay}"  Margin="10">
+            <ItemsControl  Background="{StaticResource CommonBackground}" Focusable="False" ItemsSource="{Binding Items,Mode=OneWay}" Padding="10"  >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate  >
+                        <Border  x:Name="bd" MinHeight="50"  Margin="50,5" Cursor="Arrow" Background="Transparent">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Margin="6" Cursor="Hand" Width="37" Height="37">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Model.HeadImg}" Stretch="Uniform"/>
+                                    </Ellipse.Fill>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                                            <i:InvokeCommandAction Command ="{Binding ShowBusinessCard,Mode=OneWay}" CommandParameter="{Binding Model,Mode=OneWay}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Ellipse>
+
+                                <TextBlock Grid.Column="1"   HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Center" >
+                                    <Run  Text="{Binding Model.DisplayName,Mode=OneWay}" Foreground="{StaticResource DarkForeground}" FontSize="{StaticResource CommonFontSize}"/>
+                                    <LineBreak /> 
+
+                                    <!--<Run  Text="{Binding Model.AppendTime,Mode=OneWay,StringFormat=[yyyy-MM-dd HH:mm:ss]}"
+                                          Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}"/>-->
+                                    <!--<Run Text="{Binding ApplyRemark}"   Foreground="{StaticResource LightForeground}" ToolTip="{Binding ApplyRemark}" FontSize="{StaticResource LowerFontSize}"/>-->
+
+                                    <!--<Run  Text="{Binding Model.AppendTime,Mode=OneWay,StringFormat=[yyyy-MM-dd HH:mm:ss]}"
+                                          Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}"/>-->
+
+                                    <!--<Run  Text="{Binding Model.AppendTime,Mode=OneWay,StringFormat=[yyyy-MM-dd HH:mm:ss]}"
+                                          Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}"/>-->
+                                    <Run Text="{Binding ApplyRemark}"  Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}"/>
+
+                                </TextBlock>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
+                                    <TextBlock x:Name="tbAdded" Visibility="Collapsed" Text="已接受" Style="{StaticResource CellTitleWatermarkStyle}" />
+                                    <Button x:Name="btnAccept" Content="接受" Style="{StaticResource HightLightButtonStyle}"  CommandParameter="{Binding Model}"
+                                            Command="{Binding DataContext.PassApplyCommand,ElementName=gridLayout,Mode=OneWay}" />
+                                </StackPanel>
+                            </Grid>
+
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsNeedAccepted,Mode=OneWay}" Value="false">
+                                <Setter TargetName="btnAccept" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="tbAdded" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource MouseOverBackground}"/>
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,6 @@
+D:\work\src\output\release\IMModels.dll
+D:\work\src\output\release\IMModels.pdb
+D:\work\src\trunk\IMPC\IMModels\obj\Release\IMModels.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\IMPC\IMModels\obj\Release\IMModels.dll
+D:\work\src\trunk\IMPC\IMModels\obj\Release\IMModels.pdb
+D:\work\src\trunk\IMPC\IMModels\obj\Release\IMModels.csprojAssemblyReference.cache

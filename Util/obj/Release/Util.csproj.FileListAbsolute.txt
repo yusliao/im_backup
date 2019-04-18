@@ -1,0 +1,11 @@
+D:\work\src\output\release\Util.dll.config
+D:\work\src\output\release\Util.dll
+D:\work\src\output\release\Util.pdb
+D:\work\src\trunk\Util\obj\Release\Util.Properties.LibraryResource.resources
+D:\work\src\trunk\Util\obj\Release\Util.Properties.R.resources
+D:\work\src\trunk\Util\obj\Release\Util.csproj.GenerateResource.cache
+D:\work\src\trunk\Util\obj\Release\Util.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Util\obj\Release\Util.csproj.CopyComplete
+D:\work\src\trunk\Util\obj\Release\Util.dll
+D:\work\src\trunk\Util\obj\Release\Util.pdb
+D:\work\src\trunk\Util\obj\Release\Util.csprojAssemblyReference.cache

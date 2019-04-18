@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="IMClient.Views.Controls.FilePackage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
+             xmlns:cv="clr-namespace:IMClient.Converter" Foreground="{StaticResource DarkForeground}"  FontSize="{StaticResource LowerFontSize}" >
+    <UserControl.Resources>
+        <cv:FileNameConverter x:Key="fileNameToView"/>
+        <cv:FileSizeConverter x:Key="fileSizeToView"/>
+    </UserControl.Resources>
+    <Border Cursor="Hand" Width="220" Height="60" CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource CommonBorderBrush}"
+             Background="White">
+        <Grid Margin="5" ToolTip="{Binding Name}">
+            <Grid.RowDefinitions>
+                <RowDefinition /> 
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions> 
+            <Image x:Name="img" Grid.RowSpan="2" Source="{StaticResource NormalHeadImg}" Width="48" Height="48"/>
+            <TextBlock Text="{Binding Name,Converter={StaticResource fileNameToView},Mode=OneWay,ConverterParameter=10}"  Grid.Column="1" VerticalAlignment="Center" 
+                      Margin="10,0"/>
+            <TextBlock Text="{Binding Length,Converter={StaticResource fileSizeToView},Mode=OneWay}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top"
+                       Margin="10,0"/>
+        </Grid>
+    </Border>
+   
+</UserControl>

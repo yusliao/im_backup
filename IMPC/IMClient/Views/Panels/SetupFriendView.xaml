@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="IMClient.Views.Panels.SetupFriendView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:imuc="clr-namespace:IMClient.Views.Controls" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cv="clr-namespace:IMClient.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="220">
+    
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <cv:ReverseBoolConvertVisibility x:Key="rbtv"/>
+
+        <Style x:Key="DefriendButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid x:Name="Grid" Background="Transparent">
+                            <Image x:Name="img" Source="pack://application:,,,/IMAssets;component/Images/icon-closebut.png"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Model.Chat.IsDefriend}" Value="True">
+                                <Setter TargetName="img" Property="Source" Value="pack://application:,,,/IMAssets;component/Images/icon-open-but.png"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/> 
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="gridTop" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid MouseLeftButtonDown="elpAdd_MouseLeftButtonDown" Cursor="Hand">
+                <Image Source="/IMAssets;component/Images/addmember.png" Width="36" Height="36"/>
+            </Grid>
+            <TextBlock Text="添加" Margin="0,5,0,0" HorizontalAlignment="Center"  Grid.Row="1" />
+
+            <Ellipse Grid.Column="2" Width="36" Height="36" Cursor="Hand" ToolTip="{Binding Model.Chat.DisplayName,Mode=OneWay}">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding Model.Chat.HeadImg,Mode=OneWay}"/>
+                </Ellipse.Fill>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <i:InvokeCommandAction Command ="{Binding ShowBusinessCard}" CommandParameter="{Binding Model.Chat}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Ellipse>
+            <TextBlock  Margin="0,5,0,0"  Grid.Row="1" Grid.Column="2" Text="{Binding Model.Chat.DisplayName,Mode=OneWay}" HorizontalAlignment="Center" 
+                                TextTrimming="CharacterEllipsis"/>
+        </Grid>
+      
+        <Rectangle Style="{StaticResource LineRectStyle}" Grid.Row="1" VerticalAlignment="Top" Margin="0,20,0,0"/>
+
+        <TextBlock Text="消息免打扰" Grid.Row="1" Style="{StaticResource CellTitleWatermarkStyle}" VerticalAlignment="Bottom"/>
+        <CheckBox Grid.Row="2" Style="{StaticResource SwitchCheckBox}" IsChecked="{Binding  Model.Chat.IsNotDisturb,Mode=OneWay}"
+                  Command="{Binding NoDisturbCommand,Mode=OneWay}" />
+        <TextBlock Text="置顶聊天" Grid.Row="3" Style="{StaticResource CellTitleWatermarkStyle}" VerticalAlignment="Bottom"/>
+        <CheckBox Grid.Row="4" Style="{StaticResource SwitchCheckBox}" IsChecked="{Binding Model.Chat.IsTopMost,Mode=OneWay}"
+                  Command="{Binding TopMostCommand,Mode=OneWay}" />
+        
+        <StackPanel x:Name="pnlDefriend" Orientation="Vertical" Grid.Row="5">
+            <TextBlock Text="移至黑名单" Style="{StaticResource CellTitleWatermarkStyle}" VerticalAlignment="Bottom" Margin="10,10,0,0"/>
+            <Button Width="40" Height="18" HorizontalAlignment="Left" Margin="10,5,0,0" Command="{Binding DefriendCommand,Mode=OneWay}" Style="{StaticResource DefriendButtonStyle}"/>
+        </StackPanel>
+
+        <!--<ToggleButton x:Name="btnApplyFriend" Content="加为好友" Grid.Row="6" Click="btnApplyFriend_Click" HorizontalAlignment="Stretch"
+                      IsChecked="False" Margin="10">
+            <ToggleButton.Style>
+                <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource HightLightButtonStyle}">
+                    <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="Background" Value="#DDE3EE"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Trigger>
+                        </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>-->
+        
+        <Button x:Name="btnClearMessage" Click="btnClearMessage_Click" VerticalAlignment="Bottom" Grid.Row="7" Margin="10" Content="清空消息" Style="{DynamicResource HightLightButtonStyle}" HorizontalAlignment="Stretch"/>
+    </Grid>
+</UserControl>

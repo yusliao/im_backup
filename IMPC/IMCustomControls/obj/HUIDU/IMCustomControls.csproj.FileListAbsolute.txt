@@ -1,0 +1,17 @@
+D:\work\src\output\huidu\IMCustomControls.dll
+D:\work\src\output\huidu\IMCustomControls.pdb
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls.csprojAssemblyReference.cache
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\GeneratedInternalTypeHelper.g.cs
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls_MarkupCompile.cache
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls_MarkupCompile.lref
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\Themes\ChatMessageBox.baml
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\Themes\Generic.baml
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\Themes\IconStateButton.baml
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\Themes\PopupToggleButton.baml
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls.g.resources
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls.Properties.Resources.resources
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls.csproj.GenerateResource.cache
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls.csproj.CopyComplete
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls.dll
+D:\work\src\trunk\IMPC\IMCustomControls\obj\HUIDU\IMCustomControls.pdb

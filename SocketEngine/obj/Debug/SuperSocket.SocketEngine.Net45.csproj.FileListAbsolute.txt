@@ -1,0 +1,16 @@
+D:\work\src\output\debug\SuperSocket.SocketEngine.dll
+D:\work\src\output\debug\SuperSocket.SocketEngine.pdb
+D:\work\src\output\debug\SuperSocket.SocketEngine.XML
+D:\work\src\trunk\SocketEngine\obj\Debug\SuperSocket.SocketEngine.Net45.csprojAssemblyReference.cache
+D:\work\src\trunk\SocketEngine\obj\Debug\SuperSocket.SocketEngine.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\SocketEngine\obj\Debug\SuperSocket.SocketEngine.Net45.csproj.CopyComplete
+D:\work\src\trunk\SocketEngine\obj\Debug\SuperSocket.SocketEngine.dll
+D:\work\src\trunk\SocketEngine\obj\Debug\SuperSocket.SocketEngine.pdb
+C:\Users\wangxk\Documents\GitHub\output\debug\SuperSocket.SocketEngine.dll
+C:\Users\wangxk\Documents\GitHub\output\debug\SuperSocket.SocketEngine.pdb
+C:\Users\wangxk\Documents\GitHub\output\debug\SuperSocket.SocketEngine.XML
+C:\Users\wangxk\Documents\GitHub\im_backup\SocketEngine\obj\Debug\SuperSocket.SocketEngine.Net45.csprojAssemblyReference.cache
+C:\Users\wangxk\Documents\GitHub\im_backup\SocketEngine\obj\Debug\SuperSocket.SocketEngine.Net45.csproj.CoreCompileInputs.cache
+C:\Users\wangxk\Documents\GitHub\im_backup\SocketEngine\obj\Debug\SuperSocket.SocketEngine.Net45.csproj.CopyComplete
+C:\Users\wangxk\Documents\GitHub\im_backup\SocketEngine\obj\Debug\SuperSocket.SocketEngine.dll
+C:\Users\wangxk\Documents\GitHub\im_backup\SocketEngine\obj\Debug\SuperSocket.SocketEngine.pdb

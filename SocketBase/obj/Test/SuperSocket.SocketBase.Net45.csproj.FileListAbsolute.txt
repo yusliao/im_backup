@@ -1,0 +1,8 @@
+D:\work\src\trunk\SocketBase\bin\Test\SuperSocket.SocketBase.dll
+D:\work\src\trunk\SocketBase\bin\Test\log4net.dll
+D:\work\src\trunk\SocketBase\bin\Test\SuperSocket.Common.dll
+D:\work\src\output\test\SuperSocket.SocketBase.dll
+D:\work\src\trunk\SocketBase\obj\Test\SuperSocket.SocketBase.Net45.csprojAssemblyReference.cache
+D:\work\src\trunk\SocketBase\obj\Test\SuperSocket.SocketBase.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\SocketBase\obj\Test\SuperSocket.SocketBase.Net45.csproj.CopyComplete
+D:\work\src\trunk\SocketBase\obj\Test\SuperSocket.SocketBase.dll

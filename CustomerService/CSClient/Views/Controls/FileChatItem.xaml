@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="CSClient.Views.Controls.FileChatItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+             xmlns:cv="clr-namespace:CSClient.Converter" FontFamily="微软雅黑"
+             Foreground="{StaticResource DarkForeground}"  FontSize="{StaticResource CommonFontSize}" >
+    <UserControl.Resources>
+        <cv:FileNameConverter x:Key="fileNameToView"/>
+        <cv:FileSizeConverter x:Key="fileSizeToView"/>
+        <cv:BoolConvertVisibility x:Key="btv"/>
+    </UserControl.Resources> 
+    <Border Width="220" Height="80" CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource CommonBorderBrush}"
+              Background="White">
+        <Grid x:Name="gridLayout" Background="Transparent" Margin="12,5,12,0" >
+            <Grid.ContextMenu> 
+                <ContextMenu x:Name="menu" MenuItem.Click="MenuItem_Click" Opened="menu_Opened">
+                    <!--<MenuItem Uid="OfflineSend" Header="转离线发送" Visibility="{Binding Visibility, ElementName=btnOfflineSend,Mode=OneWay}"/>
+                    <MenuItem Uid="OnlineSend" Header="转在线发送" Visibility="{Binding Visibility, ElementName=btnOnlineSend,Mode=OneWay}"/>
+                    <MenuItem Uid="Receive" Header="接收" Visibility="{Binding Visibility, ElementName=btnReceive,Mode=OneWay}"/>
+                    <MenuItem Uid="Open" Header="打开" Visibility="{Binding Visibility, ElementName=btnOpen,Mode=OneWay}"/>
+                    <MenuItem Uid="SaveAs" Header="另存为" Visibility="{Binding Visibility, ElementName=btnSaveAs,Mode=OneWay}"/>
+                    <MenuItem Uid="Delete" Header="删除" Visibility="{Binding Visibility, ElementName=btnDelete,Mode=OneWay}"/>
+                    <MenuItem Uid="Cancel" Header="取消" Visibility="{Binding Visibility, ElementName=btnCancel,Mode=OneWay}"/>-->
+ 
+                </ContextMenu>
+            </Grid.ContextMenu>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="45"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="img" Grid.Column="2" Grid.RowSpan="3" Source="{Binding ResourceModel.FileImg,Mode=OneWay}" Height="45" Width="45" Stretch="Fill"/>
+
+            <Border x:Name="BdIcon" Visibility="Collapsed" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="2"
+                    Width="15" Height="15" CornerRadius="10" IsHitTestVisible="False" Background="Green">
+                <Path x:Name="pathIcon" Data="{StaticResource GeoHook}" Stroke="White" Stretch="UniformToFill" Margin="3" StrokeThickness="2" />
+            </Border>
+            
+            <TextBlock x:Name="tbName" Foreground="Black" Background="Transparent"
+                       FontFamily="微软雅黑" Grid.Column="1" Margin="0,0,12,0" Text="{Binding ResourceModel.FileName,Converter={StaticResource fileNameToView},Mode=OneWay,ConverterParameter=10}" VerticalAlignment="Center"  FontSize="{StaticResource LowerFontSize}"/>
+            <TextBlock x:Name="tbSize" Grid.Column="1" Grid.Row="1" Margin="0,0,12,0" Text="{Binding ResourceModel.Length,Converter={StaticResource fileSizeToView},Mode=OneWay}" VerticalAlignment="Center" Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}"/>
+            <ProgressBar x:Name="pbProcess" Grid.Column="1" Grid.Row="2" Height="4"  Foreground="#4EC520" BorderThickness="0" Margin="0,3,12,3"
+                         Maximum="{Binding ResourceModel.Length,Mode=OneWay}" Value="{Binding ResourceModel.CompleteLength,Mode=OneWay}" ValueChanged="pbProcess_ValueChanged"  />
+
+            <Rectangle Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource LineRectStyle}" Fill="{StaticResource LightForeground}" Height="0.5"/>
+
+            <UniformGrid x:Name="ugState" IsEnabled="{Binding CanOperate,Mode=OneWay}" Grid.Row="3" Grid.ColumnSpan="3" Rows="1" Margin="0,0,10,0" ButtonBase.Click="MenuItem_Click">
+                <UniformGrid.Resources>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonItemStyle}">
+                        <Setter Property="Foreground" Value="#4C68B9"/>
+                    </Style>
+                </UniformGrid.Resources>
+                <TextBlock x:Name="tbConnecting" Foreground="#999999"  Text="传输连接中" Visibility="Collapsed"/>
+                
+                <Button x:Name="btnOfflineSend" Uid="OfflineSend" Content="转离线发送" HorizontalAlignment="Left"/>
+                <Button x:Name="btnOnlineSend" Uid="OnlineSend" Content="转在线发送" HorizontalAlignment="Left"  /> 
+                <Button x:Name="btnReceive" Uid="Receive" Content="接收" HorizontalAlignment="Left"/>
+                <Button x:Name="btnOpen" Uid="Open" Content="打开" HorizontalAlignment="Left"/>
+                <Button x:Name="btnSaveAs" Uid="SaveAs" Content="另存为" HorizontalAlignment="Center" />
+                <Button x:Name="btnDelete" Uid="Delete" Content="删除" HorizontalAlignment="Right"/> 
+                <Button x:Name="btnCancel" Uid="Cancel" Content="取消" HorizontalAlignment="Right"/>
+            </UniformGrid> 
+        </Grid>
+    </Border>
+</UserControl>

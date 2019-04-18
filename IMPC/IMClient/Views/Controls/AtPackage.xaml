@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="IMClient.Views.Controls.AtPackage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IMClient.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="100">
+    <UserControl.Uid>
+        <MultiBinding StringFormat="{}[{{@}}]|@{0}|{1}">
+            <Binding Path="Name" />
+            <Binding Path="ID" />
+        </MultiBinding>
+    </UserControl.Uid>
+
+    <TextBlock x:Name="txtBox" Text="{Binding Name,StringFormat='@{0} '}" FontSize="{StaticResource CommonFontSize}" Foreground="#3399FF" />
+
+</UserControl>

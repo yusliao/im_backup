@@ -1,0 +1,15 @@
+D:\work\src\output\huidu\Image\V2\bitbug_favicon.ico
+D:\work\src\output\huidu\Image\V2\bitbug_favicon_Transparent.ico
+D:\work\src\output\huidu\Image\V2\screen-arrows.cur
+D:\work\src\output\huidu\IMResources.dll
+D:\work\src\output\huidu\IMResources.pdb
+D:\work\src\trunk\IMResources\obj\HUIDU\IMResources.csprojAssemblyReference.cache
+D:\work\src\trunk\IMResources\obj\HUIDU\Themes\Default\Color.baml
+D:\work\src\trunk\IMResources\obj\HUIDU\Themes\Default\CommonStyle.baml
+D:\work\src\trunk\IMResources\obj\HUIDU\Themes\Default\ScrollViewerStyle.baml
+D:\work\src\trunk\IMResources\obj\HUIDU\Themes\Generic.baml
+D:\work\src\trunk\IMResources\obj\HUIDU\IMResources_MarkupCompile.cache
+D:\work\src\trunk\IMResources\obj\HUIDU\IMResources.g.resources
+D:\work\src\trunk\IMResources\obj\HUIDU\IMResources.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\IMResources\obj\HUIDU\IMResources.dll
+D:\work\src\trunk\IMResources\obj\HUIDU\IMResources.pdb

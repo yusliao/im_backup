@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2C56B218-D689-4795-B666-BA5FF3134387}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>IMAssets</RootNamespace>
+    <AssemblyName>IMAssets</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\output\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\output\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>..\..\..\output\test\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'HUIDU|AnyCPU'">
+    <OutputPath>..\..\..\output\huidu\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ImageDeal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Assets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BaseAssets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\CommonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\HeaderContentStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ListBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\MenuStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\PathGeometrys.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ScrollViewerStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TextElementStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ImageFail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\attention_checked.png" />
+    <Resource Include="Images\attention_mouseover.png" />
+    <Resource Include="Images\attention_normal.png" />
+    <Resource Include="Images\bitbug_favicon.ico" />
+    <Resource Include="Images\bitbug_favicon_Transparent.ico" />
+    <Resource Include="Images\eye-click.png" />
+    <Resource Include="Images\eye.png" />
+    <Resource Include="Images\friend_checked.png" />
+    <Resource Include="Images\friend_mouseover.png" />
+    <Resource Include="Images\friend_new.png" />
+    <Resource Include="Images\friend_normal.png" />
+    <Resource Include="Images\group_checked.png" />
+    <Resource Include="Images\group_mouseover.png" />
+    <Resource Include="Images\group_normal.png" />
+    <Resource Include="Images\icon-closebut.png" />
+    <Resource Include="Images\icon-nodisturb.png" />
+    <Resource Include="Images\icon-open-but.png" />
+    <Resource Include="Images\msg_checked.png" />
+    <Resource Include="Images\msg_mouseover.png" />
+    <Resource Include="Images\msg_normal.png" />
+    <Resource Include="Images\network_error.png" />
+    <Resource Include="Images\nofriend.png" />
+    <Resource Include="Images\normalhead.png" />
+    <Resource Include="Images\qrcode.png" />
+    <Resource Include="Images\screen-arrows.cur" />
+    <Resource Include="Images\setup_checked.png" />
+    <Resource Include="Images\setup_mouseover.png" />
+    <Resource Include="Images\setup_normal.png" />
+    <Resource Include="Images\sex_boy.png" />
+    <Resource Include="Images\sex_girl.png" />
+    <Resource Include="Images\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\file_excel0.png" />
+    <Resource Include="Images\file_excel1.png" />
+    <Resource Include="Images\file_exe0.png" />
+    <Resource Include="Images\file_exe1.png" />
+    <Resource Include="Images\file_pdf0.png" />
+    <Resource Include="Images\file_pdf1.png" />
+    <Resource Include="Images\file_ppt0.png" />
+    <Resource Include="Images\file_ppt1.png" />
+    <Resource Include="Images\file_rar0.png" />
+    <Resource Include="Images\file_rar1.png" />
+    <Resource Include="Images\file_text1.png" />
+    <Resource Include="Images\file_text0.png" />
+    <Resource Include="Images\file_word0.png" />
+    <Resource Include="Images\file_word1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\file_image0.png" />
+    <Resource Include="Images\file_image1.png" />
+    <Resource Include="Images\file_mp30.png" />
+    <Resource Include="Images\file_mp31.png" />
+    <Resource Include="Images\file_mp40.png" />
+    <Resource Include="Images\file_mp41.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\file_default0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\qr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\groupadmin.png" />
+    <Resource Include="Images\groupcreator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\smallvideo_download.png" />
+    <Resource Include="Images\smallvideo_reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Blacklist.png" />
+    <Resource Include="Images\StrangerMessage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addmember.png" />
+    <Resource Include="Images\deletemember.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon-show-arrowsdown.png" />
+    <Resource Include="Images\icon-show-arrowsup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\apply-hover.png" />
+    <Resource Include="Images\apply.png" />
+    <Resource Include="Images\attention-hover.png" />
+    <Resource Include="Images\attention.png" />
+    <Resource Include="Images\more-hover.png" />
+    <Resource Include="Images\more.png" />
+    <Resource Include="Images\send-hover.png" />
+    <Resource Include="Images\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\transferGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\jtx.png" />
+    <Resource Include="Images\jty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tishi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\msg_IsChecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\message_IsChecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\msg_UnChecked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\newImage\attention1.png" />
+    <Resource Include="Images\newImage\attention3.png" />
+    <Resource Include="Images\newImage\attention2.png" />
+    <Resource Include="Images\newImage\friend1.png" />
+    <Resource Include="Images\newImage\friend2.png" />
+    <Resource Include="Images\newImage\friend3.png" />
+    <Resource Include="Images\newImage\group1.png" />
+    <Resource Include="Images\newImage\group2.png" />
+    <Resource Include="Images\newImage\group3.png" />
+    <Resource Include="Images\newImage\message1.png" />
+    <Resource Include="Images\newImage\message2.png" />
+    <Resource Include="Images\newImage\message3.png" />
+    <Resource Include="Images\newImage\setting3.png" />
+    <Resource Include="Images\newImage\setting1.png" />
+    <Resource Include="Images\newImage\setting2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UserCard\addfriend1.png" />
+    <Resource Include="Images\UserCard\addfriend2.png" />
+    <Resource Include="Images\UserCard\addfriend3.png" />
+    <Resource Include="Images\UserCard\attention1.png" />
+    <Resource Include="Images\UserCard\attention2.png" />
+    <Resource Include="Images\UserCard\attention3.png" />
+    <Resource Include="Images\UserCard\message1.png" />
+    <Resource Include="Images\UserCard\message2.png" />
+    <Resource Include="Images\UserCard\more1.png" />
+    <Resource Include="Images\UserCard\more2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UserCard\clearscreen1.png" />
+    <Resource Include="Images\UserCard\clearscreen2.png" />
+    <Resource Include="Images\UserCard\cutimage2.png" />
+    <Resource Include="Images\UserCard\cutimge1.png" />
+    <Resource Include="Images\UserCard\emoje1.png" />
+    <Resource Include="Images\UserCard\emoje2.png" />
+    <Resource Include="Images\UserCard\file1.png" />
+    <Resource Include="Images\UserCard\file2.png" />
+    <Resource Include="Images\UserCard\groupnotice1.png" />
+    <Resource Include="Images\UserCard\groupnotice2.png" />
+    <Resource Include="Images\UserCard\image1.png" />
+    <Resource Include="Images\UserCard\image2.png" />
+    <Resource Include="Images\UserCard\messagestory1.png" />
+    <Resource Include="Images\UserCard\messagestory2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clear_keyword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\globalsearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\newImage\SearchWithoutMessage.png" />
+    <Resource Include="Images\newImage\LoadWithoutMessage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\newImage\personalCard.png" />
+    <Resource Include="Images\newImage\personalCard_Over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fileassistant_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\newsdefault_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\setcompleted.png" />
+    <Resource Include="Images\setNoteing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\searchContact.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

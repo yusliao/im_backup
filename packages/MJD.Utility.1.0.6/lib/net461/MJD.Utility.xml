@@ -1,0 +1,1495 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MJD.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:MJD.Utility.CryptoProvider">
+            <summary>
+            加密方式
+            </summary>
+        </member>
+        <member name="F:MJD.Utility.CryptoProvider.SHA1">
+            <summary>
+            SHA1
+            </summary>
+        </member>
+        <member name="F:MJD.Utility.CryptoProvider.MD5">
+            <summary>
+            MD5
+            </summary>
+        </member>
+        <member name="T:MJD.Utility.UtilityBase64">
+            <summary>
+            Base64编解码
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityBase64.Encode(System.String,System.String)">
+            <summary>
+            编码
+            </summary>
+            <param name="code">原文</param>
+            <param name="T">字符编码类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityBase64.Decode(System.String,System.String)">
+            <summary>
+            解码
+            </summary>
+            <param name="code">密文(UTF-8|GB2312)</param>
+            <param name="T">字符编码类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityBase64.Encode(System.String)">
+            <summary>
+            编码
+            </summary>
+            <param name="code">原文</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityBase64.Decode(System.String)">
+            <summary>
+            解码
+            </summary>
+            <param name="code">密文</param>
+            <returns></returns>
+        </member>
+        <member name="T:MJD.Utility.UtilityCrypto">
+            <summary>
+            通用加密工具类
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityCrypto.Encrypt(System.String,MJD.Utility.CryptoProvider)">
+            <summary>
+            SHA1(1)，MD5(2)加密,默认为UTF8字符集，返回的字母为大写
+            </summary>
+            <param name="sourceData">待加密的字符串</param>
+            <param name="cryptoProvider">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityCrypto.Encrypt(System.String,MJD.Utility.CryptoProvider,System.Text.Encoding)">
+            <summary>
+            SHA1(1)，MD5(2)加密,默认为UTF8字符集，返回的字母为大写
+            </summary>
+            <param name="sourceData">待加密的字符串</param>
+            <param name="cryptoProvider">加密方式</param>
+            <param name="encoding">加密字符集</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityCrypto.Encrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            加密，公共函数
+            </summary>
+            <param name="sourceData">原文</param>
+            <param name="keys">密钥1</param>
+            <param name="iv">密钥2</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityCrypto.Decrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            解密，公共函数
+            </summary>
+            <param name="sourceData">密文</param>
+            <param name="keys">密钥1</param>
+            <param name="iv">密钥2</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityCrypto.Encrypt(System.String,System.String)">
+            <summary> 
+            DES加密数据,加密失败返回""值
+            </summary> 
+            <param name="Text"></param> 
+            <param name="sKey"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:MJD.Utility.UtilityCrypto.Decrypt(System.String,System.String)">
+            <summary> 
+            DES解密数据,解密失败返回""值
+            </summary> 
+            <param name="Text"></param> 
+            <param name="sKey"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:MJD.Utility.UtilityCrypto.AESEncrypt(System.String,System.String)">
+            <summary>
+            AES加密
+            </summary>
+            <param name="toEncrypt">需要加密的字符串</param>
+            <param name="key">加密密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityCrypto.AESDecrypt(System.String,System.String)">
+            <summary>
+            AES解密
+            </summary>
+            <param name="toDecrypt">需要解密的字符串</param>
+            <param name="key">解密密钥</param>
+            <returns></returns>
+        </member>
+        <member name="T:MJD.Utility.UtilityFun">
+            <summary>
+            工具方法类
+            </summary>
+            <summary>
+            基础方法类[cookies的操作]
+            </summary>
+            <summary>
+            工具方法类[数值操作]
+            </summary>
+            <summary>
+            基础方法类[获取请求类]
+            </summary>
+            <summary>
+            基础方法类[处理输出类]
+            </summary>
+            <summary>
+            生成短地址通用方法
+            </summary>
+        </member>
+        <member name="F:MJD.Utility.UtilityFun.MinDTValue">
+            <summary>
+            定义系统中使用最小的日期值，以便兼容数据库或其它系统的最小日期范围
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.CutString(System.String,System.Int32,System.Boolean)">
+            <summary>
+            字符串截取函数
+            </summary>
+            <param name="inputString">要被截取的字符串</param>
+            <param name="len">截取长度（字符数）</param>
+            <param name="points">是否显示半个省略号</param>
+            <returns>返回截取的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.DelSQLKey(System.String)">
+            <summary>
+            去掉影响SQL的字符
+            </summary>
+            <param name="str">接受检查的字符串</param>
+            <returns>去除SQL关键字符后的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.FillNullStr(System.String,System.String)">
+            <summary>
+            转换成字符串，为空则用默认值代替
+            </summary>
+            <param name="str">要检查的字符串</param>
+            <param name="value">默认代替字符串</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetConfigStr(System.String)">
+            <summary>
+            获取配置文件中的AppSettings健值
+            </summary>
+            <param name="key">配置值的项名</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHideMobileStr(System.String)">
+            <summary>
+            返回加*号的手机号码
+            格式：13588****99
+            </summary>
+            <param name="mobile">手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHideEmailStr(System.String)">
+            <summary>
+            返回加*号的邮箱地址
+            </summary>
+            <param name="email">邮箱地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHidenUserName(System.Object,System.Object)">
+            <summary>
+            获取符合前台显示的用户名
+            </summary>
+            <param name="mobile">手机号</param>
+            <param name="email">邮箱</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHidenUserName(System.Object,System.Object,System.Object)">
+            <summary>
+            获取符合前台显示的用户名(优先显示顺序：昵称-手机号-邮箱)
+            </summary>
+            <param name="mobile">手机号</param>
+            <param name="email">邮箱</param>
+            <param name="nickName">昵称</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHidenUserName(System.Object,System.Object,System.Object,System.Int32)">
+            <summary>
+            获取符合前台显示的用户名(优先显示顺序：昵称-手机号-邮箱)
+            </summary>
+            <param name="mobile">手机号</param>
+            <param name="email">邮箱</param>
+            <param name="nickName">昵称</param>
+            <param name="nameLen">昵称截取长度，若为0代表不截取</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetShowUserName(System.Object,System.Object,System.Object)">
+            <summary>
+            获取符合前台显示的用户名(优先显示顺序：昵称-手机号-邮箱)
+            </summary>
+            <param name="mobile">手机号</param>
+            <param name="email">邮箱</param>
+            <param name="nickName">昵称</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHideUserName(System.String)">
+            <summary>
+            获取符合前台显示的用户名
+            </summary>
+            <param name="userName">用户名【空则为"",小于2个长度，则为*】</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHideBankCardNo(System.String)">
+            <summary>
+            获取符合前台显示的银行卡号
+            </summary>
+            <param name="bankCardNo">银行卡号【判断为小于8位则为4个*，正常为16-21位】</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ReplaceWithSpecialChar(System.String,System.Int32,System.Int32,System.Char)">
+            <summary>
+            将传入的字符串中间部分字符替换成特殊字符
+            </summary>
+            <param name="value">需要替换的字符串</param>
+            <param name="startLen">前保留长度</param>
+            <param name="endLen">尾保留长度</param>
+            <param name="replaceChar">特殊字符</param>
+            <returns>被特殊字符替换的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetPhyPath(System.String)">
+            <summary>
+            获取相对文件路径的绝对物理路径
+            </summary>
+            <param name="vritualPath">配置值的项名</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetUserIP">
+            <summary>
+            返回客户端的IP地址，已过滤保留及内网网段IP
+            </summary>
+            <returns>真实客户端IP</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetUserIP(System.Boolean)">
+            <summary>
+            返回客户端的IP地址 先获取REMOTE_ADDR，UserHostAddress再获取FORWARDED_FOR
+            </summary>
+            <param name="excludeLanIP">是否排除保留及内网网段IP</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHostIP">
+            <summary>
+            返回服务器的IP地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetIntIP">
+            <summary>
+            返回客户端的IP地址数值，直取UserHostAddress值，主要用于防护业务方面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetIntIP(System.String)">
+            <summary>
+            返回客户端的IP地址数值
+            </summary>
+            <param name="ip">IP地址（格式：255.255.255.255）</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetRndNumberLen(System.Int32,System.Int32)">
+            <summary>
+            获取指定长度范围的随机整数
+            </summary>
+            <param name="minLen">下限大于0</param>
+            <param name="maxLen">上限小于等于6</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsIPAddress(System.String)">
+            <summary>
+            判断是否是合法的公网IP地址
+            </summary>
+            <param name="ip">要检查的IP字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsIPAddress(System.String,System.Boolean)">
+            <summary>
+            判断是否是合法的IP地址
+            </summary>
+            <param name="ip">要检查的IP字符串</param>
+            <param name="excludeLanIP">是否排除保留及内网IP地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsEmail(System.String)">
+            <summary>
+            判断是否是合法的Email地址
+            </summary>
+            <param name="input">要检查的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsUserName(System.String)">
+            <summary>
+            判断是否是合法的用户昵称
+            格式：中文_-{2,20}
+            </summary>
+            <param name="input">要检查的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsEmptyString(System.String)">
+            <summary>
+            检查字符串是否为空
+            </summary>
+            <param name="str">要检查的字符串</param>
+            <returns>为空返回true;否则返回false;</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsMobile(System.String)">
+            <summary>
+            判断是否是合法的手机号码
+            </summary>
+            <param name="input">要检查的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.RestoreSQLKey(System.String)">
+            <summary>
+            恢复影响SQL的字符
+            </summary>
+            <param name="str">接受检查的字符串</param>
+            <returns>恢复SQL关键字符后的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.StripHTML(System.String)">
+            <summary>
+            去除HTML标记
+            </summary>
+            <param name="strHtml">包括HTML的源码</param>
+            <returns>已经去除后的文字</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ReplaceHtmlTag(System.String)">
+            <summary>
+            替换HTML标记
+            </summary>
+            <param name="htmlContent">HTML内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ClearHtmlTag(System.String)">
+            <summary>
+            清除HTML标记
+            </summary>
+            <param name="htmlContent">HTML内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.KeepUBBSpecifyTag(System.String,System.String,System.Boolean)">
+            <summary>
+            先清除Html标识，再保留指定的UBBCode标记
+            </summary>
+            <param name="htmlContent">HTML格式内容</param>
+            <param name="ubbRegex">UBB标记：为空则默认为（@"\[((/?(br|b|url|img|s:\d+)|([^\]]*))[^\]]*)\]"）</param>
+            <param name="clearHtmlTag">是否清除HTML标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.StrToHTML(System.String)">
+            <summary>
+            把含有特殊字符的字符串转义为HTML显示
+            </summary>
+            <param name="str">含有特殊字符的字符串</param>
+            <returns>转义后的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToDateTime(System.String)">
+            <summary>
+            把字符串转换成日期类型,出错返回最小日期
+            </summary>
+            <param name="vDateTime">日期字符串</param>
+            <returns>转换后的日期</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToDateTime(System.Object)">
+            <summary>
+            把字符串转换成日期类型,出错返回最小日期
+            </summary>
+            <param name="vDateTime">日期对象</param>
+            <returns>转换后的日期</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToDateTime(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            把字符串转换成日期类型,出错返回null值
+            </summary>
+            <param name="vDateTime">日期字符串</param>
+            <param name="vDefault">默认日期</param>
+            <returns>转换后的日期</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToReplace(System.String,System.String,System.String)">
+            <summary>
+            替换指定字符
+            </summary>
+            <param name="str1">要替换的字符串</param>
+            <param name="str2">要查找的字符串</param>
+            <param name="str3">用来代替的字符串</param>
+            <returns>替换后的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToReplaceStyle(System.Text.RegularExpressions.Match)">
+            <summary>
+            返回替换字符的新样式
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToReplace(System.String,System.String,System.Char)">
+            <summary>
+            对搜索关键字替换
+            </summary>
+            <param name="vStr">将被替换的字符串</param>
+            <param name="vCharVar">用来替换的字符串</param>
+            <param name="vChar">用来分割vCharVar字符串的标识</param>
+            <returns>替换后的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToReplaceAjaxChar(System.String)">
+            <summary>
+            替换单引号字符
+            </summary>
+            <param name="str1">要替换的字符串</param>
+            <returns>替换后的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.UrlEncode(System.String)">
+            <summary>
+            对指定的Url编码，便于传输
+            </summary>
+            <param name="url">路径地址</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.UrlDecode(System.String)">
+            <summary>
+            对指定的Url解码
+            </summary>
+            <param name="url">路径地址</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.UrlDomainSafe(System.String)">
+            <summary>
+            检查是不是本网站的页面发出的请求
+            </summary>
+            <param name="domainStr">需要验证的域名字符串</param>
+            <returns>是则返回true;</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.Get32BitGuid">
+            <summary>
+            返回32位，无“-”的Guid序列
+            </summary>
+            <returns>Guid</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetRndStrLen(System.Int32,System.Int32)">
+            <summary>
+            获取指定长度范围的随机字符数字串
+            </summary>
+            <param name="minLen">下限</param>
+            <param name="maxLen">上限小于等于30</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToReplaceSpace(System.String)">
+            <summary>
+            清除首尾空格，中间的连接空格替换为一个空格
+            </summary>
+            <param name="str">要替换的字符串</param>
+            <returns>替换后的字符串</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertTimeToShow(System.DateTime)">
+            <summary>
+            转换时间显示方式
+            </summary>
+            <param name="time">时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertTimeToShow(System.Object,System.String)">
+            <summary>
+            转换时间显示方式
+            </summary>
+            <param name="time">时间</param>
+            <param name="format">时间格式化</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertTimeToShow(System.DateTime,System.String)">
+            <summary>
+            转换时间显示方式
+            </summary>
+            <param name="time">时间</param>
+            <param name="format">时间格式化</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertTimeToShow(System.DateTime,System.Int32)">
+            <summary>
+            转换时间显示方式
+            </summary>
+            <param name="time">时间</param>
+            <param name="timeBelow">最低分钟数，小于此数则显示为“刚刚”</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertTimeToShow(System.Object,System.Int32)">
+            <summary>
+            转换时间显示方式
+            </summary>
+            <param name="time">时间</param>
+            <param name="timeBelow">最低分钟数，小于此数则显示为“刚刚”</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertTimeToShow(System.DateTime,System.String,System.Int32)">
+            <summary>
+            转换时间显示方式
+            </summary>
+            <param name="time">时间</param>
+            <param name="format">时间格式化</param>
+            <param name="timeBelow">最低分钟数，小于此数则显示为“刚刚”</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertTimeToShow(System.Object)">
+            <summary>
+            转换为友好的时间显示
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertToTimeStr(System.Object)">
+            <summary>
+            把时间转换为字符串(yyyy-MM-dd HH:mm:ss.fff)
+            </summary>
+            <param name="time">时间值</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ConvertToTimeVal(System.Object)">
+            <summary>
+            把时间转换为九位数字(HHmmssfff)
+            </summary>
+            <param name="time">字符型式时间值可由ConvertToTimeStr转换后做为参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsPayPassword(System.String)">
+            <summary>
+            检测是否符合条件的支付密码 6位数字
+            </summary>
+            <param name="paypwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsTelephone(System.String)">
+            <summary>
+            判断是否合法的座机
+            </summary>
+            <param name="input">要检查的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsLoginPassword(System.String)">
+            <summary>
+            检测账户登录密码是否符合条件
+            </summary>
+            <param name="password">登录密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.CheckConsignee(System.String,System.Int32@)">
+            <summary>
+            检测收货人是否符合条件
+            </summary>
+            <param name="Consignee">收货人</param>
+            <param name="ErrorCode">错误代码(-1为空,-2长度不是2-5,-3不是中文，-4以非法字符开头，-5包含非法字符)</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.CheckAddressDetails(System.String)">
+            <summary>
+            检测收货详细地址是否符合条件
+            </summary>
+            <param name="Address">详细地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHideIdCard(System.String)">
+            <summary>
+            返回加*号的身份证号码
+            格式：4414811988****3090
+            </summary>
+            <param name="idCard">身份证号码</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHideIdCardNo(System.String)">
+            <summary>
+            返回加*号的身份证号码
+            格式：4****************0
+            </summary>
+            <param name="idCard">身份证号码</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsPostcode(System.String)">
+            <summary>
+            检测是否为合法的邮编
+            6位数字
+            </summary>
+            <param name="postcode">邮编</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.IsQQ(System.String)">
+            <summary>
+            检测是否为合法的QQ号
+            5-15位数字
+            </summary>
+            <param name="qq">QQ号</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.EncryptPasspword(System.String)">
+            <summary>
+            把明文密码转为密文
+            SHA-1加密方式
+            </summary>
+            <param name="password">密码明文</param>
+            <returns>密文</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.SetCookie(System.String,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            创建Cookies
+            </summary>
+            <param name="strName">Cookie 主键</param>
+            <param name="strValue">Cookie 键值</param>
+            <param name="domain">Cookie 域范围，空则不设置域即为本域</param>
+            <param name="strMinutes">Cookie过期 分钟,为0时即相当于会话，关闭页面就失效</param>
+            <param name="encrypt">Cookie 是否启用加密</param>
+            <code>Cookie ck = new Cookie();</code>
+            <code>ck.setCookie("主键","键值","域范围","分钟","是否启用加密");</code>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.SetCookie(System.String,System.String,System.String,System.DateTime,System.Boolean)">
+            <summary>
+            创建Cookies
+            </summary>
+            <param name="strName">Cookie 主键</param>
+            <param name="strValue">Cookie 键值</param>
+            <param name="domain">Cookie 域范围，空则不设置域即为本域</param>
+            <param name="expires">Cookie过期绝对时间</param>
+            <param name="encrypt">Cookie 是否启用加密</param>
+            <code>Cookie ck = new Cookie();</code>
+            <code>ck.setCookie("主键","键值","域范围","分钟","是否启用加密");</code>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetCookie(System.String,System.Boolean)">
+            <summary>
+            读取Cookies,无则返回空字符串""
+            </summary>
+            <param name="strName">Cookie 主键</param>
+            <param name="decrypt">Cookie 是否启用解密</param>
+            <code>Cookie ck = new Cookie();</code>
+            <code>ck.getCookie("主键","是否加密类型");</code>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.DelCookie(System.String,System.String)">
+            <summary>
+            删除Cookies
+            </summary>
+            <param name="strName">Cookie 主键</param>
+            <param name="domain">Cookie 域范围，空则不设置域即为本域</param>
+            <code>Cookie ck = new Cookie();</code>
+            <code>ck.delCookie("主键");</code>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.setCookieExpires(System.String,System.String,System.Int32)">
+            <summary>
+            删除Cookies
+            </summary>
+            <param name="strName">Cookie 主键</param>
+            <param name="domain">Cookie 所属域，空则不设置域即为本域</param>
+            <param name="strMinutes">Cookie 过期时间分钟</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToDecimal(System.Object)">
+            <summary>
+            把对象转换成Decimal,非Decimal字符串返回0m
+            </summary>
+            <param name="refVal">要转换的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToDecimal(System.String)">
+            <summary>
+            把字符串转换成Decimal,非Decimal字符串返回0m
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToInt32(System.Object)">
+            <summary>
+            把对象转换成整型,非整型字符串返回0
+            </summary>
+            <param name="refVal">要转换的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToInt32(System.String)">
+            <summary>
+            把字符串转换成整型,非整型字符串返回0
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToInt64(System.Object)">
+            <summary>
+            把对象转换成整型,非整型字符串返回0
+            </summary>
+            <param name="refVal">要转换的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToInt64(System.String)">
+            <summary>
+            把字符串转换成整型,非整型字符串返回0
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToNumber(System.String,System.Int32)">
+            <summary>
+            把字符串转换成整型
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <param name="defaultVal">转换失败的缺省值</param>
+            <returns>转换后的整型</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToNumber(System.String,System.Int64)">
+            <summary>
+            把字符串转换成整型
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <param name="defaultVal">转换失败的缺省值</param>
+            <returns>转换后的整型</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToNumber(System.String,System.Decimal)">
+            <summary>
+            把字符串转换成Decimal类型，失败以defaultVal填充
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <param name="defaultVal">转换失败的缺省值</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ToDouble(System.String)">
+            <summary>
+            把字符串转换成ToDouble类型
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetHttpUrlAndQuery">
+            <summary>
+            获取当前请求的网址及GET参数
+            Request.Url.PathAndQuery
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ReqNum(System.String,System.Int32)">
+            <summary>
+            获取http传的变量值转32位整型值
+            </summary>
+            <param name="paraName">变量名</param>
+            <param name="defaultVal">缺省值 int</param>
+            <returns>0</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ReqNum(System.String,System.Decimal)">
+            <summary>
+            获取http传的变量值转Decimal值
+            </summary>
+            <param name="paraName">变量名</param>
+            <param name="defaultVal">缺省值 decimal</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ReqNum(System.String,System.Int64)">
+            <summary>
+            获取http传的变量值转32位整型值
+            </summary>
+            <param name="paraName">变量名</param>
+            <param name="defaultVal">缺省值 int</param>
+            <returns>0</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ReqStr(System.String,System.String)">
+            <summary>
+            正常获取传递过来页面参数
+            </summary>
+            <param name="paraName">参数名称</param>
+            <param name="defaultVal">缺省值</param>
+            <returns>根据传递的值，若为空返回缺省值</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.ReqStrSQL(System.String,System.String)">
+            <summary>
+            正常获取传递过来页面参数，并去掉影响SQL的字符
+            </summary>
+            <param name="paraName">参数名称</param>
+            <param name="defaultVal">缺省值</param>
+            <returns>根据传递的值，若为空返回缺省值</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.Request(System.String)">
+            <summary>
+            获取http发送过来的数据
+            </summary>
+            <param name="keyName">要获取的变量名</param>
+            <returns>返回变量名的值</returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.SendHttpRequest(System.String,System.String)">
+            <summary>
+            发送请求
+            </summary>
+            <param name="url">Url地址</param>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GetData(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.SendPostHttpRequest(System.String,System.String,System.String)">
+            <summary>
+            发送请求
+            </summary>
+            <param name="url">Url地址</param>
+            <param name="contentType">数据类型</param>
+            <param name="requestData">数据</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.SendGetHttpRequest(System.String,System.String)">
+            <summary>
+            发送请求
+            </summary>
+            <param name="url">Url地址</param>
+            <param name="contentType">数据类型</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.HttpGetRequest(System.String)">
+            <summary>
+            httpGet请求，返回请求结果字符串
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.Printf(System.String)">
+            <summary>
+            输出函数
+            </summary>
+            <param name="str">要输出的字符</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.PrintfLine(System.String)">
+            <summary>
+            输出函数并换行
+            </summary>
+            <param name="str">要输出的字符</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.PrintfEnd(System.String)">
+            <summary>
+            输出String类型并终止页面执行
+            </summary>
+            <param name="str">要输出的字符</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.PrintfEnd">
+            <summary>
+            终止页面输出
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.Redirect(System.String)">
+            <summary>
+            跳转到指定的URL并终止页面执行
+            </summary>
+            <param name="url">路径地址</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.SetNoCache">
+            <summary>
+            去浏览器缓存信息
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.SetUnZip">
+            <summary>
+            设置不压缩文档输出
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityFun.GenerateShortUrl(System.String)">
+            <summary>
+            生成短链接
+            返回：输出4条短地址，业务判断重复后再使用其中一条
+            </summary>
+            <param name="url">长地址</param>
+            <returns></returns>
+        </member>
+        <member name="T:MJD.Utility.UtilityHttp">
+            <summary>
+            http、https通信类，建议用用using实例化
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.#ctor">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="F:MJD.Utility.UtilityHttp.Referer">
+            <summary>
+            请求referer
+            </summary>
+        </member>
+        <member name="P:MJD.Utility.UtilityHttp.CookieCon">
+            <summary>
+            httprequest CookieContainer
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.SetReqContent(System.String)">
+            <summary>
+            设置请求内容
+            </summary>
+            <param name="reqContent"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.SetPostContent(System.String)">
+            <summary>
+            设置发送内容
+            </summary>
+            <param name="postContent"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.GetResContent">
+            <summary>
+            获取结果内容
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.SetMethod(System.String)">
+            <summary>
+            设置请求方法post或者get
+            </summary>
+            <param name="method"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.GetErrInfo">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.SetCertInfo(System.String,System.String)">
+            <summary>
+            设置证书信息
+            </summary>
+            <param name="certFile"></param>
+            <param name="certPasswd"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.SetCaInfo(System.String)">
+            <summary>
+            设置ca
+            </summary>
+            <param name="caFile"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.SetTimeOut(System.Int32)">
+            <summary>
+            设置超时时间,以秒为单位
+            </summary>
+            <param name="timeOut"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.GetResponseCode">
+            <summary>
+            获取http状态码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.SetCharset(System.String)">
+            <summary>
+            设置字符集
+            </summary>
+            <param name="charset"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.SetKeepAlive(System.Boolean)">
+            <summary>
+            设置是否保持长链接
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.CheckValidationResult(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            验证服务器证书
+            </summary>
+            <param name="sender"></param>
+            <param name="certificate"></param>
+            <param name="chain"></param>
+            <param name="errors"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityHttp.call">
+            <summary>
+            执行http调用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MJD.Utility.UtilityJson">
+            <summary>
+            JSON操作转换工具类
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.WriteValue(System.Text.StringBuilder,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="sb"></param>
+            <param name="val"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.WriteValue(System.Text.StringBuilder,System.Object,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="sb"></param>
+            <param name="val"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.Convert2Json(System.Object)">
+            <summary>
+            将对象转换为json串
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.DataSetToJson(System.Data.DataSet)">
+            <summary>
+            dataSet转换成Json格式 
+            </summary>
+            <param name="ds">要转行的DataSet</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.DataSetToJson(System.String,System.Data.DataSet)">
+            <summary>
+            dataSet转换成Json格式 
+            </summary>
+            <param name="code">代号</param>
+            <param name="ds">要转行的DataSet</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.DataTableToJson(System.Data.DataTable)">
+            <summary>  
+            dataTable转换成Json格式  
+            </summary>  
+            <param name="dt"></param>  
+            <returns></returns>  
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.DataTableToJson(System.String,System.Data.DataTable)">
+            <summary>
+            dataTable转换成Json格式 
+            </summary>
+            <param name="code"></param>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.SafeJsonValue(System.String)">
+            <summary>
+            将字符串转换为JSON格式字符，以双引号为间隔符，返回内容不含前后双引号边界
+            </summary>
+            <param name="str">源串</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityJson.SafeJsonValue(System.String,System.Boolean)">
+            <summary>
+            将字符串转换为安全的JSON格式值，返回内容不含前后双引号边界
+            </summary>
+            <param name="str">源串</param>
+            <param name="isSingleQuote">true:以单引号为间隔符；false:标准双引号为间隔符</param>
+            <returns></returns>
+        </member>
+        <member name="T:MJD.Utility.UtilityXML">
+            <summary>
+            XML操作工具类
+            </summary>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.xmlDoc(System.String)">
+            <summary>
+            创建一个XmlDocument对象
+            </summary>
+            <param name="PathOrString">文件名称或XML字符串</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.CreateXMLFile(System.String,System.String,System.String,MJD.Utility.XmlParameter[])">
+            <summary>
+            创建一个XML文档
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="rootName">根结点名称</param>
+            <param name="elemName">元素节点名称</param>
+            <param name="paras">XML参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.CreateXMLFile(System.String,System.String,MJD.Utility.XmlParameter,MJD.Utility.XmlParameter[])">
+            <summary>
+            创建一个XML文档
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="rootName">根结点名称</param>
+            <param name="elemp">元素节点对象</param>
+            <param name="paras">XML参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.CreateXMLFile(System.String,MJD.Utility.XmlParameter,System.String,MJD.Utility.XmlParameter[])">
+            <summary>
+            创建一个XML文档
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="rootp">根结点对象</param>
+            <param name="elemName">元素节点名称</param>
+            <param name="paras">XML参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.CreateXMLFile(System.String,MJD.Utility.XmlParameter,MJD.Utility.XmlParameter,MJD.Utility.XmlParameter[])">
+            <summary>
+            创建一个XML文档
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="rootp">根结点对象</param>
+            <param name="elemp">元素节点对象</param>
+            <param name="paras">XML参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddNewNode(System.String,System.Xml.XmlNode,MJD.Utility.XmlParameter[])">
+            <summary>
+            添加新节点
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="parentNode">新节点的父节点对象</param>
+            <param name="paras">XML参数对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddNewNode(System.Xml.XmlDocument,System.Xml.XmlNode,MJD.Utility.XmlParameter[])">
+            <summary>
+            添加新节点
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="parentNode">新节点的父节点对象</param>
+            <param name="paras">XML参数对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddNewNode(System.Xml.XmlDocument,System.String,MJD.Utility.XmlParameter[])">
+            <summary>
+            添加新节点
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="parentName">新节点的父节点名称</param>
+            <param name="paras">XML参数对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddNewNode(System.String,System.String,MJD.Utility.XmlParameter[])">
+            <summary>
+            添加新节点
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="parentName">新节点的父节点名称</param>
+            <param name="paras">XML参数对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddAttribute(System.Xml.XmlDocument,System.Xml.XmlNode,System.String,System.String,System.String)">
+            <summary>
+            添加节点属性
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="node">节点对象</param>
+            <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+            <param name="attributeName">新属性名称</param>
+            <param name="attributeValue">属性值</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddAttribute(System.Xml.XmlDocument,System.Xml.XmlNode,System.String,MJD.Utility.AttributeParameter[])">
+            <summary>
+            添加节点属性
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="node">节点对象</param>
+            <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+            <param name="attps">节点属性参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddAttribute(System.String,System.Xml.XmlNode,System.String,System.String,System.String)">
+            <summary>
+            添加节点属性
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="node">节点对象</param>
+            <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+            <param name="attributeName">新属性名称</param>
+            <param name="attributeValue">属性值</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddAttribute(System.String,System.Xml.XmlNode,System.String,MJD.Utility.AttributeParameter[])">
+            <summary>
+            添加节点属性
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="node">节点对象</param>
+            <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+            <param name="attps">节点属性参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddAttribute(System.Xml.XmlDocument,System.String,System.String,System.String,System.String)">
+            <summary>
+            添加节点属性
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="nodeName">节点名称</param>
+            <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+            <param name="attributeName">新属性名称</param>
+            <param name="attributeValue">属性值</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddAttribute(System.Xml.XmlDocument,System.String,System.String,MJD.Utility.AttributeParameter[])">
+            <summary>
+            添加节点属性
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="nodeName">节点名称</param>
+            <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+            <param name="attps">节点属性参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddAttribute(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            添加节点属性
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="nodeName">节点名称</param>
+            <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+            <param name="attributeName">新属性名称</param>
+            <param name="attributeValue">属性值</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.AddAttribute(System.String,System.String,System.String,MJD.Utility.AttributeParameter[])">
+            <summary>
+            添加节点属性
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="nodeName">节点名称</param>
+            <param name="namespaceOfPrefix">该节点的命名空间URI</param>
+            <param name="attps">节点属性参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.String,System.String)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="nodeName">节点名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.Xml.XmlNode,System.String)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="node">节点对象</param>
+            <param name="nodeName">节点名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.Xml.XmlDocument,System.String)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="nodeName">节点名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.Xml.XmlDocument,System.Int32,System.String)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="Index">节点索引</param>
+            <param name="nodeName">节点名称</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.String,System.Int32,System.String)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="Index">节点索引</param>
+            <param name="nodeName">节点名称</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.Xml.XmlNode,System.String,System.String)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="node">节点对象</param>
+            <param name="nodeName">节点名称</param>
+            <param name="innerText">节点内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="nodeName">节点名称</param>
+            <param name="innerText">节点内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.Xml.XmlDocument,MJD.Utility.XmlParameter)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="xpar">XML参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNode(System.Xml.XmlNode,MJD.Utility.XmlParameter)">
+            <summary>
+            获取指定节点名称的节点对象
+            </summary>
+            <param name="node">节点对象</param>
+            <param name="xpar">XML参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNodeValue(System.Xml.XmlNode)">
+            <summary>
+            获取节点值
+            </summary>
+            <param name="node">节点对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.GetNodeValue(System.Xml.XmlDocument,System.String)">
+            <summary>
+            获取指定节点名称的节点值
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="nodeName">节点名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.Xml.XmlNode,MJD.Utility.XmlParameter)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="node">修改的节点对象</param>
+            <param name="para">XML参数对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.Xml.XmlNode,System.Int32,System.String)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="node">父节点对象</param>
+            <param name="childIndex">该节点的索引</param>
+            <param name="nodeText">修改后的内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.Xml.XmlNode,System.String)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="node">修改的节点对象</param>
+            <param name="nodeText">修改后的内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.Xml.XmlDocument,System.Int32,MJD.Utility.XmlParameter)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="xDoc">XMLDocument对象</param>
+            <param name="Index"></param>
+            <param name="para">XML参数对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.Xml.XmlDocument,System.Int32,System.String,System.Int32,System.String)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="xDoc">XMLDocument对象</param>
+            <param name="Index"></param>
+            <param name="nodeName">父节点名称</param>
+            <param name="childIndex">该节点的索引</param>
+            <param name="nodeText">修改后的内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.Xml.XmlDocument,System.Int32,System.String,System.String)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="xDoc">XMLDocument对象</param>
+            <param name="Index"></param>
+            <param name="nodeName">修改的节点名称</param>
+            <param name="nodeText">修改后的内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.String,System.Int32,MJD.Utility.XmlParameter)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="Index"></param>
+            <param name="para">XML参数对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.String,System.Int32,System.String,System.Int32,System.String)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="nodeName">父节点名称</param>
+            <param name="childIndex">该节点的索引</param>
+            <param name="nodeText">修改后的内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.UpdateNode(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            修改节点的内容
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="nodeName">修改的节点名称</param>
+            <param name="nodeText">修改后的内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.DeleteNode(System.Xml.XmlDocument,System.Int32)">
+            <summary>
+            删除节点
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="Index">节点索引</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.DeleteNode(System.String,System.Int32)">
+            <summary>
+            删除节点
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="Index">节点索引</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.DeleteNode(System.Xml.XmlDocument,System.Xml.XmlNode[])">
+            <summary>
+            删除节点
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="xns">需要删除的节点对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.DeleteNode(System.String,System.Xml.XmlNode[])">
+            <summary>
+            删除节点
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="xns">需要删除的节点对象</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.DeleteNode(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            删除节点
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="nodeName">节点名称</param>
+            <param name="nodeText">节点内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.DeleteNode(System.String,System.String,System.String)">
+            <summary>
+            删除节点
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="nodeName">节点名称</param>
+            <param name="nodeText">节点内容</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.SetAttribute(System.Xml.XmlNode,MJD.Utility.AttributeParameter[])">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="node">节点对象</param>
+            <param name="attps">属性参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.SetAttribute(System.Xml.XmlNode,System.String,System.String)">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="node">节点对象</param>
+            <param name="attributeName">属性名称</param>
+            <param name="attributeValue">属性值</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.SetAttribute(System.Xml.XmlElement,MJD.Utility.AttributeParameter[])">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="elem">元素对象</param>
+            <param name="attps">属性参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.SetAttribute(System.Xml.XmlElement,System.String,System.String)">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="elem">元素对象</param>
+            <param name="attributeName">属性名称</param>
+            <param name="attributeValue">属性值</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.SetAttribute(System.Xml.XmlDocument,MJD.Utility.XmlParameter,MJD.Utility.AttributeParameter[])">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="xpara">XML参数</param>
+            <param name="attps">属性参数</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.SetAttribute(System.Xml.XmlDocument,MJD.Utility.XmlParameter,System.String,System.String)">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="xDoc">XmlDocument对象</param>
+            <param name="xpara">XML参数</param>
+            <param name="newValue">新属性值</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.SetAttribute(System.String,MJD.Utility.XmlParameter,System.String,System.String)">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="xpara">XML参数</param>
+            <param name="newValue">新属性值</param>
+        </member>
+        <member name="M:MJD.Utility.UtilityXML.SetAttribute(System.String,MJD.Utility.XmlParameter,MJD.Utility.AttributeParameter[])">
+            <summary>
+            修改属性值
+            </summary>
+            <param name="fileFullName">文件名称，包括完整路径</param>
+            <param name="xpara">XML参数</param>
+            <param name="attps">属性参数</param>
+        </member>
+    </members>
+</doc>

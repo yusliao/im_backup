@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FAC8515-AC93-4C8A-873B-368C89C1503B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IMResources</RootNamespace>
+    <AssemblyName>IMResources</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\output\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TEST|AnyCPU'">
+    <OutputPath>..\..\output\test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'HUIDU|AnyCPU'">
+    <OutputPath>..\..\output\huidu\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\Logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Default\Color.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Default\CommonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Default\ScrollViewerStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\abnormal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\Arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\arrows-both.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\arrows-denglu-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\arrows-denglu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\Badge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\Badge_tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Image\V2\bitbug_favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Image\V2\bitbug_favicon_Transparent.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\bubble-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\bubble-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\ChangeAccount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\check-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\check-box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\check-red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\close-btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\close-register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\colonization-downward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\colonization-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\excel-a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\excel-b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\eye-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\failure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\follow-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\follow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\friend-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\Friend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\head-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\head-icon256256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\head-icon4040.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\head-icon6060.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\head-o.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\head-register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\homepage-head.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-address-click-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-address-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-address-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-address-streak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-address.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-attention-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-attention-streak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-attention.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-boy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-chathead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-close-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-closebut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-disturb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-expression-hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-expression.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-folder-hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-friend-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-friend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-girl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-group-click-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-group-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-group-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-group-streak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-information-card-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-information-card-streak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-information-card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-information-click-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-information-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-information-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-information-streak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-listhead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-minimize-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-open-but.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-photo-hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-setdown-click-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-setdown-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-setdown-r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-setdown-streak.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-setdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-show-arrowsdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-show-arrowstop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-tailor-hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-tailor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-window-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\icon-window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\minimize-btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\mistake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\music.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\no.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\PDF-a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\pdf-t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\PDF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\pen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\Pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\picture-t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\ppt-a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\ppt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\rectangle-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\rectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Image\V2\screen-arrows.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\screen-arrows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\set-top-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\set-top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\sousuo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\suspend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\systematicnotification.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\tl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\tou.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\TXT-a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\txt-t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\TXT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\video-play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\wenjian-begin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\wenjian-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\wenjian-loseefficacy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\wenjian-suspend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\wenjian-y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\wenjian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\word-a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\word-t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\word.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\wenjian-chenggong.png" />
+    <Resource Include="Image\V2\wenjian-fasongshibai.png" />
+    <Resource Include="Image\V2\wenjian-yichang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\scss-pre.png" />
+    <Resource Include="Image\V2\scss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\remind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\check-gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\sx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\lj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\networkerror.png" />
+    <Resource Include="Image\V2\qrcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\nofriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\gd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\lj-click.png" />
+    <Resource Include="Image\V2\sx-click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\V2\exe-1.png" />
+    <Resource Include="Image\V2\exe-s.png" />
+    <Resource Include="Image\V2\exe.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

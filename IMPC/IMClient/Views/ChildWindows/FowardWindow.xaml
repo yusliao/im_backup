@@ -1,0 +1,27 @@
+﻿<Window x:Class="IMClient.Views.ChildWindows.FowardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IMClient.Views.ChildWindows"
+        xmlns:panel="clr-namespace:IMClient.Views.Panels"
+        mc:Ignorable="d"
+        Style="{StaticResource ShadowWindowStyle}"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Title="FowardWindow" Height="480" Width="600">
+    <Grid Background="#E5E5E5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Background="White"/>
+        <Border Background="White" Grid.Column="1" Margin="2,0,0,0">
+            <Button Style="{StaticResource CloseButtonStyle}" Click="Button_Click"/>
+        </Border>
+        <panel:FowardView Grid.Row="1" x:Name="fowardView" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>

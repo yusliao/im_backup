@@ -1,0 +1,5 @@
+D:\work\src\trunk\IMPC\IMModels\bin\Test\IMModels.dll
+D:\work\src\output\test\IMModels.dll
+D:\work\src\trunk\IMPC\IMModels\obj\Test\IMModels.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\IMPC\IMModels\obj\Test\IMModels.dll
+D:\work\src\trunk\IMPC\IMModels\obj\Test\IMModels.csprojAssemblyReference.cache

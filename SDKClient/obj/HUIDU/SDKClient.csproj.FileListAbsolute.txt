@@ -1,0 +1,16 @@
+D:\work\src\output\huidu\Resources\Tools\cjpeg.exe
+D:\work\src\output\huidu\Resources\Tools\gifsicle.exe
+D:\work\src\output\huidu\Resources\Tools\guetzli_windows_x86-64.exe
+D:\work\src\output\huidu\Resources\Tools\jpegtran.exe
+D:\work\src\output\huidu\Resources\Tools\libjpeg-62.dll
+D:\work\src\output\huidu\Resources\Tools\pingo.exe
+D:\work\src\output\huidu\x86\e_sqlite3.dll
+D:\work\src\output\huidu\x64\e_sqlite3.dll
+D:\work\src\output\huidu\BadWord.txt
+D:\work\src\output\huidu\SDKClient.dll
+D:\work\src\output\huidu\SDKClient.pdb
+D:\work\src\trunk\SDKClient\obj\HUIDU\SDKClient.csprojAssemblyReference.cache
+D:\work\src\trunk\SDKClient\obj\HUIDU\SDKClient.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\SDKClient\obj\HUIDU\SDKClient.csproj.CopyComplete
+D:\work\src\trunk\SDKClient\obj\HUIDU\SDKClient.dll
+D:\work\src\trunk\SDKClient\obj\HUIDU\SDKClient.pdb

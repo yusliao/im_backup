@@ -1,0 +1,6 @@
+D:\work\src\output\huidu\IMModels.dll
+D:\work\src\output\huidu\IMModels.pdb
+D:\work\src\trunk\IMPC\IMModels\obj\HUIDU\IMModels.csprojAssemblyReference.cache
+D:\work\src\trunk\IMPC\IMModels\obj\HUIDU\IMModels.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\IMPC\IMModels\obj\HUIDU\IMModels.dll
+D:\work\src\trunk\IMPC\IMModels\obj\HUIDU\IMModels.pdb

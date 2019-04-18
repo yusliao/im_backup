@@ -1,0 +1,266 @@
+﻿<UserControl x:Class="IMClient.Views.Panels.GroupNoticeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:imcc="clr-namespace:IMCustomControls.Controls;assembly=IMCustomControls" 
+             xmlns:local="clr-namespace:IMClient.Views.Panels"
+             xmlns:conTrol="clr-namespace:IMClient.Views.Controls"
+             xmlns:imuc="clr-namespace:IMClient.Views.Controls"
+             xmlns:hpr="clr-namespace:IMClient.Helper"
+             xmlns:man="clr-namespace:IMClient.Helper"
+             xmlns:cv="clr-namespace:IMClient.Converter"
+             mc:Ignorable="d" 
+             d:DesignWidth="250" Background="#F9FBFF" x:Name="layOut">
+    <UserControl.Resources>
+        <cv:BoolToVisibilityConvert x:Key="btv"/>
+        <cv:MultiParameterConverter x:Key="cov_Muliti"/>
+        <cv:SendTimeToViewConverter x:Key="con_DtCov"/>
+        <cv:HeadImgConvter x:Key="htc"/>
+        <ControlTemplate x:Key="ToggleButtonTemplate" TargetType="{x:Type ToggleButton}">
+            <Grid x:Name="grid" Background="Transparent" Cursor="Hand">
+                <Image x:Name="img" Source="pack://application:,,,/IMAssets;component/Images/icon-show-arrowsdown.png"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter TargetName="img" Property="Source" Value="pack://application:,,,/IMAssets;component/Images/icon-show-arrowsup.png"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <!--<Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource CellTitleWatermarkStyle}">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="10,20,10,0"/>
+        </Style>-->
+    </UserControl.Resources>
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock  Text="群公告" Margin="102,32,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" Foreground="#333333"/>
+        <Grid x:Name="grid_LoadFail" Grid.Row="1" Margin="0,5" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal" Background="#FEDFA5" HorizontalAlignment="Left" Width="{Binding ElementName=grid,Path=ActualWidth}" Margin="9,0">
+                <TextBlock Text="数据加载失败，请" Margin="9,9,0,9"/>
+                <TextBlock VerticalAlignment="Center" Cursor="Hand" Margin="1,3,2,2"><Hyperlink x:Name="hp_ReLoad" TextDecorations="{x:Null}" Foreground="{StaticResource HightLightBackground}" Click="hp_ReLoad_Click">重新加载</Hyperlink></TextBlock>
+            </StackPanel>
+        </Grid>
+        <conTrol:AnimationLoading Grid.Row="2" x:Name="aniLoading" Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed" Margin="0,100,0,-10"/>
+        <ScrollViewer x:Name="sv" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <Grid x:Name="gridLayout" Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="bd_CreatorFirstNotice" Grid.Row="0" Grid.ColumnSpan="3" Background="#FFFFFF" Visibility="{Binding TargetVM.IsShowEmptyNotice,Converter={StaticResource btv}}">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="BorderBrush" Value="#FFFFFE"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid Margin="9,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="25" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" >
+                            <TextBlock Text="【置顶】" FontSize="14" Foreground="#ffff0000"/>
+                            <TextBlock Text="入群须知" FontSize="14" Foreground="#666666"/>
+                        </StackPanel>
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" FontSize="14" TextWrapping="WrapWithOverflow" VerticalAlignment="Center">
+                            <TextBlock Text="暂无内容，对群友说点什么吧~" TextTrimming="WordEllipsis" Foreground="#666666"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,5,5,-10" Visibility="{Binding TargetVM.IsCanOpera,Converter={StaticResource btv}}">
+                            <Hyperlink x:Name="hyper_Link" TextDecorations="{x:Null}" Click="hyper_Link_Click" Foreground="{StaticResource HightLightBackground}">
+                                <Hyperlink.Style>
+                                    <Style TargetType="Hyperlink">
+                                        <Setter  Property ="Foreground"  Value ="#4C68B9" />
+                                        <Style.Triggers >
+                                            <Trigger Property ="IsMouseOver" Value ="True" > 
+                                                <Setter Property ="Foreground" Value ="#F27D00"/> 
+                                            <!-- 在鼠标悬停时显示下划线 --> 
+                                                <Setter Property ="TextBlock.TextDecorations"> 
+                                                    <Setter.Value>
+                                                        <TextDecorationCollection > 
+                                                            <TextDecoration Location ="Underline"/> 
+                                                        </TextDecorationCollection >
+                                                    </Setter.Value > 
+                                                </Setter> 
+                                            </Trigger> 
+                                        </Style.Triggers> 
+                                    </Style>
+                                </Hyperlink.Style>
+                                发布入群须知
+                            </Hyperlink>
+                        </TextBlock>
+                    </Grid>
+                </Border>
+                <Border x:Name="bd_OrdinaryFirstNotice" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,100,0,-10" Background="#F9FBFF" Visibility="{Binding TargetVM.IsShowEmptyNoticeOrdinary,Converter={StaticResource btv}}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="25" />
+                        </Grid.RowDefinitions>
+                        <Image Source="pack://application:,,,/IMAssets;component/Images/nofriend.png" Stretch="None"  Grid.Column="1"/>
+                        <TextBlock Grid.Row="1" HorizontalAlignment="Center">
+                            <TextBlock Text="暂无群公告噢~" TextTrimming="WordEllipsis" FontFamily="微软雅黑"/>
+                        </TextBlock>
+                    </Grid>
+                </Border>
+                <StackPanel Grid.Row="2" Background="#F9FBFF" Width="250" Grid.ColumnSpan="3" Margin="8,0,3,0"/>
+                <ItemsControl x:Name="ic_AllNotice" ItemsSource="{Binding TargetVM.AllNotice}" Grid.Row="3" Grid.ColumnSpan="3"  FocusVisualStyle="{x:Null}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border x:Name="bd_FirstNotice" Background="#FFFFFF" VerticalAlignment="Center">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="BorderBrush" Value="White"/>
+                                        <Setter Property="CornerRadius" Value="2"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="BorderBrush" Value="#FFFFFE"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid Grid.ColumnSpan="3" Margin="9,0,9,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="38"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="8"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="2"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+
+                                    </Grid.ColumnDefinitions>
+                                    <!--标题-->
+                                    <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Margin="5,11,0,11">
+                                        <TextBlock Text="【置顶】" FontSize="14" Foreground="#ffff0000">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding NoticeTitle}" Value="入群须知">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding NoticeTitle}" FontSize="13" Foreground="#333333" TextTrimming="WordEllipsis"/>
+                                    </TextBlock>
+                                    <!--内容-->
+                                    <man:SuperTextBlock x:Name="txb_NoticeContent1" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="3" LineHeight="20" Text="{Binding NoticeContent}" FontSize="14" Foreground="#666666" TextWrapping="Wrap" Margin="8,-3,0,3">
+                                    </man:SuperTextBlock>
+                                    <ToggleButton x:Name="tBtnExpand" Cursor="Hand" VerticalAlignment="Center" Grid.ColumnSpan="3"  Grid.Row="2" Width="11" Height="8" HorizontalAlignment="Right" Template="{StaticResource ToggleButtonTemplate}" Margin="8,0,3,0" Visibility="{Binding ElementName=txb_NoticeContent1,Path=AppendVisibility}" Click="tBtnExpand_Click" MouseEnter="tBtnExpand_MouseEnter"/>
+                                    <TextBlock x:Name="txb_Delete" Grid.Row="3" Grid.Column="0" Margin="8,0,5,0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding ElementName=bd_FirstNotice,Path=IsMouseOver}" Value="true"/>
+                                                            <Condition Binding="{Binding ElementName=bd_AddNotice,Path=Visibility}" Value="Visible"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <MultiDataTrigger.Setters>
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </MultiDataTrigger.Setters>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                        <Hyperlink x:Name="hyperLink" TextDecorations="{x:Null}" Click="hyperLink_Click" Foreground="{StaticResource HightLightBackground}">
+                                            <Hyperlink.Style>
+                                            <Style TargetType="Hyperlink">
+                                                <Setter  Property ="Foreground"  Value ="#4C68B9" />
+                                                <Style.Triggers >
+                                                    <Trigger Property ="IsMouseOver" Value ="True" >
+                                                        <Setter Property ="Foreground" Value ="#F27D00"/>
+                                                        <!-- 在鼠标悬停时显示下划线 -->
+                                                        <Setter Property ="TextBlock.TextDecorations">
+                                                            <Setter.Value>
+                                                                <TextDecorationCollection >
+                                                                    <TextDecoration Location ="Underline"/>
+                                                                </TextDecorationCollection >
+                                                            </Setter.Value >
+                                                        </Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Hyperlink.Style>
+                                       删除
+                                    </Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="12" TextWrapping="Wrap" LineHeight="23" HorizontalAlignment="Right" Foreground="#999999">
+                                            <TextBlock Text="    "/> <TextBlock Text="{Binding NoticeReleTime,Converter={StaticResource con_DtCov}}" FontSize="12"    TextTrimming="WordEllipsis"  TextWrapping="Wrap"/><TextBlock Text="发表" Margin="5,0,0,0"/>
+                                    </TextBlock>
+                                    <!--<StackPanel Grid.Row="4" Background="#F9FBFF" Width="250" Grid.ColumnSpan="3" Margin="8,0,3,0"/>-->
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </ScrollViewer>
+        <Button x:Name="bd_AddNotice" Grid.Row="3" Visibility="{Binding TargetVM.IsCanOpera,Converter={StaticResource btv}}" PreviewMouseDown="bd_AddNotice_PreviewMouseDown">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="70"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource HightLightBackground}"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Width" Value="200"/>
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True" CornerRadius="3">
+                                    <TextBlock x:Name="tx_groupNoticeText" Text="发布群公告" FontSize="14"  Foreground="{TemplateBinding BorderBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource DarkForeground}"/>
+                                        <Setter TargetName="tx_groupNoticeText" Property="Foreground" Value="{StaticResource DarkForeground}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>

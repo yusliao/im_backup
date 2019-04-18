@@ -1,0 +1,8 @@
+D:\work\src\output\huidu\SuperSocket.SocketBase.dll
+D:\work\src\output\huidu\SuperSocket.SocketBase.pdb
+D:\work\src\output\huidu\SuperSocket.SocketBase.XML
+D:\work\src\trunk\SocketBase\obj\HUIDU\SuperSocket.SocketBase.Net45.csprojAssemblyReference.cache
+D:\work\src\trunk\SocketBase\obj\HUIDU\SuperSocket.SocketBase.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\SocketBase\obj\HUIDU\SuperSocket.SocketBase.Net45.csproj.CopyComplete
+D:\work\src\trunk\SocketBase\obj\HUIDU\SuperSocket.SocketBase.dll
+D:\work\src\trunk\SocketBase\obj\HUIDU\SuperSocket.SocketBase.pdb

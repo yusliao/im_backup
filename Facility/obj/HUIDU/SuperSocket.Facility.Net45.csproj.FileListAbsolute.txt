@@ -1,0 +1,8 @@
+D:\work\src\output\huidu\SuperSocket.Facility.dll
+D:\work\src\output\huidu\SuperSocket.Facility.pdb
+D:\work\src\output\huidu\SuperSocket.Facility.XML
+D:\work\src\trunk\Facility\obj\HUIDU\SuperSocket.Facility.Net45.csprojAssemblyReference.cache
+D:\work\src\trunk\Facility\obj\HUIDU\SuperSocket.Facility.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Facility\obj\HUIDU\SuperSocket.Facility.Net45.csproj.CopyComplete
+D:\work\src\trunk\Facility\obj\HUIDU\SuperSocket.Facility.dll
+D:\work\src\trunk\Facility\obj\HUIDU\SuperSocket.Facility.pdb

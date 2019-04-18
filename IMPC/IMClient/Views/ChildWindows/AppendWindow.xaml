@@ -1,0 +1,40 @@
+﻿<Window x:Class="IMClient.Views.ChildWindows.AppendWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" FontFamily="微软雅黑"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IMClient.Views.ChildWindows" ShowInTaskbar="False"
+        mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True"  
+        Title="AppendWindow" Height="520" MinWidth="200" Background="{x:Null}"  >
+    <Window.Resources>
+        <Storyboard x:Key="OutLoading">
+            <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="X"
+                             From="-320" To="0" Duration="0:0:0.25"/>
+        </Storyboard>
+        <Storyboard x:Key="OutUnloading">
+            <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="X"
+                             From="0" To="-320"  Duration="0:0:0.15"/>
+        </Storyboard>
+
+        <Storyboard x:Key="InLoading">
+            <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="X"
+                             From="320" To="0" Duration="0:0:0.25"/>
+        </Storyboard>
+        <Storyboard x:Key="InUnloading">
+            <DoubleAnimation Storyboard.TargetName="translate" Storyboard.TargetProperty="X"
+                             From="0" To="320" Duration="0:0:0.15"/>
+        </Storyboard>
+    </Window.Resources>
+    <Grid x:Name="gridLayout">
+        <Grid.RenderTransform>
+            <TranslateTransform x:Name="translate" />
+        </Grid.RenderTransform>
+        <Button  x:Name="btnClose" Click="btnClose_Click" Margin="0,10,10,0" Panel.ZIndex="100" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CloseButtonStyle}"  />
+        <Rectangle x:Name="rectBG" Effect="{StaticResource CommonEffect}" Margin="10" Fill="{StaticResource AppendBackground}"/>
+        <Border x:Name="bdContent"  Margin="20" >
+            <ContentControl x:Name="ccContent"  FocusVisualStyle="{x:Null}"/>
+        </Border>
+    </Grid>
+   
+   
+</Window>

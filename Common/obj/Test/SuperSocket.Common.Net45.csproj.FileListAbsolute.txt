@@ -1,0 +1,5 @@
+D:\work\src\trunk\Common\bin\Test\SuperSocket.Common.dll
+D:\work\src\output\test\SuperSocket.Common.dll
+D:\work\src\trunk\Common\obj\Test\SuperSocket.Common.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Common\obj\Test\SuperSocket.Common.dll
+D:\work\src\trunk\Common\obj\Test\SuperSocket.Common.Net45.csprojAssemblyReference.cache

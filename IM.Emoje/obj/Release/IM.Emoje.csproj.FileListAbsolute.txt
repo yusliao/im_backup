@@ -1,0 +1,13 @@
+D:\work\src\output\release\IM.Emoje.dll
+D:\work\src\output\release\IM.Emoje.pdb
+D:\work\src\trunk\IM.Emoje\obj\Release\EmojeBox.g.cs
+D:\work\src\trunk\IM.Emoje\obj\Release\IM.Emoje_MarkupCompile.cache
+D:\work\src\trunk\IM.Emoje\obj\Release\IM.Emoje_MarkupCompile.lref
+D:\work\src\trunk\IM.Emoje\obj\Release\EmojeBox.baml
+D:\work\src\trunk\IM.Emoje\obj\Release\EmojeDictionary.baml
+D:\work\src\trunk\IM.Emoje\obj\Release\IM.Emoje.g.resources
+D:\work\src\trunk\IM.Emoje\obj\Release\IM.Emoje.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\IM.Emoje\obj\Release\IM.Emoje.csproj.CopyComplete
+D:\work\src\trunk\IM.Emoje\obj\Release\IM.Emoje.dll
+D:\work\src\trunk\IM.Emoje\obj\Release\IM.Emoje.pdb
+D:\work\src\trunk\IM.Emoje\obj\Release\IM.Emoje.csprojAssemblyReference.cache

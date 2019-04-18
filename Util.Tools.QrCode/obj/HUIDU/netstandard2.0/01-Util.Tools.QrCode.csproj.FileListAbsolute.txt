@@ -1,0 +1,11 @@
+D:\work\PC\11\IM.UI\bin\Release\netstandard2.0\Util.Tools.QrCode.deps.json
+D:\work\PC\11\IM.UI\bin\Release\netstandard2.0\Util.Tools.QrCode.dll
+D:\work\PC\11\IM.UI\bin\Release\netstandard2.0\Util.Tools.QrCode.pdb
+D:\work\PC\11\IM.UI\bin\Release\netstandard2.0\Util.Tools.QrCode.xml
+D:\work\src\trunk\Util.Tools.QrCode\obj\HUIDU\netstandard2.0\01-Util.Tools.QrCode.csprojAssemblyReference.cache
+D:\work\src\trunk\Util.Tools.QrCode\obj\HUIDU\netstandard2.0\01-Util.Tools.QrCode.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Util.Tools.QrCode\obj\HUIDU\netstandard2.0\01-Util.Tools.QrCode.AssemblyInfoInputs.cache
+D:\work\src\trunk\Util.Tools.QrCode\obj\HUIDU\netstandard2.0\01-Util.Tools.QrCode.AssemblyInfo.cs
+D:\work\src\trunk\Util.Tools.QrCode\obj\HUIDU\netstandard2.0\01-Util.Tools.QrCode.csproj.CopyComplete
+D:\work\src\trunk\Util.Tools.QrCode\obj\HUIDU\netstandard2.0\Util.Tools.QrCode.dll
+D:\work\src\trunk\Util.Tools.QrCode\obj\HUIDU\netstandard2.0\Util.Tools.QrCode.pdb

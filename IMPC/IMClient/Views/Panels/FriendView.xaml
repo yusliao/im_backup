@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="IMClient.Views.Panels.FriendView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+               xmlns:cv="clr-namespace:IMClient.Converter"
+             xmlns:helper="clr-namespace:IMClient.Helper"
+             mc:Ignorable="d"  >
+    <UserControl.Resources>
+        <cv:PhoneNumberToView x:Key="ptv"/>
+        <cv:ReverseBoolConvertVisibility x:Key="reversBoolToVisibility"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid Visibility="{Binding IsFileAssistant,Converter={StaticResource reversBoolToVisibility}}">
+            <StackPanel Orientation="Vertical" Margin="90,90,90,0">
+                <DockPanel LastChildFill="True">
+                    <Ellipse Cursor="Hand" Width="60" Height="60" DockPanel.Dock="Right" MouseLeftButtonUp="Ellipse_MouseLeftButtonUp" >
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="ibHead" ImageSource="{Binding Model.HeadImg,Mode=OneWay}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                        <TextBlock  Style="{StaticResource TitleStyle}"  HorizontalAlignment="Left" VerticalAlignment="Top" > 
+                    <Run Text="{Binding Model.Name,Mode=OneWay}"/>
+                    <ContentControl Content="{Binding Model.Sex,Mode=OneWay}" Style="{StaticResource SexContentStyle}" />
+                        </TextBlock>
+                    </StackPanel>
+                </DockPanel>
+
+                <Border BorderThickness="0,1,0,0" BorderBrush="#DAE4F5" Margin="0,40,0,0"/>
+
+                <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+                    <TextBlock Style="{StaticResource CellTitleStyle}" Margin="10,0,0,20">
+                    <Run Text="备       注"  Foreground="{StaticResource LightForeground}" BaselineAlignment="Center"/>
+                    <TextBox x:Name="tbNickName"  Tag="[点击添加备注]" Text="{Binding Model.NickName,Mode=OneWay}"   Width="160" helper:MaxByteAttachedProperty.MaxByteLength="20" helper:MaxByteAttachedProperty.EncodeModel="Default"
+                             Style="{StaticResource TextBoxSmoothTagStyle}"  Margin="25,6,20,0">
+                         <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="LostKeyboardFocus">
+                                <i:InvokeCommandAction Command="{Binding ChangedFriendNickNameCommand}" CommandParameter="{Binding Text,ElementName=tbNickName}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                    </TextBlock>
+                    <TextBlock Margin="26,2,0,20" Foreground="{StaticResource LightForeground}" Height="30">
+                        <Run Text="可访号" FontSize="14" Foreground="{StaticResource LightForeground}" BaselineAlignment="Center"/>
+                        <TextBlock Text="{Binding Model.KfNum,Mode=OneWay}" FontSize="14" Foreground="#4E546A" Margin="22,0,0,0"/>
+                       </TextBlock>
+                    <TextBlock Style="{StaticResource CellTitleStyle}" Margin="10,0,0,20" Height="30">
+            <Run Text="手机号码" Foreground="{StaticResource LightForeground}" BaselineAlignment="Center"/> 
+             <Rectangle Margin="10,0"/>
+            <Run Text="{Binding Model,Mode=OneWay,Converter={StaticResource ptv}}" Foreground="#4E546A"/>
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource CellTitleStyle}" Margin="10,0,0,20" Height="30">
+            <Run Text="地       区"  Foreground="{StaticResource LightForeground}" BaselineAlignment="Center"/> 
+             <Rectangle Margin="10,0"/>
+            <Run Text="{Binding Model.Area,Mode=OneWay}" Foreground="#4E546A" FontSize="14"/>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource CellTitleStyle}" Margin="10,0,0,20" Height="30" Visibility="{Binding IsExitFriendSource,Converter={StaticResource BooleanToVisibilityConverter}}">
+                       <Run Text="来       源"  Foreground="{StaticResource LightForeground}" BaselineAlignment="Center"/> 
+                       <Rectangle Margin="10,0"/>
+                       <Run Text="{Binding ApplyFriendContent,Mode=OneWay}" Foreground="#4E546A" FontSize="14"/>
+                    </TextBlock>
+                    <!--<StackPanel  Grid.Row="4" Margin="10,5,0,0"  Orientation="Horizontal" Visibility="{Binding IsExitFriendSource,Converter={StaticResource btv}}">
+                        <TextBlock Text="来       源" FontSize="14" Foreground="{StaticResource LightForeground}" />
+                        <TextBlock Text="{Binding ApplyFriendContent}" Margin="30,0,5,0"  TextTrimming="CharacterEllipsis" FontSize="14"/>
+                    </StackPanel>-->
+                </StackPanel>
+
+                <Border BorderThickness="0,1,0,0" BorderBrush="#DAE4F5" Margin="0,0,0,0"/>
+
+                <Button Content="发消息" Margin="0,30,0,0" x:Name="btnSend" Style="{StaticResource HightLightButtonStyle}" Command="{Binding JupmToChatCommand,Mode=OneWay}"/>
+                <Button x:Name="btnDelete" Margin="0,5,0,20" Content="删除好友" Style="{StaticResource ContentButtonStyle}" VerticalAlignment="Bottom" Command="{Binding DeleteFriendCommand,Mode=OneWay}"/>
+            </StackPanel>
+
+            
+        </Grid>
+        <Grid Visibility="{Binding IsFileAssistant,Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Vertical" Margin="90,100,90,0">
+                <DockPanel LastChildFill="True">
+                    <Ellipse Cursor="Hand" Width="60" Height="60" DockPanel.Dock="Right">
+                        <Ellipse.Fill>
+                            <ImageBrush  ImageSource="{Binding Model.HeadImg,Mode=OneWay}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                        <TextBlock  Style="{StaticResource TitleStyle}"  HorizontalAlignment="Left" VerticalAlignment="Top" > 
+                         <Run Text="文件小助手"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DockPanel>
+                <Border BorderThickness="0,1,0,0" BorderBrush="#DAE4F5" Margin="0,40,0,0"/>
+                <TextBlock Text="可以在手机与电脑互传文件" FontSize="14" HorizontalAlignment="Center" Margin="0,40"/>
+
+                <Border BorderThickness="0,1,0,0" BorderBrush="#DAE4F5" Margin="0,0,0,0"/>
+
+                <Button Content="发消息" Margin="0,30,0,0"  Style="{StaticResource HightLightButtonStyle}" Command="{Binding JupmToChatCommand,Mode=OneWay}"/>
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+
+</UserControl>

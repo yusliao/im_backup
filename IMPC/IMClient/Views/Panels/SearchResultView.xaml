@@ -1,0 +1,416 @@
+﻿<UserControl x:Class="IMClient.Views.Panels.SearchResultView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:imcc="clr-namespace:IMCustomControls;assembly=IMCustomControls" 
+             xmlns:local="clr-namespace:IMClient.Views.Panels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:helper="clr-namespace:IMClient.Helper"
+              xmlns:cv="clr-namespace:IMClient.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <cv:ReverseBoolConvertVisibility x:Key="reversBoolToVisibility"/>
+        <cv:HeadImgConvter x:Key="htc"/>
+        <cv:NullToVisibilityConverter x:Key="nullToV"/>
+        <Style x:Key="SearchListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="bd" Background="{TemplateBinding Background}" Margin="0,0.5" >
+                            <Grid>
+                                <!--<Path x:Name="pathTopMost" Visibility="Collapsed" Data="M 0,0 L0,10 10,0 Z" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#1FCEC3"/>-->
+                                <Grid x:Name="grid" Height="50" Margin="5,10"  HorizontalAlignment="Left" Background="Transparent" Unloaded="Item_Unloaded">
+                                    <!--<Grid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem x:Name="miIsTopMost" Visibility="{Binding IsHideAppendButton,Converter={StaticResource rbtv}}" Header="置顶" Command="{Binding TopMostCommand}"/>
+                                            <MenuItem x:Name="miIsNotDisturb" Visibility="{Binding IsHideAppendButton,Converter={StaticResource rbtv}}" Header="消息免打扰" Command="{Binding NoDisturbCommand}"/>
+                                            <MenuItem x:Name="miModifyGroupName" Header="修改群名称" Command="{Binding ModifyGroupNameCommand}" Visibility="{Binding Model, Converter={StaticResource ModifyGroupNameConverter}}"/>
+                                            <MenuItem Header="删除聊天" Command="{Binding DeleteChatCommand}"/>
+                                        </ContextMenu>
+                                    </Grid.ContextMenu>-->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <!--<RowDefinition />-->
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition  />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Ellipse Grid.RowSpan="2" Margin="6" >
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding Model.Chat.HeadImg,Mode=OneWay,Converter={StaticResource htc}}"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+
+                                    <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
+                                        <imcc:TextBlockHighLightKeyWord x:Name="tbDisplayName" MaxWidth="170"  Text="{Binding Model.Chat.DisplayName,Mode=OneWay}" SearchWord="{Binding KeyWord,Mode=OneWay}"  TextTrimming="CharacterEllipsis"
+                                                 Foreground="{StaticResource DarkForeground}" ToolTip="{Binding Text,RelativeSource={RelativeSource Self},Mode=OneWay}"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource CommonFontSize}"/>
+                                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsShowPhoneNum,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                            <TextBlock Text="手机号码：" FontSize="11"/>
+                                            <imcc:TextBlockHighLightKeyWord Text="{Binding Model.Chat.PhoneNumber,Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="11"
+                                                                            SearchWord="{Binding KeyWord,Mode=OneWay}"  ToolTip="{Binding Text,RelativeSource={RelativeSource Self},Mode=OneWay}"/>
+                                        </StackPanel>
+                                        <imcc:TextBlockHighLightKeyWord  MaxWidth="170"  Text="{Binding SearchExContent,Mode=OneWay}" SearchWord="{Binding KeyWord,Mode=OneWay}"  TextTrimming="CharacterEllipsis"
+                                                 Foreground="{StaticResource DarkForeground}" Visibility="{Binding SearchExContent,Converter={StaticResource nullToV}}"   
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="11"/>
+                                        <!--Border Visibility="{Binding IsTemporaryChat,Mode=OneWay,Converter={StaticResource BooleanToVisibilityConverter}}" 
+                                                Margin="10,0,10,0" Width="30" Height="16" BorderBrush="#00b8b8" BorderThickness="1" CornerRadius="3">
+                                            <TextBlock Text="临时" FontSize="{StaticResource LowerFontSize}" Foreground="#00b8b8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>-->
+                                    </StackPanel>
+
+
+
+                                    <!--<TextBlock Text="{Binding Model.LastMsg.SendTime,Converter={StaticResource dts},Mode=OneWay}"
+                                            Grid.Column="2" VerticalAlignment="Center" Foreground="{StaticResource LightForeground}" FontSize="{StaticResource LowerFontSize}" />-->
+                                </Grid>
+                            </Grid>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <!--<DataTrigger Binding="{Binding IsGroup,Mode=OneWay}" Value="true">
+                                <Setter TargetName="runSender0" Property="Text" Value="{Binding Model.LastMsg.Sender.DisplayName,Mode=OneWay}"/>
+                                <Setter TargetName="runSender1" Property="Text" Value=":"/>
+                                <Setter TargetName="tbSender" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>-->
+                            <!--<DataTrigger Binding="{Binding ID,Mode=OneWay}" Value="-2">
+                                <Setter TargetName="runSender0" Property="Text" Value="{Binding Model.LastMsg.Sender.DisplayName,Mode=OneWay}"/>
+                                <Setter TargetName="runSender1" Property="Text" Value=":"/>
+                                <Setter TargetName="tbSender" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>-->
+                            <!--<DataTrigger Binding="{Binding Model.LastMsg.Sender,Mode=OneWay}" Value="{x:Null}">
+                                <Setter TargetName="tbSender" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Model.LastMsg,Mode=OneWay}" Value="{x:Null}">
+                                <Setter TargetName="tbSender" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Model.LastMsg.IsMine,Mode=OneWay}" Value="true">
+                                <Setter TargetName="tbSender" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Model.LastMsg.MsgType,Mode=OneTime}" Value="notification">
+                                <Setter TargetName="tbSender" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>-->
+                            <!--<DataTrigger Binding="{Binding Model.Chat.IsNotDisturb,Mode=OneWay}" Value="true">
+                                <Setter TargetName="imgNodisturb" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="miIsNotDisturb" Property="Header" Value="开启新消息提醒"/>
+                            </DataTrigger>-->
+
+                            <!--<DataTrigger Binding="{Binding HasAtMsg}" Value="true">
+                                <Setter TargetName="tbAt" Property="Text" Value="[@我]"/>
+                                <Setter TargetName="tbAt" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="tbAt" Property="Foreground" Value="Red"/>
+                            </DataTrigger>-->
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsGroup,Mode=OneWay}" Value="true"/>
+                                    <Condition Binding="{Binding HasNewGroupNotice,Mode=OneWay}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <!--<Setter TargetName="tbDisplayName" Property="Text" Value="已退出的群" />-->
+                                <!--<Setter TargetName="tbNewNotice" Property="Text" Value="[群公告]"/>
+                                <Setter TargetName="tbNewNotice" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="tbNewNotice" Property="Foreground" Value="Red"/>-->
+                            </MultiDataTrigger>
+
+                            <!--<MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding HasAtMsg}" Value="true"/>
+                                    <Condition Binding="{Binding IsActivedChat}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="tbAt" Property="Visibility" Value="Collapsed"/>
+                                -->
+                            <!--<Setter TargetName="tbAt" Property="Text" Value="{Binding AtUserModel.DisplayName,StringFormat='@{0} '}"/>
+                                <Setter TargetName="tbAt" Property="Foreground" Value="{StaticResource LightForeground}"/>-->
+                            <!--
+                            </MultiDataTrigger>-->
+
+                            <!--<DataTrigger Binding="{Binding Model.Chat.IsNotDisturb,Mode=OneWay}" Value="false">
+                                <Setter TargetName="tbUnReadCount" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>-->
+                            <!--<MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Model.Chat.IsNotDisturb,Mode=OneWay}" Value="true"/>
+                                    <Condition Binding="{Binding UnReadCount}" Value="{x:Null}"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="tbUnReadCount" Property="Visibility" Value="Collapsed"/>
+                            </MultiDataTrigger>-->
+                            <!--<MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Model.Chat.IsNotDisturb,Mode=OneWay}" Value="true"/>
+                                    <Condition Binding="{Binding UnReadCount}" Value="99+"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="runSenderLeft" Property="Text" Value="[" />
+                                <Setter TargetName="runSenderMiddle" Property="Text" Value="99" />
+                                <Setter TargetName="runSenderRight" Property="Text" Value="条]" />
+                            </MultiDataTrigger>-->
+                            <!--<MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Model.Chat.IsNotDisturb,Mode=OneWay}" Value="true"/>
+                                    <Condition Binding="{Binding UnReadCount}" Value=""/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="tbUnReadCount" Property="Visibility" Value="Collapsed"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Model.Chat.IsNotDisturb,Mode=OneWay}" Value="true"/>
+                                    <Condition Binding="{Binding UnReadCount}" Value="0"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="tbUnReadCount" Property="Visibility" Value="Collapsed"/>
+                            </MultiDataTrigger>-->
+
+                            <!--<DataTrigger Binding="{Binding Model.Chat.IsTopMost,Mode=OneWay}" Value="true">
+                                <Setter TargetName="miIsTopMost" Property="Header" Value="取消置顶"/>
+                                -->
+                            <!--<Setter TargetName="tbDisplayName" Property="Foreground" Value="{StaticResource HightLightBackground}"/>-->
+                            <!--
+                                <Setter TargetName="pathTopMost" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>-->
+
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="{StaticResource MouseOverBackground}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="{StaticResource SelectedBackground}"/>
+                            </Trigger>
+
+
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsGroup,Mode=OneWay}" Value="true"/>
+                                    <Condition Binding="{Binding Model.Chat.DisplayName}" Value=""/>
+                                </MultiDataTrigger.Conditions>
+                                <!--<Setter TargetName="tbDisplayName" Property="Text" Value="已退出的群" />-->
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="tbDisplayName" Property="Foreground" Value="{StaticResource LightForeground}" />
+                            </MultiDataTrigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MoreSearchBtnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="#FF1FCEC3"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+
+                            <ContentPresenter/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Foreground" Value="#FF18D4C9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="#F9FBFF">
+        <ScrollViewer x:Name="sv" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+            <i:Interaction.Behaviors>
+                <helper:EventHandel TargetElement="{Binding ElementName=sv}"/>
+            </i:Interaction.Behaviors>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Visibility="{Binding ChatListVM.IsSearchContactVisibility,Mode=OneWay,Converter={StaticResource BooleanToVisibilityConverter}}" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="联系人" Margin="10,0,0,0" Foreground="#333333" FontSize="14"/>
+                    <ListBox x:Name="searchResults" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"  PreviewMouseRightButtonDown="searchResults_PreviewMouseRightButtonDown"
+                     ItemsSource="{Binding ChatListVM.SearchContactResults,Mode=OneWay}"
+                 SelectedItem="{Binding ChatListVM.SelectedSearchItem,Mode=TwoWay}"  
+                 ItemContainerStyle="{StaticResource SearchListBoxItemStyle}" SelectionChanged="searchResults_SelectionChanged">
+                        <!--<ListBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander x:Name="expander" IsExpanded="True" Width="220" Style="{StaticResource SearchListExpanderStyle}" >
+                                                        <Expander.Header>
+                                                            <TextBlock FontSize="14" Text="{Binding Path=Name}" Margin="-5,0,0,0"/>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter FocusVisualStyle="{x:Null}"/>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ListBox.GroupStyle>-->
+                    </ListBox>
+
+                    <Button Grid.Row="2" Margin="10,0,0,5"  Style="{StaticResource MoreSearchBtnStyle}" Cursor="Hand" Command="{Binding ChatListVM.MoreSearchContactCommand}"
+                        Visibility="{Binding ChatListVM.IsShowMoreContactSearch,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid>
+                            <TextBlock Visibility="{Binding ChatListVM.IsContactExpander,Converter={StaticResource BooleanToVisibilityConverter}}"> 
+                            <Run Text="查看更多（"/>
+                            <Run Text="{Binding ChatListVM.NoViewContactNum}"/>
+                            <Run Text="条）"/>
+                            </TextBlock>
+                            <TextBlock Text="收起" Visibility="{Binding ChatListVM.IsContactExpander,Converter={StaticResource reversBoolToVisibility}}"/>
+                        </Grid>
+                    </Button>
+                    <Border Grid.Row="2" BorderThickness="0" Height="1" Background="#DEDFDF" VerticalAlignment="Bottom" Margin="8,2,8,0" Visibility="{Binding ChatListVM.IsShowContactLine,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,10,0,0"  Visibility="{Binding ChatListVM.IsSearchGroupVisibility,Mode=OneWay,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="群组" Margin="10,0,0,0" Foreground="#333333" FontSize="14"/>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding ChatListVM.SearchGroupResults,Mode=OneWay}" 
+                 SelectedItem="{Binding ChatListVM.SelectedSearchItem,Mode=TwoWay}"  
+                     PreviewMouseRightButtonDown="searchResults_PreviewMouseRightButtonDown"
+                 ItemContainerStyle="{StaticResource SearchListBoxItemStyle}" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      >
+                        <!--<ListBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander x:Name="expander" IsExpanded="True" Width="220" Style="{StaticResource SearchListExpanderStyle}" >
+                                                        <Expander.Header>
+                                                            <TextBlock FontSize="14" Text="{Binding Path=Name}" Margin="-5,0,0,0"/>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter FocusVisualStyle="{x:Null}"/>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+
+                            </GroupStyle>
+                        </ListBox.GroupStyle>-->
+                    </ListBox>
+                    <Button Grid.Row="2" Margin="10,0,0,5" Style="{StaticResource MoreSearchBtnStyle}" Cursor="Hand" Command="{Binding ChatListVM.MoreSearchGroupCommand}"
+                    Visibility="{Binding ChatListVM.IsShowMoreGroupSearch,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid>
+                            <TextBlock Visibility="{Binding ChatListVM.IsGroupExpander,Converter={StaticResource BooleanToVisibilityConverter}}"> 
+                            <Run Text="查看更多（"/>
+                            <Run Text="{Binding ChatListVM.NoViewGroupNum}"/>
+                            <Run Text="条）"/>
+                            </TextBlock>
+                            <TextBlock Text="收起" Visibility="{Binding ChatListVM.IsGroupExpander,Converter={StaticResource reversBoolToVisibility}}"/>
+                        </Grid>
+                    </Button>
+                    <Border Grid.Row="2" BorderThickness="0" Height="1" Background="#DEDFDF" VerticalAlignment="Bottom"  Visibility="{Binding ChatListVM.IsShowGroupLine,Converter={StaticResource BooleanToVisibilityConverter}}" Margin="8,2,8,0" />
+                </Grid>
+                <Grid Grid.Row="2" Margin="0,10,0,0" Visibility="{Binding ChatListVM.IsSearchBlackVisibility,Mode=OneWay,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="黑名单" Margin="10,0,0,0" Foreground="#333333" FontSize="14"/>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding ChatListVM.SearchBlackResults,Mode=OneWay}" 
+                 SelectedItem="{Binding ChatListVM.SelectedSearchItem,Mode=TwoWay}"  
+                 PreviewMouseRightButtonDown="searchResults_PreviewMouseRightButtonDown"
+                  ItemContainerStyle="{StaticResource SearchListBoxItemStyle}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <!--<ListBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander x:Name="expander" IsExpanded="True" Width="220" Style="{StaticResource SearchListExpanderStyle}" >
+                                                        <Expander.Header>
+                                                            <TextBlock FontSize="14" Text="{Binding Path=Name}" Margin="-5,0,0,0"/>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter FocusVisualStyle="{x:Null}"/>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ListBox.GroupStyle>-->
+                    </ListBox>
+                    <Button Grid.Row="2" Margin="10,0,0,5" Style="{StaticResource MoreSearchBtnStyle}" Cursor="Hand" Command="{Binding ChatListVM.MoreSearchBlackCommand}"
+                    Visibility="{Binding ChatListVM.IsShowMoreBlackSearch,Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid>
+                            <TextBlock x:Name="txtCount" Visibility="{Binding ChatListVM.IsBlackExpander,Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Run Text="查看更多（"/>
+                            <Run Text="{Binding ChatListVM.NoViewBlackNum}"/>
+                            <Run Text="条）"/>
+                            </TextBlock>
+                            <TextBlock Text="收起" Visibility="{Binding ChatListVM.IsBlackExpander,Converter={StaticResource reversBoolToVisibility}}"/>
+                        </Grid>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Row="3" Margin="0,10,0,0"  Visibility="{Binding ChatListVM.IsMoreSearch,Mode=OneWay,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="更多" Margin="10,0,0,0" Foreground="#333333" FontSize="14"/>
+                    <Grid Grid.Row="1" VerticalAlignment="Top" Background="#F9FBFF">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                <i:InvokeCommandAction Command ="{Binding ChatListVM.SearchServerUserCommand,Mode=OneWay}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse Grid.RowSpan="2" Margin="6" Width="40" Height="40">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="pack://application:,,,/IMAssets;component/Images/searchContact.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <!--<TextBlock Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Center">
+                            <Run Text="查找&#34;"/>
+                            <Run Text="{Binding ChatListVM.SerarchContent}"/>
+                            
+                        </TextBlock>-->
+                        <imcc:TextBlockHighLightKeyWord Text="{Binding ChatListVM.SerarchContent,Mode=OneWay}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  FontSize="12"
+                                                                            SearchWord="{Binding ChatListVM.SearchKeyWord,Mode=OneWay}"/>
+                        <!--<TextBlock Text="{Binding ChatListVM.SerarchContent}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
+                    </Grid>
+                </Grid>
+                <Border Grid.RowSpan="3" Background="#F9FBFF" Visibility="{Binding ChatListVM.IsNullSearchResult,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <TextBlock Text="无搜索结果" FontSize="14"  Foreground="#999999" HorizontalAlignment="Center" Margin="0,60,10,0"/>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,56 @@
+﻿<Window x:Class="IMClient.Views.ChildWindows.BlacklistWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IMClient.Views.ChildWindows"
+        xmlns:cv="clr-namespace:IMClient.Converter"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        mc:Ignorable="d" ShowInTaskbar="False" Background="#F6F9FF"
+        Style="{StaticResource ShadowWindowStyle}" WindowStartupLocation="CenterOwner"
+        Title="BlacklistWindow" Height="460" Width="580">
+
+    <Window.Resources>
+        <cv:HeadImgConvter x:Key="htc"/>
+        
+        <DataTemplate x:Key="DataTemplate">
+            <ContentControl FocusVisualStyle="{x:Null}">
+                <Grid Margin="20,10,25,10">
+                    <DockPanel LastChildFill="True">
+                        <Ellipse Margin="5" DockPanel.Dock="Left" Width="40" Height="40">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding Model.HeadImg,Mode=OneWay}"/>
+                            </Ellipse.Fill>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                    <i:InvokeCommandAction Command ="{Binding ShowBusinessCard}" CommandParameter="{Binding Model}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Ellipse>
+                        <Button Content="移出黑名单" DockPanel.Dock="Right" Command="{Binding DeleteBlacklistCommand,Mode=OneWay}"
+                                Style="{DynamicResource HightLightButtonStyle}" FontSize="{StaticResource LowerFontSize}" Width="84" Height="20"/>
+                        <TextBlock Text="{Binding Model.DisplayName,Mode=OneWay}" Foreground="#4E546A" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource CommonFontSize}"/>
+                    </DockPanel>
+                </Grid>
+            </ContentControl>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <Button x:Name="btnClose" Click="btnClose_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource CloseButtonStyle}"/>
+
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="50,20,40,0" VerticalAlignment="Top">
+                <Image Source="pack://application:,,,/IMAssets;component/Images/Blacklist.png" Width="80" Height="80"/>
+                <StackPanel Orientation="Vertical" Margin="10,10,0,0">
+                    <TextBlock Text="黑名单列表" Foreground="#333333" FontWeight="Bold" FontSize="{StaticResource LargerFontSize}"/>
+                    <TextBlock Text="您不会接收到被您加入黑名单的好友的所有信息，直到您将好" Margin="0,10,0,0" Foreground="#333333" FontSize="{StaticResource CommonFontSize}"/>
+                    <TextBlock Text="友移出黑名单" Foreground="#333333" FontSize="{StaticResource CommonFontSize}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <ListBox x:Name="list" ItemsSource="{Binding Items,Mode=OneWay}" Margin="40,20" BorderThickness="1" Height="280" BorderBrush="#DDE3EE" Background="#FFFFFF"
+                     ItemTemplate="{StaticResource DataTemplate}"/>
+        </StackPanel>
+    </Grid>
+</Window>

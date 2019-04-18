@@ -1,0 +1,7 @@
+D:\work\src\trunk\Common\bin\Release\SuperSocket.Common.XML
+D:\work\src\trunk\Common\bin\Release\SuperSocket.Common.dll
+D:\work\src\trunk\Common\bin\Release\SuperSocket.Common.pdb
+D:\work\src\trunk\Common\obj\Release\SuperSocket.Common.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Common\obj\Release\SuperSocket.Common.dll
+D:\work\src\trunk\Common\obj\Release\SuperSocket.Common.pdb
+D:\work\src\trunk\Common\obj\Release\SuperSocket.Common.Net45.csprojAssemblyReference.cache

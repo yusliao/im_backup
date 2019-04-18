@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="IMClient.Views.Controls.HyperlinkMessageCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IMClient.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="79" MinWidth="230" MaxWidth="269">
+    <Border x:Name="bdLayout" CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource CommonBorderBrush}"
+              Background="White">
+        <Border.ContextMenu>
+            <ContextMenu x:Name="menu" MenuItem.Click="ContextMenu_Click" Opened="menu_Opened" >
+                <MenuItem Header="打开" Uid="Open"/>
+                <MenuItem Header="转发" Uid="Forward" Name="Forward" Visibility="Collapsed"/>
+                <MenuItem Header="复制链接" Uid="CopyUrl"/>
+                <MenuItem Header="删除" Uid="DELETE"/>
+                <!--<MenuItem Header="撤回" Uid="Retract"/>-->
+            </ContextMenu>
+        </Border.ContextMenu>
+        <Grid Margin="10" Cursor="Hand" PreviewMouseLeftButtonDown="Ellipse_MouseLeftButtonUp">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Rectangle   Width="50" Height="50"  RadiusX="2" RadiusY="2" DockPanel.Dock="Right"  >
+            <Rectangle.Fill>
+                    <ImageBrush x:Name="ibHead" ImageSource="{Binding ShareMsgImage}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock Margin="10,0,0,0" LineHeight="12" Text="{Binding Content}" VerticalAlignment="Center" Foreground="#666666" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Grid.Column="1" MaxHeight="53"/>
+    </Grid>
+    </Border>
+</UserControl>

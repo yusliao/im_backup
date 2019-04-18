@@ -1,0 +1,70 @@
+﻿<Window x:Class="CSClient.Views.ChildWindows.TrayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSClient.Views.ChildWindows"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:cv="clr-namespace:CSClient.Converter"
+        xmlns:cc="clr-namespace:IMCustomControls.Controls;assembly=IMCustomControls"
+        mc:Ignorable="d" Background="#FFFFFF" d:DesignHeight="280"
+        Style="{StaticResource ShadowWindowStyle}" WindowStartupLocation="Manual"
+        ShowInTaskbar="False" Topmost="True" x:Name="win"
+        Title="TrayWindow" MaxHeight="320" Width="260" SizeToContent="Height">
+
+    <Window.Resources>
+        <cv:DataTimeToStringConverter x:Key="dts"/>
+        <cv:HeadImgConvter x:Key="htc"/>
+        <cv:UnReadMessageCountConverter x:Key="unreadMsg"/>
+        
+        <DataTemplate x:Key="NewMsgDataTemplate">
+            <ContentControl>
+                <Border x:Name="border" BorderBrush="#F4F4F4" BorderThickness="0,0,0,1" MouseLeftButtonDown="border_MouseLeftButtonDown">
+                    <DockPanel Height="42" LastChildFill="True" Background="Transparent">
+                        <Ellipse x:Name="elpHead" Width="32" Height="32" Margin="20,0,5,0" DockPanel.Dock="Left">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding Model.Chat.HeadImg,Mode=OneWay,Converter={StaticResource htc}}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+
+                        <Grid DockPanel.Dock="Right" Width="16" Height="16" Margin="10,0,20,0">
+                            <Ellipse Fill="Red"/>
+                            <TextBlock Foreground="White" FontSize="12" HorizontalAlignment="Center" Text="{Binding UnReadCount, Converter={StaticResource unreadMsg},Mode=OneWay}"/>
+                        </Grid>
+                        
+                        <TextBlock Text="{Binding Model.Chat.DisplayName,Mode=OneWay}" TextTrimming="CharacterEllipsis" 
+                           ToolTip="{Binding Model.Chat.DisplayName,Mode=OneWay}" VerticalAlignment="Center"
+                           Foreground="{StaticResource DarkForeground}" FontSize="{StaticResource CommonFontSize}"/>
+                    </DockPanel>
+                </Border>
+            </ContentControl>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding UnReadCount,Mode=OneWay}" Value="0">
+                    <Setter TargetName="border" Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Model.Chat.IsNotDisturb,Mode=OneWay}" Value="True">
+                    <Setter TargetName="border" Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsGroup,Mode=OneWay}" Value="true"/>
+                        <Condition Binding="{Binding Model.Chat.DisplayName}" Value=""/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="border" Property="Visibility" Value="Collapsed"/>
+                </MultiDataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <Style TargetType="cc:ListBoxEx" BasedOn="{StaticResource {x:Type ListBox}}"/>
+        <Style TargetType="cc:ListBoxItemEx" BasedOn="{StaticResource {x:Type ListBoxItem}}"/>
+    </Window.Resources>
+
+    <DockPanel Background="Transparent" x:Name="grid" LastChildFill="True">
+        <TextBlock Text="{Binding TotalUnReadCount,Mode=OneWay,StringFormat=新消息（{0}）}" DockPanel.Dock="Top" Margin="20,10,0,10" Style="{StaticResource MainTitleStyle}" />
+        <Button DockPanel.Dock="Bottom" Content="忽略全部" FontSize="14" Style="{DynamicResource ContentButtonStyle}" Margin="0,10,20,10"
+                Foreground="#4C68B9" x:Name="btnIgnoreAllNewMessages" Click="btnIgnoreAllNewMessages_Click" HorizontalAlignment="Right" Cursor="Hand"/>
+        <cc:ListBoxEx x:Name="newMsgList" ItemsSource="{Binding Items,Mode=OneWay}" SelectedItem="{Binding SelectedItem,Mode=OneWay}"
+                 ItemTemplate="{StaticResource NewMsgDataTemplate}" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+    </DockPanel>
+</Window>

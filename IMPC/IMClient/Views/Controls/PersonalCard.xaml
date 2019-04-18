@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="IMClient.Views.Controls.PersonalCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IMClient.Views.Controls"
+             xmlns:helper="clr-namespace:IMClient.Helper"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cv="clr-namespace:IMClient.Converter"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--<helper:BindingProxy x:Key="data" Data="{Binding}" />-->
+        <cv:PhoneNumberToView x:Key="ptv"/>
+    </UserControl.Resources>
+    <Border FlowDirection="LeftToRight" x:Name="bdLayout"  Cursor="Hand" Width="220" Height="81"  CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource CommonBorderBrush}"
+         Background="White"  PreviewMouseLeftButtonUp="Border_MouseLeftButtonUp">
+        <!--<i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonUp">
+                <i:InvokeCommandAction CommandParameter="{Binding Sender,Mode=OneWay}"  
+                                                                    Command ="{Binding Path=Data.ShowBusinessCard, Source={StaticResource data},Mode=OneWay}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>-->
+        <Border.ContextMenu>
+            <ContextMenu x:Name="menu" MenuItem.Click="ContextMenu_Click" Opened="menu_Opened" >
+                <MenuItem Header="查看" Uid="Open"/>
+                <MenuItem Header="转发" Uid="Forward" Name="Forward" Visibility="Collapsed"/>
+                <MenuItem Header="删除" Uid="DELETE"/>
+                <!--<MenuItem Header="撤回" Uid="Retract"/>-->
+            </ContextMenu>
+        </Border.ContextMenu>
+        <Grid x:Name="gridLayout" ToolTip="个人名片">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="29"/>
+                <RowDefinition Height="29"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Ellipse Cursor="Hand" Width="50" Height="50" Margin="10,0,0,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" PreviewMouseDown="Ellipse_PreviewMouseDown">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="ibHead" ImageSource="{Binding PersonCardModel.PhotoImg,Mode=OneWay}"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock x:Name="tb_DisplayName" Text="{Binding PersonCardModel.Name,Mode=OneWay}" Margin="0,5,0,0" TextTrimming="CharacterEllipsis" Grid.Row="0" VerticalAlignment="Center" Foreground="#1E1E1E" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" Grid.ColumnSpan="2"> 
+                   <!--<Run  Text="{Binding PersonCardModel.Name,Mode=OneWay}" />-->
+            </TextBlock>
+            <TextBlock x:Name="tb_PhoneNumber"  Margin="0,0,0,5" TextTrimming="CharacterEllipsis" Foreground="#666666" Grid.Row="1" VerticalAlignment="Center"  Grid.Column="1" FontSize="10" Grid.ColumnSpan="2"> 
+                   <Run  Text="{Binding  PersonCardModel.PhoneNumber}" />
+            </TextBlock>
+            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Height="1" BorderBrush="#DEDFDF" Background="#DEDFDF"/>
+            <Grid Grid.Row="3" Grid.ColumnSpan="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="tbInfo" Text="推荐联系人" Foreground="#999999" HorizontalAlignment="Left" VerticalAlignment="Center"  Grid.Column="1" FontSize="12"/>
+                <TextBlock x:Name="btn_Check" Grid.Column="2" HorizontalAlignment="Right" Text="查看" FontSize="12"  Foreground="#1FCDC2" VerticalAlignment="Center" Margin="1,-2,0,0">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource DarkForeground}"/>
+                                    <Setter Property="Background" Value="{StaticResource MouseOverBackground}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

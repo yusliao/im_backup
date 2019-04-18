@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9F2EF0DD-AFF2-4733-A920-71A82935FB23}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IM.Emoje</RootNamespace>
+    <AssemblyName>IM.Emoje</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\output\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\output\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TEST|AnyCPU'">
+    <OutputPath>..\..\output\test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'HUIDU|AnyCPU'">
+    <OutputPath>..\..\output\huidu\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="EmojeBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmojeDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Controls\AnimatedGIF.cs" />
+    <Compile Include="Controls\ClickItemListBox.cs" />
+    <Compile Include="Controls\GifImage.cs" />
+    <Compile Include="Controls\GifImageDeal.cs" />
+    <Compile Include="EmojeBox.xaml.cs">
+      <DependentUpon>EmojeBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmojeGroup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\51_脸红.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\10_害羞.png" />
+    <Resource Include="Image\11_飞吻.png" />
+    <Resource Include="Image\12_鄙视.png" />
+    <Resource Include="Image\13_保佑.png" />
+    <Resource Include="Image\14_生气.png" />
+    <Resource Include="Image\15_惊呆.png" />
+    <Resource Include="Image\16_大赞.png" />
+    <Resource Include="Image\17_酷.png" />
+    <Resource Include="Image\18_委屈.png" />
+    <Resource Include="Image\19_奋斗.png" />
+    <Resource Include="Image\01_调皮.png" />
+    <Resource Include="Image\20_欢迎.png" />
+    <Resource Include="Image\21_胜利.png" />
+    <Resource Include="Image\22_可爱.png" />
+    <Resource Include="Image\23_抓狂.png" />
+    <Resource Include="Image\24_难过.png" />
+    <Resource Include="Image\25_嘘.png" />
+    <Resource Include="Image\26_晕.png" />
+    <Resource Include="Image\27_困.png" />
+    <Resource Include="Image\28_抠鼻.png" />
+    <Resource Include="Image\29_惊吓.png" />
+    <Resource Include="Image\02_憋嘴.png" />
+    <Resource Include="Image\30_亲亲.png" />
+    <Resource Include="Image\31_笑哭.png" />
+    <Resource Include="Image\32_色.png" />
+    <Resource Include="Image\33_住口.png" />
+    <Resource Include="Image\34_生病.png" />
+    <Resource Include="Image\35_吃瓜.png" />
+    <Resource Include="Image\36_吃惊.png" />
+    <Resource Include="Image\37_快哭了.png" />
+    <Resource Include="Image\38_惊恐.png" />
+    <Resource Include="Image\39_大笑.png" />
+    <Resource Include="Image\03_羡慕.png" />
+    <Resource Include="Image\40_偷笑.png" />
+    <Resource Include="Image\41_思考.png" />
+    <Resource Include="Image\42_吐.png" />
+    <Resource Include="Image\43_无奈.png" />
+    <Resource Include="Image\44_捂脸笑.png" />
+    <Resource Include="Image\45_皱眉.png" />
+    <Resource Include="Image\46_喷血.png" />
+    <Resource Include="Image\47_再见.png" />
+    <Resource Include="Image\48_汗颜.png" />
+    <Resource Include="Image\49_奸笑.png" />
+    <Resource Include="Image\04_好奇.png" />
+    <Resource Include="Image\50_小刀.png" />
+    <Resource Include="Image\52_拥抱.png" />
+    <Resource Include="Image\53_猪头.png" />
+    <Resource Include="Image\54_太阳.png" />
+    <Resource Include="Image\55_彩条.png" />
+    <Resource Include="Image\56_红包.png" />
+    <Resource Include="Image\57_菜刀.png" />
+    <Resource Include="Image\58_西瓜.png" />
+    <Resource Include="Image\59_啤酒.png" />
+    <Resource Include="Image\05_大哭.png" />
+    <Resource Include="Image\60_咖啡.png" />
+    <Resource Include="Image\61_夜晚.png" />
+    <Resource Include="Image\62_玫瑰.png" />
+    <Resource Include="Image\64_香吻.png" />
+    <Resource Include="Image\65_爱心.png" />
+    <Resource Include="Image\66_心碎.png" />
+    <Resource Include="Image\67_蛋糕.png" />
+    <Resource Include="Image\68_炸弹.png" />
+    <Resource Include="Image\69_大便.png" />
+    <Resource Include="Image\06_坏笑.png" />
+    <Resource Include="Image\70_强.png" />
+    <Resource Include="Image\71_弱.png" />
+    <Resource Include="Image\72_鼓掌.png" />
+    <Resource Include="Image\73_OK.png" />
+    <Resource Include="Image\74_耶.png" />
+    <Resource Include="Image\75_握手.png" />
+    <Resource Include="Image\07_微笑.png" />
+    <Resource Include="Image\08_尴尬.png" />
+    <Resource Include="Image\09_流汗.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\02_撇嘴.png" />
+    <Resource Include="Image\03_色.png" />
+    <Resource Include="Image\06_奸笑.png" />
+    <Resource Include="Image\29_惊恐.png" />
+    <Resource Include="Image\31_色.png" />
+    <Resource Include="Image\46_吐血.png" />
+    <Resource Include="Image\55_庆祝.png" />
+    <Resource Include="Image\75_合作.png" />
+    <Resource Include="Image\76_泪崩.png" />
+    <Resource Include="Image\77_傲慢.png" />
+    <Resource Include="Image\78_敲打.png" />
+    <Resource Include="Image\79_流鼻血.png" />
+    <Resource Include="Image\80_快哭了.png" />
+    <Resource Include="Image\81_饥饿.png" />
+    <Resource Include="Image\82_比心.png" />
+    <Resource Include="Image\83_勾引.png" />
+    <Resource Include="Image\84_加1.png" />
+    <Resource Include="Image\85_大哥.png" />
+    <Resource Include="Image\86_礼物.png" />
+    <Resource Include="Image\88_偷看.png" />
+    <Resource Include="Image\89_猥琐.png" />
+    <Resource Include="Image\90_石化.png" />
+    <Resource Include="Image\91_可怜.png" />
+    <Resource Include="Image\92_感冒.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\93_看戏.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\63_凋谢.png" />
+    <Resource Include="Image\87_送花.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

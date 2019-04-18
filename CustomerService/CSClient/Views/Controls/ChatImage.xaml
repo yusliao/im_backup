@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="CSClient.Views.Controls.ChatImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             xmlns:em="clr-namespace:IM.Emoje.Controls;assembly=IM.Emoje"
+             mc:Ignorable="d"  xmlns:cv="clr-namespace:CSClient.Converter"
+             xmlns:local="clr-namespace:CSClient.Views.Controls"
+             d:DesignHeight="60" d:DesignWidth="90">
+    <UserControl.Resources>
+        <cv:BoolConvertVisibility x:Key="btv"/> 
+    </UserControl.Resources>
+   
+    <Grid x:Name="gridLayout"  >
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="menu" MenuItem.Click="ContextMenu_Click" Opened="menu_Opened">
+                <MenuItem Header="打开图片" Uid="OPENimg"/>
+                <MenuItem Header="复制图片" Uid="COPYimg"/>
+                <MenuItem Header="图片另存为" Uid="SAVEas"/>
+                <MenuItem Header="删除图片" Uid="DELETEimg"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--<Border x:Name="bdWarning" Visibility="{Binding IsFail,Converter={StaticResource btv}}"
+                Grid.RowSpan="3" Width="16" Height="16" Margin="0,0,10,0" Background="Red" CornerRadius="10">
+            <TextBlock Text="!" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold"/>
+        </Border>-->
+
+        <Path x:Name="pathResend"   ToolTip="重新发送" Stretch="Fill"  Stroke="Red"  Fill="Transparent"  Visibility="Collapsed"
+               Data="{StaticResource GeoExclam}" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="18" Height="18" Margin="-25,0,0,0"/>
+        <!--<Rectangle Effect="{StaticResource LightEffect}" Fill="{StaticResource CommonBackground}"  Grid.Column="1" Margin="-1"/>-->
+        <Image x:Name="img" Grid.Column="1"  />
+        <em:GifImage x:Name="imgGif"  Grid.Column="1"/>
+
+        <Grid x:Name="gridFail" Visibility="Collapsed"  ToolTip="图片下载失败">
+            <Image Source="/IMAssets;component/Images/ImageFail.png" />
+            <!--<Path Fill="Transparent" Data="{StaticResource GeoExclam}" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="Red" Stretch="Fill" Width="16" Height="16"/>-->
+        </Grid>
+        <local:AnimationLoading Grid.Column="1" x:Name="aniLoading"/>
+    </Grid>
+</UserControl>

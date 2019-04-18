@@ -1,0 +1,246 @@
+﻿<UserControl x:Class="IMClient.Views.Panels.ChatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IMClient.Views.Panels"
+             xmlns:cv="clr-namespace:IMClient.Converter"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"            
+             xmlns:imuc="clr-namespace:IMClient.Views.Controls"            
+             mc:Ignorable="d" 
+             d:DesignHeight="520" d:DesignWidth="500">
+    <UserControl.Resources>
+        <cv:BoolConvertVisibility x:Key="btv"/>
+        <cv:ReverseBoolConvertVisibility x:Key="rbtv"/>
+        <cv:BoolConvertVisibilityEx x:Key="con_BoolVis"/>
+        <cv:MessageToViewConverter x:Key="mtv"/>
+        <cv:UnReadMessageCountDisplayConverter x:Key="unreadMsg"/>
+    </UserControl.Resources>
+    <Grid x:Name="gridLayout" Margin="-2,0,2,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1*" MinHeight="180"/>
+            <RowDefinition Height="0*" MinHeight="30"/>
+            <RowDefinition  Height="90"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle x:Name="rectTemp" Grid.RowSpan="6" HorizontalAlignment="Right" />
+        <Rectangle Grid.Row="1"  Style="{StaticResource LineRectStyle}"/>
+
+        <TextBlock Grid.Row="1" Style="{StaticResource MainTitleStyle}" Margin="30,0,0,0"
+                   Visibility="{Binding Model.IsGroup,Mode=OneWay,Converter={StaticResource rbtv}}">
+            <Run  Text="{Binding Model.Chat.DisplayName,Mode=OneWay}" FontSize="{StaticResource LargerFontSize}"/>
+        </TextBlock>
+
+        <TextBlock x:Name="tbMemberCount" Grid.Row="1" Style="{StaticResource MainTitleStyle}" Cursor="Hand" FontSize="{StaticResource LargerFontSize}"
+                    Margin="30,0,0,0" MaxWidth="340" TextTrimming="CharacterEllipsis">
+           <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonUp">
+                    <i:InvokeCommandAction Command ="{Binding JumpCommand}" />
+                </i:EventTrigger> 
+            </i:Interaction.Triggers> 
+            <Run  Text="{Binding Model.Chat.DisplayName,Mode=OneWay}"/>(<Run Text="{Binding Model.Chat.MenbersCount,Mode=OneWay}"/>)
+        </TextBlock>
+
+        <!--<Popup x:Name="ppAppend" DataContext="{Binding DataContext,ElementName=gridLayout}" StaysOpen="False" AllowsTransparency="True" 
+               PlacementTarget="{Binding ElementName=rectTemp}" Placement="Right" Width="270" VerticalOffset="-10" Opened="ppAppend_Opened">
+            <Border x:Name="bdAppendFrame" Effect="{StaticResource CommonEffect}" Padding="0,10,10,10">
+                <Border  x:Name="bdAppend" Height="{Binding ActualHeight, ElementName=rectTemp}"  Background="{StaticResource AppendBackground}" Padding="20,40,20,10">
+                     
+                </Border>
+            </Border>
+        </Popup>-->
+
+        <!--<Popup x:Name="ppApply" DataContext="{Binding DataContext,ElementName=gridLayout}" StaysOpen="False" AllowsTransparency="True" 
+               PlacementTarget="{Binding ElementName=rectTemp}" Placement="Right" Width="270" VerticalOffset="-10" >
+            <Border x:Name="bdApplyFrame" Effect="{StaticResource CommonEffect}" Padding="0,10,10,10">
+                <Border  x:Name="bdApply" FlowDirection="LeftToRight" Height="{Binding ActualHeight, ElementName=rectTemp}"  Background="{StaticResource AppendBackground}" Padding="10,30,10,10">
+                   
+                </Border>
+            </Border>
+        </Popup>-->
+
+        <ToggleButton x:Name="ptbtnAppendGroupNotice" HorizontalAlignment="Right" Margin="0,0,40,0" ClickMode="Press" Grid.Row="1" Click="ptbtnAppendGroupNotice_Click" 
+                       Cursor="Hand" FocusVisualStyle="{x:Null}" Visibility="{Binding IsShowGroupNoticeBtn,Converter={StaticResource con_BoolVis}}"  ToolTip="群公告">
+            <ToggleButton.Template>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="Transparent" Padding="5">
+                        <Path x:Name="path" Data="M14.1,0.1c-0.1,0-0.2,0-0.3,0l-10,3.3H0.9C0.4,3.5,0,4,0,4.5v3.8c0,0.5,0.4,0.9,0.9,0.9h2.8v0.5c0,1.8,1.5,3.3,3.3,3.3c0.3,0,0.5-0.2,0.5-0.5C7.5,12.2,7.3,12,7,12c-1.3,0-2.3-1.1-2.3-2.3V9.5l9.1,3c0.1,0,0.2,0,0.3,0c0.5,0,0.9-0.4,0.9-0.9V1.1C15,0.6,14.6,0.1,14.1,0.1z M0.9,8.2V4.5h2.8v3.8H0.9z M14.1,11.6L4.7,8.5V4.2l9.4-3.1V11.6z" VerticalAlignment="Center"
+                              StrokeThickness="0.7" Stroke="#727272" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="path" Property="Stroke" Value="{StaticResource HightLightBackground}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="path" Property="Stroke" Value="{StaticResource HightLightBackground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </ToggleButton.Template>
+        </ToggleButton>
+        <ToggleButton x:Name="ptbtnAppend"  HorizontalAlignment="Right" ClickMode="Press" Grid.Row="1"  
+                      Click="ptbtnAppend_Click" Cursor="Hand" FocusVisualStyle="{x:Null}" Visibility="{Binding IsHideAppendButton,Converter={StaticResource rbtv}}" ToolTip="聊天设置">
+            <ToggleButton.Template>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="Transparent" Padding="5">
+                        <Path x:Name="path" Data="M0,0 0,0 M8,0 8,0 M16,0 16,0" VerticalAlignment="Center"
+                              StrokeThickness="3" Stroke="#727272" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="path" Property="Stroke" Value="{StaticResource HightLightBackground}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="path" Property="Stroke" Value="{StaticResource HightLightBackground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </ToggleButton.Template>
+        </ToggleButton>
+        <Rectangle x:Name="rectMsgW" Margin="60,0" />
+        <imuc:ChatBox x:Name="chatBox" Background="#F5F6F7" Grid.Row="2" ItemsSource="{Binding Model.Messages,Mode=OneWay}" />
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="2">
+            <ToggleButton x:Name="btnApply" Content="入群申请" Margin="0,20,0,0" Padding="5" Click="btnApply_Click" ClickMode="Press"
+                              Visibility="{Binding IsJoinGroupApply,Converter={StaticResource btv},Mode=OneWay}" HorizontalAlignment="Right">
+                <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="Red"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Border Background="{TemplateBinding Background}" Padding="5" Width="70" Height="30" CornerRadius="15,0,0,15">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Foreground" Value="{StaticResource HightLightBackground}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="true">
+                                            <Setter Property="Foreground" Value="{StaticResource HightLightBackground}"/>
+                                            <Setter Property="Background" Value="{StaticResource AppendBackground}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+
+            <ToggleButton Cursor="Hand" Content="有人@你" x:Name="btnAt" Click="btnAt_Click" Margin="0,20,0,0" HorizontalAlignment="Right"
+                          Visibility="{Binding IsDisplayAtButton, Converter={StaticResource btv}}">
+                <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="Red"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Border Background="{TemplateBinding Background}" Padding="5" Width="70" Height="30" CornerRadius="15,0,0,15">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Foreground" Value="{StaticResource HightLightBackground}"/>
+                                        </Trigger>
+                                        <!--<Trigger Property="IsChecked" Value="true">
+                                            <Setter Property="Foreground" Value="{StaticResource HightLightBackground}"/>
+                                            <Setter Property="Background" Value="{StaticResource AppendBackground}"/>
+                                        </Trigger>-->
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+
+            <ToggleButton Cursor="Hand" x:Name="btnHistoryMsg" Click="btnHistoryMsg_Click" Content="{Binding UnReadMsgTip}"
+                      Margin="0,20,0,0" Visibility="{Binding IsDisplayHistoryMsgButton, Converter={StaticResource btv}}" HorizontalAlignment="Right">
+                <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="Background" Value="#E9FBFA"/>
+                        <Setter Property="Foreground" Value="#1FCEC3"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Border Background="{TemplateBinding Background}" Padding="5" Width="100" Height="30" CornerRadius="15,0,0,15">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                                            <Path Data="M0,0 L5,-5 L10,0 M0,5 L5,0 L10,5" Margin="5,10,10,0" Stroke="#1FCEC3"/>
+                                            <ContentPresenter />
+                                        </StackPanel>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Foreground" Value="{StaticResource HightLightBackground}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+
+        </StackPanel>
+        
+        <Rectangle Grid.Row="3" Grid.RowSpan="3"  Fill="White"/>
+        <Button x:Name="btnSend" Grid.Row="5" Content="发送" Focusable="False" Command="{Binding SendCommand,Mode=OneWay}"
+                CommandParameter="{Binding Document, ElementName=msgEditor}" DockPanel.Dock="Bottom"
+                Style="{StaticResource HightLightButtonReverStyle}" HorizontalAlignment="Right" Margin="30,10"/>
+        <imuc:MessageEditor x:Name="msgEditor" x:FieldModifier="public" Grid.Row="3" Grid.RowSpan="2"/>
+        <StackPanel Grid.Row="3" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal"  >
+            <Button x:Name="btnClear" Style="{StaticResource RectPathButtonStyle}"
+                Command="{Binding ClearCommand}"  Focusable="False" ToolTip="清屏" Tag="{StaticResource GeoScreen}"/>
+
+            <ToggleButton x:Name="btnHistory" Click="btnHistory_Click"  ClickMode="Press" ToolTip="消息记录"  Padding="5"
+                    IsChecked="{Binding IsOpenHisMsg,Mode=TwoWay}" Style="{StaticResource RectPathButtonStyle}" Tag="{StaticResource GeoClock}"  />
+        </StackPanel>
+        <Popup IsOpen="{Binding IsNullMsg,IsAsync=True}" PlacementTarget="{Binding ElementName=btnSend,Mode=OneWay}" 
+            Placement="Top" AllowsTransparency="True" HorizontalOffset="-35" StaysOpen="False">
+            <Border Padding="10" x:Name="ppBD" >
+                <Grid  Effect="{StaticResource LightEffect}" RenderTransformOrigin="0.5,1">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="scale" />
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Grid.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard AutoReverse="True" Duration="0:0:1.5">
+                                    <DoubleAnimation From="0" To="1" Duration="0:0:0.2" Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX"/>
+                                    <DoubleAnimation From="0" To="1"  Duration="0:0:0.2" Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY"/>
+                                    <!--<DoubleAnimationUsingKeyFrames  Storyboard.TargetName="ppBD" Storyboard.TargetProperty="Opacity">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+                                </DoubleAnimationUsingKeyFrames>-->
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Grid.Triggers>
+                    <Rectangle Stroke="{StaticResource DarkForeground}" Fill="White" StrokeThickness="1" RadiusX="5" RadiusY="5"/>
+                    <Path  Stroke="{StaticResource DarkForeground}" Fill="White" StrokeThickness="1"
+                       Data="M0,0 8,10  16,0" Margin="0,0,0,-9"  HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    <TextBlock Text="不能发送空白信息" Margin="10"/>
+                </Grid>
+            </Border>
+        </Popup>
+
+        <Rectangle Style="{StaticResource LineRectStyle}" Grid.Row="2"/>
+        <GridSplitter Grid.Row="2" Height="5" Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FocusVisualStyle="{x:Null}" />
+
+    </Grid>
+</UserControl>

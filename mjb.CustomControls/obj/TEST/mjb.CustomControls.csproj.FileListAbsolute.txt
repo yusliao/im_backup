@@ -1,0 +1,14 @@
+D:\work\src\output\test\mjb.CustomControls.dll
+D:\work\src\output\test\mjb.CustomControls.pdb
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls.csprojAssemblyReference.cache
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\GeneratedInternalTypeHelper.g.cs
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls_MarkupCompile.cache
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls_MarkupCompile.lref
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\Themes\IconStateButton.baml
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\Themes\Generic.baml
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls.g.resources
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls.Properties.Resources.resources
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls.csproj.GenerateResource.cache
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls.dll
+D:\work\src\trunk\mjb.CustomControls\obj\TEST\mjb.CustomControls.pdb

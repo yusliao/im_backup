@@ -1,0 +1,11 @@
+D:\work\src\output\huidu\Util.dll.config
+D:\work\src\output\huidu\Util.dll
+D:\work\src\output\huidu\Util.pdb
+D:\work\src\trunk\Util\obj\HUIDU\Util.csprojAssemblyReference.cache
+D:\work\src\trunk\Util\obj\HUIDU\Util.Properties.LibraryResource.resources
+D:\work\src\trunk\Util\obj\HUIDU\Util.Properties.R.resources
+D:\work\src\trunk\Util\obj\HUIDU\Util.csproj.GenerateResource.cache
+D:\work\src\trunk\Util\obj\HUIDU\Util.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Util\obj\HUIDU\Util.csproj.CopyComplete
+D:\work\src\trunk\Util\obj\HUIDU\Util.dll
+D:\work\src\trunk\Util\obj\HUIDU\Util.pdb

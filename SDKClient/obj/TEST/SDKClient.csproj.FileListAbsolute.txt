@@ -1,0 +1,16 @@
+D:\work\src\output\test\Resources\Tools\cjpeg.exe
+D:\work\src\output\test\Resources\Tools\gifsicle.exe
+D:\work\src\output\test\Resources\Tools\guetzli_windows_x86-64.exe
+D:\work\src\output\test\Resources\Tools\jpegtran.exe
+D:\work\src\output\test\Resources\Tools\libjpeg-62.dll
+D:\work\src\output\test\Resources\Tools\pingo.exe
+D:\work\src\output\test\x86\e_sqlite3.dll
+D:\work\src\output\test\x64\e_sqlite3.dll
+D:\work\src\output\test\BadWord.txt
+D:\work\src\trunk\SDKClient\obj\TEST\SDKClient.csprojAssemblyReference.cache
+D:\work\src\trunk\SDKClient\obj\TEST\SDKClient.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\SDKClient\obj\TEST\SDKClient.csproj.CopyComplete
+D:\work\src\trunk\SDKClient\obj\TEST\SDKClient.dll
+D:\work\src\trunk\SDKClient\obj\TEST\SDKClient.pdb
+D:\work\src\output\test\SDKClient.dll
+D:\work\src\output\test\SDKClient.pdb

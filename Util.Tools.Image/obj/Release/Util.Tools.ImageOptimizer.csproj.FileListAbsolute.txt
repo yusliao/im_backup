@@ -1,0 +1,11 @@
+D:\work\src\output\release\Resources\Tools\cjpeg.exe
+D:\work\src\output\release\Resources\Tools\gifsicle.exe
+D:\work\src\output\release\Resources\Tools\guetzli_windows_x86-64.exe
+D:\work\src\output\release\Resources\Tools\jpegtran.exe
+D:\work\src\output\release\Resources\Tools\libjpeg-62.dll
+D:\work\src\output\release\Resources\Tools\pingo.exe
+D:\work\src\output\release\Util.Tools.Image.dll
+D:\work\src\output\release\Util.Tools.Image.pdb
+D:\work\src\trunk\Util.Tools.Image\obj\Release\Util.Tools.ImageOptimizer.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Util.Tools.Image\obj\Release\Util.Tools.Image.dll
+D:\work\src\trunk\Util.Tools.Image\obj\Release\Util.Tools.Image.pdb

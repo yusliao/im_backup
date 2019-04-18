@@ -1,0 +1,297 @@
+﻿<UserControl
+    x:Class="CSClient.Views.Panels.ChatHistoryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cv="clr-namespace:CSClient.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:CSClient.Helper"
+    xmlns:imcc="clr-namespace:IMCustomControls;assembly=IMCustomControls"
+    xmlns:imuc="clr-namespace:CSClient.Views.Controls"
+    xmlns:local="clr-namespace:CSClient.Views.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="360"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <cv:MessageToViewConverter x:Key="mtv" />
+        <cv:BoolConvertVisibility x:Key="btv" />
+        <cv:HeadImgConvter x:Key="htc" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DockPanel
+            Grid.Row="1"
+            Margin="5,0,0,0"
+            VerticalAlignment="Center"
+            LastChildFill="False">
+            <RadioButton
+                x:Name="rbtnAll"
+                Uid="All"
+                Checked="Type_Checked"
+                Content="全部"
+                DockPanel.Dock="Left"
+                Style="{StaticResource ContentButtonStyle}" />
+            <RadioButton
+                Uid="Image"
+                Checked="Type_Checked"
+                Content="图片"
+                DockPanel.Dock="Left"
+                Style="{StaticResource ContentButtonStyle}"
+                Visibility="Hidden" />
+            <RadioButton
+                Uid="File"
+                Checked="Type_Checked"
+                Content="文件"
+                DockPanel.Dock="Left"
+                Style="{StaticResource ContentButtonStyle}"
+                Visibility="Collapsed" />
+
+            <imcc:PopupToggleButton
+                x:Name="pbtnMore"
+                Padding="5"
+                DockPanel.Dock="Right"
+                Popup="{Binding ElementName=ppMore, Mode=OneWay}"
+                Style="{StaticResource RectPathButtonStyle}"
+                Tag="{StaticResource GeoMore}"
+                ToolTip="更多"
+                Visibility="Collapsed" />
+            <!--  Visibility="{Binding IsChecked, ElementName=rbtnAll,Converter={StaticResource btv}}"  -->
+            <imcc:PopupToggleButton
+                x:Name="ptbtnCalendar"
+                Padding="5"
+                DockPanel.Dock="Right"
+                Popup="{Binding ElementName=ppCalendar, Mode=OneWay}"
+                Style="{StaticResource RectPathButtonStyle}"
+                Tag="{StaticResource GeoCalendar}"
+                ToolTip="日期" />
+        </DockPanel>
+        <Rectangle Grid.Row="1" Style="{StaticResource LineRectStyle}" />
+        <Popup
+            x:Name="ppMore"
+            AllowsTransparency="True"
+            HorizontalOffset="-95"
+            Placement="Bottom"
+            PlacementTarget="{Binding ElementName=pbtnMore}"
+            StaysOpen="False"
+            VerticalOffset="-9">
+            <ContentControl Width="130" Style="{StaticResource PopupContentStyle}">
+                <MenuItem
+                    Padding="5"
+                    Click="MenuItem_Click"
+                    Header="清空全部消息" />
+            </ContentControl>
+        </Popup>
+        <Popup
+            x:Name="ppCalendar"
+            HorizontalOffset="-238"
+            Placement="Bottom"
+            PlacementTarget="{Binding ElementName=ptbtnCalendar}"
+            VerticalOffset="-9">
+            <ContentControl Style="{StaticResource PopupContentStyle}">
+                <Calendar
+                    x:Name="calendar"
+                    ContentElement.PreviewMouseUp="calendar_PreviewMouseUp"
+                    SelectedDatesChanged="calendar_SelectedDatesChanged" />
+            </ContentControl>
+        </Popup>
+        <!--<ScrollViewer x:Name="sv" Visibility="Collapsed" Focusable="False" Grid.Row="2" Padding="30,10,30,10" FocusVisualStyle="{x:Null}" >
+
+            <ItemsControl  x:Name="lsb" FocusVisualStyle="{x:Null}" ItemsSource="{Binding Model.Messages,Mode=OneWay}" Background="Transparent">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel x:Name="itemPanel" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentControl FocusVisualStyle="{x:Null}">
+                            <ContentControl.Style>
+                                <Style TargetType="{x:Type ContentControl}">
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                    <Setter Property="Margin" Value="0,0,0,20"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource CommonBorderBrush}"/>
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="{StaticResource DarkForeground}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ContentControl}">
+                                                <Grid x:Name="grid"  VerticalAlignment="Top" HorizontalAlignment="Left" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition />
+                                                    </Grid.RowDefinitions>
+
+                                                    <TextBlock x:Name="tbHeader" Grid.Column="1" Margin="10,0,0,3">
+                                                        <Run Text="{Binding Sender.DisplayName,Mode=OneWay}"/>
+                                                        <Run Text="{Binding SendTime,Mode=OneWay,StringFormat=yyyy-MM-dd HH:mm:ss}"/>
+                                                    </TextBlock>
+                                                    <Border x:Name="Bd" Grid.Row="1" Grid.Column="1" CornerRadius="5" VerticalAlignment="Top" Margin="10,0,0,0"
+                                                             MaxWidth="{Binding ActualWidth, ElementName=rectTemp,Mode=OneWay}" HorizontalAlignment="Left"
+                                                              Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                                                        <ContentControl x:Name="ccView" Margin="5" FocusVisualStyle="{x:Null}">
+                                                            <imcc:SelectableTextBlock x:Name="ccTB" LineHeight="30" LineStackingStrategy="BlockLineHeight" Deleted="ccTB_DoDeleteAction"
+                                                                                FocusVisualStyle="{x:Null}"  Content="{Binding Converter={StaticResource mtv},Mode=OneTime}"
+                                                                TextWrapping="Wrap" FlowDirection="LeftToRight" SelectionBrush="#994C68B9"
+                                                                Foreground="{TemplateBinding Foreground}"  FontSize="{StaticResource CommonFontSize}">
+
+                                                            </imcc:SelectableTextBlock>
+                                                        </ContentControl>
+                                                    </Border>
+                                                    <Path Data="M10,3 C10,3 3,3 1,1  C1,1  2,10 10,12" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                          Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}"
+                                                         Grid.Row="1" Grid.Column="1" Margin="2,10,0,0" />
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+
+                                                    <DataTrigger Binding="{Binding MsgType,Mode=OneTime}" Value="img">
+                                                        <Setter Property="Background" Value="Transparent"/>
+                                                        <Setter Property="BorderBrush" Value="{x:Null}"/>
+                                                        <Setter TargetName="ccView" Property="Margin" Value="0"/>
+                                                        <Setter TargetName="ccView" Property="Content" >
+                                                            <Setter.Value>
+                                                                <imuc:ChatImage FlowDirection="LeftToRight" ImagePath="{Binding Content,Mode=OneWay}" Tag="{Binding Converter={StaticResource mtv},Mode=OneWay}"/>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding MsgType,Mode=OneTime}" Value="file">
+                                                        <Setter Property="Background" Value="Transparent"/>
+                                                        <Setter Property="BorderBrush" Value="{x:Null}"/>
+                                                        <Setter TargetName="ccView" Property="Margin" Value="0"/>
+                                                        <Setter TargetName="ccView" Property="Content" >
+                                                            <Setter.Value>
+                                                                <imuc:FileChatItem FullName="{Binding Content,Mode=OneWay}"
+                                                                                   Tag="{Binding Converter={StaticResource mtv},Mode=OneTime}" FlowDirection="LeftToRight">
+                                                                </imuc:FileChatItem>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+
+                                                    <DataTrigger Binding="{Binding MsgType,Mode=OneTime}" Value="invitejoingroup">
+                                                        <Setter Property="Background" Value="Transparent"/>
+                                                        <Setter Property="BorderBrush" Value="{x:Null}"/>
+                                                        <Setter TargetName="ccView" Property="Margin" Value="0"/>
+                                                        <Setter TargetName="ccView" Property="DataContext" Value="{Binding Target,Mode=OneTime}"/>
+                                                        <Setter TargetName="ccView" Property="Content" >
+                                                            <Setter.Value>
+                                                                <imuc:GroupCard  />
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding MsgType,Mode=OneTime}" Value="notification">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                                                        <Border x:Name="bd"  MaxWidth="{Binding ActualWidth, ElementName=rectTemp}"
+                                                                Background="{StaticResource SelectedBackground}"  HorizontalAlignment="Center" Padding="5,1" CornerRadius="3">
+                                                            <TextBlock TextWrapping="Wrap" FontSize="{StaticResource LowerFontSize}" Foreground="{StaticResource LightForeground }">
+                                                                <Run Text="{Binding ContentMD5,Mode=OneWay}"/><Run Text="{Binding Content,Mode=OneWay}"/>
+                                                            </TextBlock>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <DataTrigger Binding="{Binding IsTimeValue}" Value="true">
+                                                                <Setter TargetName="bd" Property="Background" Value="{x:Null}"/>
+                                                            </DataTrigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+                        </ContentControl>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </ScrollViewer>-->
+
+        <ScrollViewer
+            x:Name="sv"
+            Grid.Row="2"
+            Padding="10,10,10,10"
+            Focusable="False">
+            <RichTextBox
+                x:Name="rictBox"
+                Grid.Row="2"
+                Background="Transparent"
+                BorderBrush="{x:Null}"
+                BorderThickness="0"
+                IsDocumentEnabled="True"
+                IsReadOnly="True">
+                <RichTextBox.ContextMenu>
+                    <ContextMenu x:Name="cmMenu">
+                        <MenuItem Command="Copy" Header="复制" />
+                    </ContextMenu>
+                </RichTextBox.ContextMenu>
+                <RichTextBox.Document>
+                    <helper:FlowDocumentEx x:Name="flowDoc" IsEnabled="True">
+                        <Paragraph>
+                            <Run Foreground="{StaticResource HightLightBackground}" Text="Sender0" />
+                            <Run Foreground="{StaticResource HightLightBackground}" Text="2018.12,18 18:18:18" />
+                            <LineBreak />
+                            <Span>
+                                <Run Text="聊天内容文字内容聊天内容文字内容聊天内容文字内容聊天内容文字内容" />
+                            </Span>
+                        </Paragraph>
+                        <Paragraph>
+                            <Run Foreground="{StaticResource HightLightBackground}" Text="Sender1" />
+                            <Run Foreground="{StaticResource HightLightBackground}" Text="2018.12,18 18:18:18" />
+                            <LineBreak />
+                            <Span>
+                                <Run Text="表情文字0" />
+                                <InlineUIContainer>
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Source="{StaticResource NormalHeadImg}" />
+                                </InlineUIContainer>
+                                <Run Text="表情1" />
+                                <InlineUIContainer>
+                                    <Image
+                                        Width="30"
+                                        Height="30"
+                                        Source="{StaticResource NormalHeadImg}" />
+                                </InlineUIContainer>
+                                <Run Text="表情文字2" />
+                            </Span>
+                        </Paragraph>
+                        <Paragraph>
+                            <Run Foreground="{StaticResource HightLightBackground}" Text="Sender2" />
+                            <Run Foreground="{StaticResource HightLightBackground}" Text="2018.12,18 18:18:18" />
+                            <LineBreak />
+                            <InlineUIContainer>
+                                <Image
+                                    Width="320"
+                                    Height="180"
+                                    Source="{StaticResource AppLogo}"
+                                    Stretch="Fill" />
+                            </InlineUIContainer>
+                        </Paragraph>
+
+                    </helper:FlowDocumentEx>
+                </RichTextBox.Document>
+            </RichTextBox>
+        </ScrollViewer>
+
+
+        <local:AnimationLoading
+            x:Name="aniLoading"
+            Grid.RowSpan="5"
+            Grid.Column="1"
+            Width="60"
+            Height="60"
+            Visibility="Collapsed" />
+    </Grid>
+</UserControl>

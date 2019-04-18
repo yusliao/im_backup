@@ -1,0 +1,9 @@
+D:\work\src\trunk\SocketEngine\bin\Test\SuperSocket.SocketEngine.dll
+D:\work\src\trunk\SocketEngine\bin\Test\SuperSocket.Common.dll
+D:\work\src\trunk\SocketEngine\bin\Test\SuperSocket.SocketBase.dll
+D:\work\src\trunk\SocketEngine\bin\Test\log4net.dll
+D:\work\src\output\test\SuperSocket.SocketEngine.dll
+D:\work\src\trunk\SocketEngine\obj\Test\SuperSocket.SocketEngine.Net45.csprojAssemblyReference.cache
+D:\work\src\trunk\SocketEngine\obj\Test\SuperSocket.SocketEngine.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\SocketEngine\obj\Test\SuperSocket.SocketEngine.Net45.csproj.CopyComplete
+D:\work\src\trunk\SocketEngine\obj\Test\SuperSocket.SocketEngine.dll

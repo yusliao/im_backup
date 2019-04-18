@@ -1,0 +1,27 @@
+﻿<Window x:Class="IMLaunch.AbandonUpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IMLaunch"
+        mc:Ignorable="d" Style="{DynamicResource ShadowWindowStyle}"
+        AllowsTransparency="True"  WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen" x:Name="root"
+        Title="AbandonUpdateWindow" Height="180" Width="380">
+
+    <StackPanel Orientation="Vertical" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown"  Background="#FFFFFF">
+        <DockPanel LastChildFill="False">
+            <Button x:Name="btnClose" Click="btnClose_Click"  Style="{StaticResource CloseStyle}" DockPanel.Dock="Right"/>
+        </DockPanel>
+
+        <TextBlock HorizontalAlignment="Center" Text="确定放弃更新？" Margin="0,10,0,0" FontSize="16" Foreground="#333333"/>
+        <TextBlock HorizontalAlignment="Center" Text="您的版本过低，影响正常使用，请更新最新版本." Margin="0,20,0,0" FontSize="14" Foreground="#666666"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button Click="btnClose_Click" Content="关闭程序" Width="100" Height="26"
+                        Style="{StaticResource TextButtonStyle1}" Background="#F5F6F7" Margin="0,0,60,0"/>
+            <Button Content="马上更新" x:Name="btnUpdate" Click="btnUpdate_Click" 
+                       Foreground="White" Style="{StaticResource TextButtonStyle2}" Width="100" Height="26" />
+        </StackPanel>
+    </StackPanel>
+</Window>

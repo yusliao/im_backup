@@ -1,0 +1,10 @@
+D:\work\src\output\huidu\Utillog.dll.config
+D:\work\src\output\huidu\Utillog.dll
+D:\work\src\output\huidu\Utillog.pdb
+D:\work\src\trunk\Utillog\obj\HUIDU\UtilLog.csprojAssemblyReference.cache
+D:\work\src\trunk\Utillog\obj\HUIDU\Utillog.Properties.LogResource.resources
+D:\work\src\trunk\Utillog\obj\HUIDU\UtilLog.csproj.GenerateResource.cache
+D:\work\src\trunk\Utillog\obj\HUIDU\UtilLog.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Utillog\obj\HUIDU\UtilLog.csproj.CopyComplete
+D:\work\src\trunk\Utillog\obj\HUIDU\Utillog.dll
+D:\work\src\trunk\Utillog\obj\HUIDU\Utillog.pdb

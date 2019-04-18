@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="CSClient.Views.Controls.EmojeBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CSClient.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="180" d:DesignWidth="320">
+    <UserControl.Resources> 
+        <Style  TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Background="{TemplateBinding Background}"  SnapsToDevicePixels="true" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter Content="{TemplateBinding Tag}" VerticalAlignment="Center"  />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="{StaticResource MouseOverBackground}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="{StaticResource SelectedBackground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ItemsControl}">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <UniformGrid />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ContentControl Content="{Binding SelectedItem.Uid, ElementName=lsbEmojeGoups}"/>
+        <ContentControl Grid.Row="1" Content="{Binding SelectedItem.Content, ElementName=lsbEmojeGoups}"/>
+        
+        
+        <ListBox x:Name="lsbEmojeGoups" Grid.Row="2"  SelectedIndex="0" Background="#33333333">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBoxItem Uid="经典表情">
+                <ListBoxItem.Tag>
+                    <Image Source="{StaticResource AppLogo}" Width="30" Height="30"/>
+                </ListBoxItem.Tag>
+                <ListBoxItem.Content>
+                    <ItemsControl> 
+                    </ItemsControl>
+                </ListBoxItem.Content>
+            </ListBoxItem>
+        </ListBox>
+    </Grid>
+</UserControl>

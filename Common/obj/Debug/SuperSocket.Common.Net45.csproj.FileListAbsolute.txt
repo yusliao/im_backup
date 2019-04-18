@@ -1,0 +1,17 @@
+D:\work\src\trunk\Common\bin\Debug\SuperSocket.Common.XML
+D:\work\src\trunk\Common\bin\Debug\SuperSocket.Common.dll
+D:\work\src\trunk\Common\bin\Debug\SuperSocket.Common.pdb
+D:\work\output\debug\SuperSocket.Common.dll
+D:\work\output\debug\SuperSocket.Common.pdb
+D:\work\output\debug\SuperSocket.Common.XML
+D:\work\src\trunk\Common\obj\Debug\SuperSocket.Common.Net45.csprojAssemblyReference.cache
+D:\work\src\trunk\Common\obj\Debug\SuperSocket.Common.Net45.csproj.CoreCompileInputs.cache
+D:\work\src\trunk\Common\obj\Debug\SuperSocket.Common.dll
+D:\work\src\trunk\Common\obj\Debug\SuperSocket.Common.pdb
+C:\Users\wangxk\Documents\output\debug\SuperSocket.Common.dll
+C:\Users\wangxk\Documents\output\debug\SuperSocket.Common.pdb
+C:\Users\wangxk\Documents\output\debug\SuperSocket.Common.XML
+C:\Users\wangxk\Documents\GitHub\im_backup\Common\obj\Debug\SuperSocket.Common.Net45.csprojAssemblyReference.cache
+C:\Users\wangxk\Documents\GitHub\im_backup\Common\obj\Debug\SuperSocket.Common.Net45.csproj.CoreCompileInputs.cache
+C:\Users\wangxk\Documents\GitHub\im_backup\Common\obj\Debug\SuperSocket.Common.dll
+C:\Users\wangxk\Documents\GitHub\im_backup\Common\obj\Debug\SuperSocket.Common.pdb

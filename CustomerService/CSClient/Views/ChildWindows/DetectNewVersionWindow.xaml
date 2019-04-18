@@ -1,0 +1,27 @@
+﻿<Window x:Class="CSClient.Views.ChildWindows.DetectNewVersionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" FontFamily="微软雅黑"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSClient.Views.ChildWindows" ShowInTaskbar="False"
+        mc:Ignorable="d" Style="{StaticResource ShadowWindowStyle}" WindowStartupLocation="CenterOwner"
+        Title="DetectNewVersionWindow" Height="170" Width="380">
+    
+    <Grid>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Click" Style="{DynamicResource CloseButtonStyle}"/>
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="tbHint" Text="发现新版本！" Style="{StaticResource TitleStyle}" Foreground="#4E546A" Margin="0,40,0,0" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="tbVersion" Text="V2.0.0" Style="{StaticResource CellTitleStyle}" Foreground="#4E546A" HorizontalAlignment="Center"/>
+
+            <StackPanel x:Name="pnlHasNewVersion" Visibility="Visible" Orientation="Horizontal" Margin="0,20,0,0" ButtonBase.Click="Button_Click">
+                <Button Content="暂不更新" Margin="60,0,40,0" Width="100" Style="{DynamicResource HightLightButtonReverStyle}" Uid="CANCEL"/>
+                <Button Content="下载安装" Width="100" Style="{DynamicResource HightLightButtonStyle}" Uid="SURE"/>
+            </StackPanel>
+            <StackPanel x:Name="pnlHasNotNewVersion" Visibility="Collapsed" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,20,0,0" ButtonBase.Click="Button_Click">
+                <Button Content="确定" Width="70" Uid="CANCEL" Style="{DynamicResource HightLightButtonStyle}" />
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

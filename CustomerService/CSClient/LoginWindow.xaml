@@ -1,0 +1,243 @@
+﻿<Window x:Class="CSClient.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:imuc="clr-namespace:CSClient.Views.Controls"
+        xmlns:imc="clr-namespace:IMCustomControls;assembly=IMCustomControls" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:cv="clr-namespace:CSClient.Converter"
+        mc:Ignorable="d" Style="{StaticResource ShadowWindowStyle}"  
+        ShowInTaskbar="False" x:Name="login"
+        Topmost="True" FontFamily="微软雅黑"
+        WindowStartupLocation="CenterScreen"  
+        Height="420" Width="300"  MaxHeight="420" MaxWidth="300">
+    <Window.Resources>
+        <cv:IntToVisibilityConverter x:Key="itv"/>
+        <cv:BoolToVisibilityConvert x:Key="btv" />
+        <cv:ReverseBoolConvertVisibility x:Key="rbtv"/>
+
+        <Storyboard x:Key="Loading"  RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="elpRing" Storyboard.TargetProperty="Opacity" >
+                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="rotateRing" Storyboard.TargetProperty="Angle" 
+                                     From="0" To="360" Duration="0:0:2"/>
+        </Storyboard>
+
+    </Window.Resources> 
+    
+    <Grid x:Name="gridLayout">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="120"/>  
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Popup x:Name="popupLoginers" DataContext="{Binding DataContext,ElementName=gridLayout}" StaysOpen="False" AllowsTransparency="True" 
+               PlacementTarget="{Binding ElementName=gridLayout}" Placement="Left" VerticalOffset="-10">
+            <Border Height="{Binding ActualHeight, ElementName=login}" Padding="10" Width="220" Effect="{StaticResource CommonEffect}">
+                <Grid x:Name="gridHisList" Background="{StaticResource AppendBackground}" Margin="0,0,-10,0">
+                    <ListBox Background="Transparent" BorderBrush="{x:Null}"
+                             ItemsSource="{Binding HistoryUsers,Mode=OneWay}" SelectedItem="{Binding SelectedLogin}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}"> 
+                                            <Border Padding="10,5" Background="{TemplateBinding Background}" Height="50" Cursor="Hand"> 
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Ellipse x:Name="elpHead" Width="30" Height="30">
+                                                        <Ellipse.Fill>
+                                                            <ImageBrush ImageSource="{Binding User.HeadImg,Mode=OneWay}" Stretch="Fill"/>
+                                                        </Ellipse.Fill>
+                                                    </Ellipse>
+                                                    <TextBlock Text="{Binding User.PhoneNumber,Mode=OneWay}" Grid.Column="1" VerticalAlignment="Center"
+                                                               Margin="5,0,0,0"/>
+                                                    <Button Style="{StaticResource ForkButtonStyle}" Grid.Column="2" Width="20" Height="20"
+                                                            Command="{Binding DataContext.RemoveCommand,ElementName=gridLayout,Mode=OneWay}"
+                                                            CommandParameter="{Binding Mode=OneWay}"/>
+
+                                                    <Rectangle x:Name="rect" Margin="0,0,0,-3"  RenderTransformOrigin="0.5,0.5"
+                                                               Fill="Transparent" Height="1"  Grid.ColumnSpan="3" VerticalAlignment="Bottom">
+                                                        <Rectangle.RenderTransform>
+                                                            <ScaleTransform x:Name="ScaleLine" ScaleX="0" ScaleY="0.8"/>
+                                                        </Rectangle.RenderTransform>
+                                                    </Rectangle>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Trigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard  >
+                                                                <DoubleAnimation Storyboard.TargetName="ScaleLine" Storyboard.TargetProperty="ScaleX" From="0" To="1" Duration="0:0:0.3"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.EnterActions>
+                                                    <Trigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard  >
+                                                                <DoubleAnimation Storyboard.TargetName="ScaleLine" Storyboard.TargetProperty="ScaleX"  From="1" To="0" Duration="0:0:0.15"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </Trigger.ExitActions>
+                                                    <Setter Property="Background" Value="#DDE3EE"/>
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="true"> 
+                                                    <Setter TargetName="rect" Property="RenderTransform">
+                                                        <Setter.Value>
+                                                            <ScaleTransform ScaleX="1" ScaleY="1.5"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter TargetName="elpHead" Property="Width" Value="40"/>
+                                                    <Setter TargetName="elpHead" Property="Height" Value="40"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        
+                    </ListBox>
+                    <StackPanel Orientation="Vertical" Visibility="{Binding HistoryUsers.Count,Converter={StaticResource itv}}" >
+                        <Image Source="/IMAssets;component/Images/nofriend.png" Width="92" Height="79" Margin="0,134,0,18"/>
+                        <TextBlock Text="没有历史登录人哟~" Foreground="#4E546A" FontSize="14" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Popup>
+
+        <TextBlock Text="满金店客服" Style="{StaticResource MainTitleStyle}" />
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" >
+            <Button Style="{StaticResource MinButtonStyle}" x:Name="btnMin" Click="btnMin_Click"/>
+            <Button Style="{StaticResource CloseButtonStyle}" x:Name="btnClose" Click="btnClose_Click"/>
+        </StackPanel>
+
+        <imc:PopupToggleButton x:Name="btnLoginUser"  IsChecked="{Binding IsOpenList}" IsHitTestVisible="{Binding IsWaitForLogin}"
+                               Popup="{Binding ElementName=popupLoginers}" Grid.Row="1" >
+            <imc:PopupToggleButton.Template>
+                <ControlTemplate TargetType="{x:Type imc:PopupToggleButton}">
+                    <Grid >
+                        <Grid HorizontalAlignment="Left" Width="15" Height="60" VerticalAlignment="Center" >
+                            <Path Data="M0,0 15,15 15,45 0,60 z" Fill="{StaticResource AppendBackground}"/>
+                            <Path x:Name="pathArrow" Data="M0,0 6,6 0,12" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="{StaticResource CommonBorderBrush}"/>
+                        </Grid>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                         
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="pathArrow" Property="Data" Value="M6,0 0,6 6,12"/>
+                            <Setter TargetName="pathArrow" Property="Fill" Value="{StaticResource LightForeground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate> 
+            </imc:PopupToggleButton.Template>
+            <Grid  Width="100" Height="100" FlowDirection="LeftToRight">
+                <Ellipse>
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{StaticResource NormalHeadImg}" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Ellipse>
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding SelectedLogin.User.HeadImg,Mode=OneWay}" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Ellipse x:Name="elpRing" StrokeThickness="6" Opacity="0" Stroke="{StaticResource HightLightBackground}" Margin="-3" />
+                <Ellipse Width="20" Height="20" VerticalAlignment="Top"  Margin="-10" RenderTransformOrigin="0.5,3"
+                          Visibility="{Binding IsWaitForLogin,Converter={StaticResource rbtv}}">
+                    <Ellipse.RenderTransform>
+                        <RotateTransform x:Name="rotateRing" Angle="45"/>
+                    </Ellipse.RenderTransform>
+                    <Ellipse.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="White" Offset="0"/> 
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+ 
+            </Grid>
+           
+        </imc:PopupToggleButton>
+
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Margin="0,-40,0,0" >
+            <TextBlock Text="{Binding ErrorInfo}" Foreground="Red"  IsHitTestVisible="False" HorizontalAlignment="Center" FontSize="{StaticResource CommonFontSize}">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Trigger> 
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBox x:Name="tbAccount" MaxLength="50" Text="{Binding SelectedLogin.User.PhoneNumber,Mode=OneWay}" Style="{StaticResource TextBoxTagStyle}" Tag="账号" 
+                 Visibility="{Binding IsQuickLogin,Converter={StaticResource rbtv},Mode=OneWay}" Margin="0,10" TextWrapping="NoWrap">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="KeyUp">
+                        <i:InvokeCommandAction Command ="{Binding LoginAccountInputCommand,Mode=OneWay}" CommandParameter="{Binding Text, ElementName=tbAccount,Mode=OneWay}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+
+            <imuc:PassowrdBox Password="{Binding SelectedLogin.Password,Mode=TwoWay}" IsEyeVisible="{Binding IsEyeVisible,Mode=OneWay}" 
+                 Visibility="{Binding IsQuickLogin,Converter={StaticResource rbtv},Mode=OneWay}" Margin="0,5"/>
+
+            <CheckBox Grid.Row="5" Content="记住密码"  Style="{StaticResource CommonCheckBoxStyle}" IsChecked="{Binding SelectedLogin.IsSavePassword}"
+                 Visibility="{Binding IsQuickLogin,Converter={StaticResource rbtv},Mode=OneWay}" Margin="0,5,0,5"/>
+
+            <Button Command="{Binding LoginCommand}" Visibility="{Binding IsWaitForLogin,Converter={StaticResource btv}}"
+            Grid.Row="3" Style="{StaticResource HightLightButtonStyle}" IsDefault="True"  Content="登录" Width="200"  Margin="0,30,0,0"/>
+        </StackPanel>
+     
+ 
+        <Grid   Grid.Row="2" Visibility="{Binding IsWaitForLogin,Converter={StaticResource rbtv}}"
+              Background="{StaticResource CommonBackground}" >
+            <CheckBox x:Name="cbLogining" Visibility="Collapsed" IsChecked="{Binding IsWaitForLogin,Mode=OneWay}">
+                <CheckBox.Triggers>
+                    <EventTrigger SourceName="cbLogining" RoutedEvent="ToggleButton.Unchecked" >
+                        <BeginStoryboard x:Name="BeginLoading" Storyboard="{StaticResource Loading}"/> 
+                    </EventTrigger>
+                    <EventTrigger SourceName="cbLogining" RoutedEvent="ToggleButton.Checked">
+                        <StopStoryboard BeginStoryboardName="BeginLoading"/>
+                    </EventTrigger>
+                </CheckBox.Triggers>
+            </CheckBox>
+            <TextBlock  Text="登录中 . . ." HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Visibility="{Binding IsWaitForLogin,Converter={StaticResource rbtv}}"
+                      FontSize="{StaticResource UpperFontSize}" Foreground="{StaticResource DarkForeground}"/>
+        </Grid>
+
+       
+ 
+        <ToggleButton Grid.Row="3"  Cursor="Hand" FocusVisualStyle="{x:Null}" 
+                       IsHitTestVisible="{Binding IsWaitForLogin}"
+                      Visibility="{Binding IsQuickLogin,Converter={StaticResource btv},Mode=OneWay}"
+                      IsChecked="{Binding IsQuickLogin}"
+                      HorizontalAlignment="Center" Background="Transparent"  BorderThickness="0" BorderBrush="{x:Null}">
+            <ToggleButton.Template>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <TextBlock Padding="10" Background="Transparent">
+                       <Run Text="切换账号 " FontSize="{StaticResource CommonFontSize}" Foreground="{StaticResource HightLightBackground}"/>
+                      <Path Data="M0,3 11,3 7,0 M11,8 0,8 3,11"   StrokeThickness="1" Stroke="{StaticResource HightLightBackground}"/>
+                    </TextBlock>
+                </ControlTemplate>
+            </ToggleButton.Template>
+           
+        </ToggleButton>
+    </Grid>
+</Window>
